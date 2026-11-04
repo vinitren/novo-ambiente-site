@@ -1,0 +1,241 @@
+/* Novo Ambiente Service · versão 1 da entrada (03/11/2026)
+   Vidro sujo por cima do vídeo: quem chega passa o dedo e limpa.
+   Depois de limpo, a marca sobe pro topo e o título assenta embaixo. */
+
+:root {
+  --tinta: #08192a;
+  --marinho: #0b2236;
+  --marinho-2: #12324d;
+  --azul: #0095da;
+  --azul-claro: #8cc3e6;
+  --azul-texto: #006596;
+  --nevoa: #f1f4f6;
+  --nevoa-2: #e2e8ed;
+  --linha: rgba(8, 25, 42, .12);
+  --texto: #0b1d2e;
+  --texto-2: #4b5f71;
+  --branco: #ffffff;
+  --branco-2: rgba(255, 255, 255, .74);
+  --confirmar: #f2b544;
+  --wrap: 82rem;
+  --display: "Familjen Grotesk", "Hanken Grotesk", system-ui, sans-serif;
+  --corpo: "Hanken Grotesk", system-ui, sans-serif;
+  --sai: cubic-bezier(.16, 1, .3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; font: 400 1.0625rem/1.6 var(--corpo); color: var(--texto); background: var(--nevoa); }
+img, svg, video, canvas { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; margin: 0; letter-spacing: -.025em; line-height: 1.04; text-wrap: balance; }
+p { margin: 0; }
+::selection { background: var(--azul); color: #fff; }
+:focus-visible { outline: 2px solid var(--azul); outline-offset: 3px; border-radius: 6px; }
+html { scrollbar-color: var(--marinho-2) var(--nevoa); }
+
+.wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 1.25rem; }
+@media (min-width: 48rem) { .wrap { padding: 0 2.5rem; } }
+.pular { position: absolute; left: -999px; }
+.pular:focus { left: 1rem; top: 1rem; z-index: 99; background: #fff; padding: .5rem 1rem; }
+
+/* faixa da prévia (some no site no ar) */
+.faixa { position: relative; z-index: 40; background: #020b14; color: rgba(255, 255, 255, .7); font-size: .8125rem; }
+.faixa .wrap { display: flex; flex-wrap: wrap; gap: .3rem 1rem; align-items: center; justify-content: space-between; padding-top: .45rem; padding-bottom: .45rem; }
+.faixa b { color: #fff; font-weight: 600; }
+.faixa nav { display: flex; gap: .35rem; }
+.faixa nav a { text-decoration: none; padding: .15rem .6rem; border-radius: 99px; border: 1px solid rgba(255, 255, 255, .22); }
+.faixa nav a[aria-current] { background: #fff; color: var(--tinta); border-color: #fff; }
+
+/* ---------- botões ---------- */
+.pilula {
+  display: inline-flex; align-items: center; gap: .6rem; min-height: 3.25rem; padding: .8rem 1.5rem;
+  border-radius: 99px; font: 600 1rem/1.1 var(--corpo); text-decoration: none; letter-spacing: -.005em;
+  transition: background-color .25s var(--sai), color .25s var(--sai), transform .25s var(--sai);
+}
+.pilula svg { width: 1.2rem; height: 1.2rem; flex: none; }
+.pilula:active { transform: scale(.98); }
+.pilula-branca { background: #fff; color: var(--tinta); }
+.pilula-branca:hover { background: var(--azul-claro); }
+.pilula-escura { background: var(--tinta); color: #fff; }
+.pilula-escura:hover { background: var(--azul); }
+.link-seta { display: inline-flex; align-items: center; gap: .45rem; font-weight: 600; text-decoration: none; }
+.link-seta span { transition: transform .3s var(--sai); }
+.link-seta:hover span { transform: translateX(4px); }
+
+/* ---------- topo ---------- */
+.topo { position: absolute; top: 0; left: 0; right: 0; z-index: 30; color: #fff; }
+.topo .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; padding-top: 1.1rem; padding-bottom: 1.1rem; }
+.topo nav { display: none; gap: 1.8rem; font-size: .9375rem; font-weight: 500; }
+.topo nav a { text-decoration: none; opacity: .82; transition: opacity .2s; }
+.topo nav a:hover { opacity: 1; }
+.topo .marca-topo { grid-column: 2; opacity: 0; transform: translateY(-8px); transition: opacity .8s var(--sai), transform .8s var(--sai); }
+.topo .marca-topo img { height: 3rem; width: auto; }
+.topo .pilula { grid-column: 3; justify-self: end; min-height: 2.75rem; padding: .55rem 1.1rem; font-size: .9375rem; background: rgba(255, 255, 255, .14); color: #fff; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.topo .pilula:hover { background: #fff; color: var(--tinta); }
+.topo .pilula .so-largo { display: none; }
+@media (min-width: 30rem) { .topo .pilula .so-largo { display: inline; } }
+@media (min-width: 62rem) { .topo nav { display: flex; } .topo .marca-topo img { height: 3.6rem; } }
+@media (max-width: 61.99rem) { .topo .wrap { grid-template-columns: auto 1fr auto; } .topo .marca-topo { grid-column: 1; } }
+.no-menu .topo .marca-topo, .estatico .topo .marca-topo, .sem-js .topo .marca-topo { opacity: 1; transform: none; }
+
+/* ---------- entrada ----------
+   Como no hola.design: a logo grande no centro, sobre o vídeo. Rolando, ela
+   encolhe e sobe pro lugar dela no menu, e o título assenta embaixo.
+   O palco fica preso na tela enquanto a entrada (2 telas de altura) passa. */
+.entrada { position: relative; height: 200svh; background: var(--tinta); color: #fff; }
+.palco { position: sticky; top: 0; height: 100svh; min-height: 36rem; overflow: hidden; isolation: isolate; --inicio: 1; }
+.palco .filme, .palco .veu { position: absolute; inset: 0; width: 100%; height: 100%; }
+.palco picture { position: absolute; inset: 0; }
+.palco .filme { object-fit: cover; object-position: 62% 50%; z-index: 0; transform-origin: 62% 50%; animation: respira 24s ease-in-out infinite alternate; }
+@keyframes respira { from { transform: scale(1); } to { transform: scale(1.045); } }
+@media (prefers-reduced-motion: reduce) { .palco .filme { animation: none; } }
+.palco .veu {
+  z-index: 3; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(4, 14, 24, .55) 0%, rgba(4, 14, 24, 0) 22%),
+    linear-gradient(0deg, rgba(4, 14, 24, .88) 0%, rgba(4, 14, 24, .35) 34%, rgba(4, 14, 24, 0) 58%),
+    linear-gradient(90deg, rgba(4, 14, 24, .55) 0%, rgba(4, 14, 24, 0) 48%);
+}
+/* escurece o meio enquanto a logo está lá, e some junto com ela */
+.palco::before {
+  content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: var(--inicio);
+  background: radial-gradient(ellipse 60% 55% at 50% 50%, rgba(4, 14, 24, .62) 0%, rgba(4, 14, 24, .3) 60%, rgba(4, 14, 24, .15) 100%);
+}
+
+.marca-centro {
+  position: absolute; z-index: 4; inset: 0; display: grid; place-content: center; justify-items: center; gap: 1.2rem;
+  pointer-events: none; text-align: center;
+}
+.marca-centro img { width: min(30rem, 78vw); height: auto; transform-origin: 50% 50%; filter: drop-shadow(0 10px 30px rgba(0, 0, 0, .35)); }
+.linha-marca { font-size: .8125rem; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: var(--branco-2); }
+.rolar {
+  position: absolute; z-index: 5; left: 50%; bottom: 1.6rem; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: .45rem;
+  font-size: .6875rem; letter-spacing: .22em; text-transform: uppercase; color: rgba(255, 255, 255, .72); text-decoration: none;
+}
+.rolar::after { content: ""; width: 1px; height: 2.8rem; background: linear-gradient(#fff, rgba(255, 255, 255, 0)); transform-origin: top; animation: desce 2.2s var(--sai) infinite; }
+@keyframes desce { 0% { transform: scaleY(0); opacity: 1; } 60% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+
+/* o texto que assenta embaixo */
+.chegada { position: absolute; z-index: 5; left: 0; right: 0; bottom: 0; padding-bottom: clamp(1.5rem, 4vh, 3rem); }
+.chegada .wrap { display: grid; gap: 1.6rem; align-items: end; }
+@media (min-width: 62rem) { .chegada .wrap { grid-template-columns: 1fr auto; gap: 3rem; } }
+.chegada h1 { font-size: clamp(2.6rem, 1.4rem + 5.2vw, 6rem); max-width: 11ch; }
+.chegada .apoio { margin-top: 1.1rem; max-width: 34rem; font-size: clamp(1.0625rem, 1rem + .25vw, 1.2rem); color: var(--branco-2); }
+.chegada .acoes { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.6rem; margin-top: 1.8rem; }
+.chegada .acoes .link-seta { color: #fff; }
+.chegada .fatos { display: grid; gap: .55rem; margin: 0; padding: 0; list-style: none; font-size: .875rem; color: var(--branco-2); }
+.chegada .fatos b { color: #fff; font-weight: 600; }
+@media (min-width: 62rem) { .chegada .fatos { text-align: right; } }
+.js .chegada [data-chega] { opacity: 0; transform: translateY(32px); }
+.etiqueta { position: absolute; z-index: 5; right: 1rem; top: 5.2rem; font-size: .6875rem; letter-spacing: .03em; color: rgba(255, 255, 255, .62); }
+@media (min-width: 62rem) { .etiqueta { top: auto; bottom: 1rem; right: 1.5rem; } }
+
+/* sem animação (sem script ou "reduzir movimento"): entrada de uma tela, tudo à vista */
+.estatico .entrada, .sem-js .entrada { height: auto; }
+.estatico .marca-centro, .estatico .rolar, .sem-js .marca-centro, .sem-js .rolar { display: none; }
+.estatico .palco::before, .sem-js .palco::before { opacity: 0; }
+.estatico .chegada [data-chega] { opacity: 1; transform: none; }
+
+/* ---------- seções ---------- */
+.secao { padding: clamp(5rem, 4rem + 6vw, 9rem) 0; }
+.titulo-secao { font-size: clamp(2rem, 1.3rem + 2.8vw, 3.6rem); max-width: 18ch; }
+.sub { color: var(--texto-2); margin-top: 1rem; max-width: 40rem; font-size: 1.125rem; }
+
+/* manifesto */
+.manifesto { background: var(--nevoa); }
+.manifesto p { font: 500 clamp(1.75rem, 1.1rem + 2.9vw, 3.9rem)/1.14 var(--display); letter-spacing: -.025em; max-width: 22ch; color: var(--texto); }
+.manifesto .p { display: inline; transition: color .2s; }
+.js .manifesto .p { color: rgba(11, 29, 46, .16); }
+.manifesto .p.aceso { color: var(--texto); }
+
+/* antes e depois */
+.comparar { background: var(--tinta); color: #fff; }
+.comparar .cabeca { display: grid; gap: 1.2rem; }
+@media (min-width: 62rem) { .comparar .cabeca { grid-template-columns: 1fr 1fr; align-items: end; gap: 4rem; } }
+.comparar .sub { color: var(--branco-2); }
+.ba {
+  --pos: 50%; position: relative; margin-top: 3rem; aspect-ratio: 16 / 10; border-radius: 16px; overflow: hidden;
+  background: var(--marinho); touch-action: pan-y; box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .7);
+}
+@media (max-width: 47.99rem) { .ba { aspect-ratio: 4 / 5; } }
+.ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ba .depois { clip-path: inset(0 0 0 var(--pos)); }
+.ba .linha { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: #fff; pointer-events: none; }
+.ba .puxador { position: absolute; top: 50%; left: var(--pos); width: 3.6rem; height: 3.6rem; margin: -1.8rem 0 0 -1.8rem; border-radius: 50%; background: #fff; color: var(--tinta); display: grid; place-items: center; pointer-events: none; box-shadow: 0 8px 24px rgba(0, 0, 0, .3); }
+.ba .puxador svg { width: 1.5rem; height: 1.5rem; }
+.ba .rot { position: absolute; top: 1rem; padding: .3rem .8rem; border-radius: 99px; font-size: .8125rem; font-weight: 600; pointer-events: none; background: rgba(4, 14, 24, .6); color: #fff; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.ba .rot.a { left: 1rem; }
+.ba .rot.d { right: 1rem; background: #fff; color: var(--tinta); }
+.ba input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+.legenda { margin-top: .9rem; font-size: .875rem; color: var(--branco-2); }
+.confirmar { display: inline-block; padding: .05rem .45rem; border-radius: 4px; font-size: .6875rem; font-weight: 600; color: #4a3300; background: var(--confirmar); vertical-align: middle; }
+
+/* serviços de vidro: índice com imagem */
+.indice { list-style: none; margin: 3.5rem 0 0; padding: 0; border-top: 1px solid var(--linha); }
+.indice li { border-bottom: 1px solid var(--linha); }
+.indice a { display: grid; grid-template-columns: 1fr auto; gap: .4rem 2rem; padding: 1.6rem 0; text-decoration: none; position: relative; }
+@media (min-width: 62rem) { .indice a { grid-template-columns: 22rem 1fr auto; align-items: baseline; padding: 2rem 0; } }
+.indice h3 { font-size: clamp(1.5rem, 1.2rem + 1.3vw, 2.4rem); transition: transform .5s var(--sai), color .3s; }
+.indice p { grid-column: 1 / -1; color: var(--texto-2); max-width: 40rem; }
+@media (min-width: 62rem) { .indice p { grid-column: auto; } }
+.indice .seta { grid-row: 1; grid-column: 2; align-self: center; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1px solid var(--linha); display: grid; place-items: center; transition: background-color .3s, color .3s, border-color .3s; }
+@media (min-width: 62rem) { .indice .seta { grid-column: 3; } }
+.indice .seta svg { width: 1.1rem; height: 1.1rem; }
+.indice a:hover h3 { transform: translateX(.5rem); color: var(--azul-texto); }
+.indice a:hover .seta { background: var(--tinta); color: #fff; border-color: var(--tinta); }
+.indice .foto-cel { grid-column: 1 / -1; margin-top: .8rem; border-radius: 12px; overflow: hidden; aspect-ratio: 16 / 10; }
+.indice .foto-cel img { width: 100%; height: 100%; object-fit: cover; }
+@media (min-width: 62rem) { .indice .foto-cel { display: none; } }
+.flutua { position: fixed; z-index: 20; left: 0; top: 0; width: 17rem; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; pointer-events: none; opacity: 0; transform: scale(.85); transition: opacity .3s var(--sai); box-shadow: 0 30px 60px -20px rgba(8, 25, 42, .45); }
+.flutua img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .35s; }
+.flutua img.vis { opacity: 1; }
+.flutua.vis { opacity: 1; }
+@media (hover: none), (max-width: 61.99rem) { .flutua { display: none; } }
+
+/* pra quem */
+.quem { background: #fff; }
+.quem .linhas { margin-top: 3.5rem; display: grid; gap: 0; border-top: 1px solid var(--linha); }
+.quem article { display: grid; gap: .8rem 3rem; padding: 2rem 0; border-bottom: 1px solid var(--linha); }
+@media (min-width: 62rem) { .quem article { grid-template-columns: 16rem 1fr auto; align-items: start; } }
+.quem h3 { font-size: 1.6rem; }
+.quem .dor { color: var(--texto-2); max-width: 44rem; }
+.quem .dor b { color: var(--texto); font-weight: 600; }
+.quem .link-seta { color: var(--azul-texto); white-space: nowrap; }
+
+/* também limpamos */
+.tambem { background: var(--nevoa); padding-top: 0; }
+.tambem .grade { display: grid; gap: 1px; background: var(--linha); border: 1px solid var(--linha); border-radius: 16px; overflow: hidden; margin-top: 2.5rem; }
+@media (min-width: 48rem) { .tambem .grade { grid-template-columns: repeat(3, 1fr); } }
+.tambem a { background: var(--nevoa); padding: 1.8rem; text-decoration: none; display: grid; gap: .5rem; transition: background-color .3s; }
+.tambem a:hover { background: #fff; }
+.tambem h3 { font-size: 1.5rem; }
+.tambem p { color: var(--texto-2); font-size: 1rem; }
+.tambem .link-seta { margin-top: .6rem; color: var(--azul-texto); font-size: .9375rem; }
+
+/* fecho */
+.fecho { background: var(--tinta); color: #fff; text-align: center; }
+.fecho h2 { font-size: clamp(2.4rem, 1.4rem + 4.6vw, 5.6rem); max-width: 14ch; margin: 0 auto; }
+.fecho p { color: var(--branco-2); margin: 1.2rem auto 0; max-width: 34rem; font-size: 1.125rem; }
+.fecho .acoes { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 1.6rem; align-items: center; margin-top: 2.4rem; }
+.fecho .link-seta { color: #fff; }
+
+/* rodapé */
+.rodape { background: #020b14; color: rgba(255, 255, 255, .7); padding: 3rem 0 6.5rem; font-size: .9375rem; }
+@media (min-width: 48rem) { .rodape { padding-bottom: 3rem; } }
+.rodape .wrap { display: grid; gap: 1.8rem; }
+@media (min-width: 48rem) { .rodape .wrap { grid-template-columns: auto 1fr; align-items: center; gap: 4rem; } }
+.rodape img { height: 4.2rem; width: auto; }
+.rodape address { font-style: normal; line-height: 1.75; }
+.rodape a { color: #fff; }
+
+/* barra do WhatsApp no celular */
+.barra-wa { position: fixed; left: 0; right: 0; bottom: 0; z-index: 35; padding: .6rem 1rem calc(.6rem + env(safe-area-inset-bottom)); background: rgba(2, 11, 20, .9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transform: translateY(110%); transition: transform .4s var(--sai); }
+.barra-wa.vis { transform: none; }
+.barra-wa .pilula { width: 100%; justify-content: center; }
+@media (min-width: 48rem) { .barra-wa { display: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .indice h3, .link-seta span { transition: none; }
+}
