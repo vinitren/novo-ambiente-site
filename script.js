@@ -1,139 +1,129 @@
-/* Novo Ambiente · prévia da página principal
-   Entrada como no hola.design: a logo grande no centro, sobre o vídeo; rolando,
-   ela encolhe e sobe pro lugar dela no menu, e o título assenta embaixo.
-   Sem GSAP (bloqueado ou fora do ar) ou com "reduzir movimento", a entrada
-   aparece pronta, numa tela só. */
+/* Novo Ambiente · página principal
+   Entrada: a marca grande no centro sobe pro menu, o título assenta e a cena
+   troca pra vitrine, tudo guiado pela rolagem. Sem biblioteca. Sem script ou com
+   "reduzir movimento", a entrada aparece pronta numa tela só. */
 (function () {
   var raiz = document.documentElement;
-  var temGsap = !!window.gsap;
   var calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var celular = window.matchMedia('(max-width: 47.99rem)').matches;
-  var chegam = document.querySelectorAll('[data-chega]');
+  var conexao = navigator.connection || {};
+  var economia = conexao.saveData || /2g/.test(conexao.effectiveType || '');
 
-  function mostrarTudo() {
-    chegam.forEach(function (el) { el.style.opacity = 1; el.style.transform = 'none'; });
-  }
-  if (!temGsap || calmo) { raiz.classList.add('estatico'); mostrarTudo(); }
-
-  /* ---------- rolagem suave ---------- */
-  var lenis = null;
-  if (temGsap && window.Lenis && !calmo) {
-    gsap.registerPlugin(ScrollTrigger);
-    lenis = new Lenis({ lerp: 0.11 });
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
-    gsap.ticker.lagSmoothing(0);
-  } else if (temGsap) {
-    gsap.registerPlugin(ScrollTrigger);
-  }
-
-  var filme = document.querySelector('.filme');
   var entrada = document.querySelector('.entrada');
+  var palco = entrada.querySelector('.palco');
+  var topo = document.querySelector('.topo');
+  var grande = entrada.querySelector('.marca-centro img');
+  var pequena = topo.querySelector('.marca-topo img');
 
-  /* ---------- a logo sobe pro menu ---------- */
-  if (temGsap && !calmo) {
-    var palco = entrada.querySelector('.palco');
-    var grande = entrada.querySelector('.marca-centro img');
-    var pequena = entrada.querySelector('.marca-topo img');
-    var linha = entrada.querySelector('.linha-marca');
-    var rolar = entrada.querySelector('.rolar');
+  function lim(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function trecho(p, a, b) { return lim((p - a) / (b - a)); }
+  function sai(t) { return 1 - Math.pow(1 - t, 3); }
+  function vaiVem(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
 
-    // quanto a logo grande precisa andar e encolher pra cair em cima da do menu
-    function destino() {
+  /* ---------- a segunda cena só carrega depois da primeira ---------- */
+  function carregarCena2() {
+    if (economia) return;
+    var c2 = entrada.querySelector('.cena-2');
+    c2.querySelectorAll('[data-srcset]').forEach(function (s) { s.srcset = s.dataset.srcset; });
+    var im = c2.querySelector('img');
+    im.srcset = im.dataset.srcset; im.src = im.dataset.src;
+  }
+
+  if (calmo) {
+    raiz.classList.add('estatico');
+  } else {
+    if (document.readyState === 'complete') carregarCena2();
+    else window.addEventListener('load', carregarCena2);
+
+    /* quanto a marca grande anda e encolhe pra cair em cima da do menu */
+    var alvo = { x: 0, y: 0, s: .2 };
+    function medir() {
+      grande.style.transform = 'none';
       var g = grande.getBoundingClientRect(), m = pequena.getBoundingClientRect();
-      return {
-        x: (m.left + m.width / 2) - (g.left + g.width / 2),
-        y: (m.top + m.height / 2) - (g.top + g.height / 2),
-        s: m.height / g.height
-      };
+      alvo.x = (m.left + m.width / 2) - (g.left + g.width / 2);
+      alvo.y = (m.top + m.height / 2) - (g.top + g.height / 2);
+      alvo.s = m.height / g.height;
     }
 
-    var tl = gsap.timeline({
-      defaults: { ease: 'none' },
-      scrollTrigger: {
-        trigger: entrada, start: 'top top', end: 'bottom bottom', scrub: 0.6,
-        invalidateOnRefresh: true,
-        onUpdate: function (st) { raiz.classList.toggle('no-menu', st.progress > 0.52); }
-      }
-    });
-    tl.to(rolar, { opacity: 0, duration: 0.12 }, 0)
-      .to(linha, { opacity: 0, y: -12, duration: 0.2 }, 0)
-      .to(grande, {
-        x: function () { return destino().x; },
-        y: function () { return destino().y; },
-        scale: function () { return destino().s; },
-        duration: 0.55, ease: 'power2.inOut'
-      }, 0)
-      .to(grande, { opacity: 0, duration: 0.04 }, 0.53)
-      .to(palco, { '--inicio': 0, duration: 0.45 }, 0.05)
-      .fromTo(filme.parentNode, { scale: 1.1 }, { scale: 1, duration: 0.7 }, 0)
-      .to(chegam, { opacity: 1, y: 0, duration: 0.3, stagger: 0.06, ease: 'power2.out' }, 0.5);
+    var pedido = false;
+    function quadro() {
+      pedido = false;
+      var total = entrada.offsetHeight - window.innerHeight;
+      var p = lim((window.scrollY - entrada.offsetTop) / total);
+
+      var tm = vaiVem(trecho(p, 0, .34));
+      grande.style.transform = 'translate(' + (alvo.x * tm) + 'px,' + (alvo.y * tm) + 'px) scale(' + (1 + (alvo.s - 1) * tm) + ')';
+      grande.style.opacity = tm > .985 ? 0 : 1;
+      raiz.classList.toggle('no-menu', tm > .985);
+
+      var s = palco.style;
+      s.setProperty('--t-marca', tm.toFixed(4));
+      s.setProperty('--t-zoom', sai(trecho(p, 0, .5)).toFixed(4));
+      s.setProperty('--t-chega', sai(trecho(p, .26, .42)).toFixed(4));
+      s.setProperty('--t-chega2', sai(trecho(p, .3, .46)).toFixed(4));
+      s.setProperty('--t-chega3', sai(trecho(p, .34, .5)).toFixed(4));
+      s.setProperty('--t-troca', economia ? 0 : vaiVem(trecho(p, .58, .86)).toFixed(4));
+
+      topo.classList.toggle('solido', window.scrollY > entrada.offsetTop + entrada.offsetHeight - topo.offsetHeight - 2);
+    }
+    function pedir() { if (!pedido) { pedido = true; requestAnimationFrame(quadro); } }
+
+    medir(); quadro();
+    window.addEventListener('scroll', pedir, { passive: true });
+    window.addEventListener('resize', function () { medir(); pedir(); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { medir(); pedir(); });
   }
 
-  if (!temGsap) return;
+  if (calmo) {
+    window.addEventListener('scroll', function () {
+      topo.classList.toggle('solido', window.scrollY > entrada.offsetTop + entrada.offsetHeight - topo.offsetHeight - 2);
+    }, { passive: true });
+  }
 
-  /* ---------- manifesto: as palavras acendem com a rolagem ---------- */
-  document.querySelectorAll('[data-palavras]').forEach(function (p) {
-    var palavras = p.textContent.trim().split(/\s+/);
-    p.innerHTML = palavras.map(function (w) { return '<span class="p">' + w + '</span>'; }).join(' ');
-    var spans = p.querySelectorAll('.p');
-    if (calmo) { spans.forEach(function (s) { s.classList.add('aceso'); }); return; }
-    ScrollTrigger.create({
-      trigger: p, start: 'top 80%', end: 'bottom 45%',
-      onUpdate: function (st) {
-        var n = Math.round(st.progress * spans.length);
-        spans.forEach(function (s, i) { s.classList.toggle('aceso', i < n); });
-      }
-    });
-  });
+  /* ---------- serviços: a imagem ao lado troca com o serviço que está na tela ---------- */
+  var lista = document.querySelector('[data-servicos]');
+  var fotos = document.querySelectorAll('.quadro img');
+  if (lista && 'IntersectionObserver' in window) {
+    var itens = lista.querySelectorAll(':scope > li');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        itens.forEach(function (li) { li.classList.toggle('ativo', li === e.target); });
+        var i = e.target.dataset.foto;
+        fotos.forEach(function (f, k) { f.classList.toggle('vis', String(k) === i); });
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    itens.forEach(function (li) { io.observe(li); });
+    itens[0].classList.add('ativo');
+  }
 
   /* ---------- antes e depois: abre sozinho ao chegar na tela ---------- */
   document.querySelectorAll('[data-ba]').forEach(function (ba) {
     var r = ba.querySelector('input');
     function por(v) { ba.style.setProperty('--pos', v + '%'); r.value = v; }
     r.addEventListener('input', function () { por(r.value); });
-    por(calmo ? 50 : 94);
-    if (!calmo) {
-      ScrollTrigger.create({
-        trigger: ba, start: 'top 70%', once: true,
-        onEnter: function () { var o = { v: 94 }; gsap.to(o, { v: 50, duration: 1.8, ease: 'expo.out', onUpdate: function () { por(o.v); } }); }
-      });
-    }
+    if (calmo || !('IntersectionObserver' in window)) { por(50); return; }
+    por(92);
+    var o = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return;
+      o.disconnect();
+      var t0 = performance.now();
+      (function anda(t) {
+        var k = lim((t - t0) / 1600);
+        por(92 - 42 * sai(k));
+        if (k < 1) requestAnimationFrame(anda);
+      })(t0);
+    }, { threshold: .45 });
+    o.observe(ba);
   });
-
-  /* ---------- índice de serviços: a foto acompanha o mouse ---------- */
-  var flutua = document.querySelector('.flutua');
-  var lista = document.querySelector('[data-indice]');
-  if (flutua && lista && window.matchMedia('(hover: hover) and (min-width: 62rem)').matches) {
-    var fotos = flutua.querySelectorAll('img');
-    var qx = gsap.quickTo(flutua, 'x', { duration: 0.5, ease: 'power3.out' });
-    var qy = gsap.quickTo(flutua, 'y', { duration: 0.5, ease: 'power3.out' });
-    lista.addEventListener('mousemove', function (e) { qx(e.clientX + 28); qy(e.clientY - 150); });
-    lista.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('mouseenter', function () {
-        var i = a.dataset.foto;
-        fotos.forEach(function (f, k) { f.classList.toggle('vis', String(k) === i); });
-        flutua.classList.toggle('vis', i !== undefined);
-        gsap.to(flutua, { scale: i !== undefined ? 1 : 0.85, duration: 0.4, ease: 'power3.out' });
-      });
-    });
-    lista.addEventListener('mouseleave', function () { flutua.classList.remove('vis'); gsap.to(flutua, { scale: 0.85, duration: 0.3 }); });
-  }
-  if (!calmo) {
-    gsap.from('[data-indice] li', {
-      opacity: 0, y: 28, duration: 0.9, ease: 'expo.out', stagger: 0.07,
-      scrollTrigger: { trigger: '[data-indice]', start: 'top 80%', once: true }
-    });
-  }
 
   /* ---------- barra do WhatsApp no celular ---------- */
   var barra = document.querySelector('.barra-wa');
   if (barra && 'IntersectionObserver' in window) {
     var vistos = new Set();
-    var io = new IntersectionObserver(function (es) {
+    var ob = new IntersectionObserver(function (es) {
       es.forEach(function (e) { e.isIntersecting ? vistos.add(e.target) : vistos.delete(e.target); });
       barra.classList.toggle('vis', vistos.size === 0);
     });
-    document.querySelectorAll('[data-esconde-barra], .entrada').forEach(function (a) { io.observe(a); });
+    document.querySelectorAll('[data-esconde-barra], .entrada').forEach(function (a) { ob.observe(a); });
   }
 })();
