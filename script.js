@@ -39,9 +39,11 @@
     function medir() {
       grande.style.transform = 'none';
       var g = grande.getBoundingClientRect(), m = pequena.getBoundingClientRect();
+      // a do menu é a mesma marca sem a linha de baixo (85% da altura da grande)
+      alvo.s = m.width / g.width;
+      var dy = -0.0748 * g.height;
       alvo.x = (m.left + m.width / 2) - (g.left + g.width / 2);
-      alvo.y = (m.top + m.height / 2) - (g.top + g.height / 2);
-      alvo.s = m.height / g.height;
+      alvo.y = (m.top + m.height / 2) - (g.top + g.height / 2) - dy * alvo.s;
     }
 
     var pedido = false;
