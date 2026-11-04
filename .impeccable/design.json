@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-04T22:11:14Z",
+  "title": "Design System: Novo Ambiente Service",
+  "extensions": {
+    "colorMeta": {
+      "azul": { "role": "primary", "displayName": "Azul da Logo", "canonical": "#0095da", "tonalRamp": ["#000d18", "#01283f", "#01476a", "#02689a", "#048bcb", "#37aff6", "#92d2fe", "#e0f1fe"] },
+      "azul-texto": { "role": "primary", "displayName": "Azul de Leitura", "canonical": "#006596", "tonalRamp": ["#000d18", "#00283f", "#00476b", "#076899", "#398abe", "#5eaee3", "#92d2fe", "#dff1ff"] },
+      "azul-claro": { "role": "primary", "displayName": "Azul Claro", "canonical": "#8cc3e6", "tonalRamp": ["#000d17", "#00293d", "#0d4765", "#326787", "#5489aa", "#76adcf", "#9ad1f5", "#dff2fe"] },
+      "tinta": { "role": "neutral", "displayName": "Tinta", "canonical": "#08192a", "tonalRamp": ["#000c1c", "#152638", "#314457", "#506378", "#70859b", "#92a8be", "#b6cce4", "#e3f0fe"] },
+      "tinta-2": { "role": "neutral", "displayName": "Tinta Funda", "canonical": "#0d2438", "tonalRamp": ["#000c1b", "#10273b", "#2d445a", "#4b647b", "#6c859e", "#8ea8c2", "#b1cde7", "#e2f0fe"] },
+      "veu": { "role": "neutral", "displayName": "Véu", "canonical": "#040e18", "tonalRamp": ["#030c16", "#1a2632", "#364450", "#556370", "#768492", "#98a7b6", "#bbcbda", "#e1f1ff"] },
+      "rodape": { "role": "neutral", "displayName": "Rodapé", "canonical": "#020b14", "tonalRamp": ["#030c15", "#1a2731", "#36444f", "#54636f", "#758591", "#97a7b5", "#bbccd9", "#e1f1fe"] },
+      "nevoa": { "role": "neutral", "displayName": "Névoa", "canonical": "#f1f4f6", "tonalRamp": ["#0a0b0d", "#232527", "#404244", "#5f6263", "#808384", "#a3a5a7", "#c7c9cb", "#eceff1"] },
+      "nevoa-2": { "role": "neutral", "displayName": "Névoa Funda", "canonical": "#e3e9ee", "tonalRamp": ["#080c0f", "#212629", "#3e4347", "#5d6266", "#7e8388", "#a0a6aa", "#c4cacf", "#e9eff4"] },
+      "branco": { "role": "neutral", "displayName": "Branco", "canonical": "#ffffff", "tonalRamp": ["#0b0b0b", "#252525", "#424242", "#616161", "#828282", "#a5a5a5", "#c9c9c9", "#eeeeee"] },
+      "texto": { "role": "neutral", "displayName": "Texto", "canonical": "#0b1d2e", "tonalRamp": ["#000c1b", "#142738", "#314457", "#4f6478", "#70859a", "#92a8be", "#b5cce3", "#e3f0fe"] },
+      "texto-2": { "role": "neutral", "displayName": "Texto Secundário", "canonical": "#46596b", "tonalRamp": ["#000c1a", "#152736", "#324455", "#506476", "#718598", "#93a8bc", "#b6cce1", "#e2f0fe"] },
+      "branco-2": { "role": "neutral", "displayName": "Branco de Apoio", "canonical": "rgba(255, 255, 255, .78)" },
+      "linha": { "role": "neutral", "displayName": "Filete", "canonical": "rgba(8, 25, 42, .14)" },
+      "linha-clara": { "role": "neutral", "displayName": "Filete Claro", "canonical": "rgba(255, 255, 255, .16)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "H1 da entrada (11ch) e título do fecho (13ch, centralizado)." },
+      "headline": { "displayName": "Headline", "purpose": "Título de cada seção, até 17ch." },
+      "statement": { "displayName": "Frase", "purpose": "A frase longa do 'sobre', até 24ch, entrelinha 1.14." },
+      "title": { "displayName": "Title", "purpose": "Nome de cada serviço no índice de vidros." },
+      "title-sm": { "displayName": "Title pequeno", "purpose": "Colunas de 'pra quem'; linhas de 'também limpamos' ficam entre title-sm e title (até 2.2rem)." },
+      "fact": { "displayName": "Fato", "purpose": "Primeira linha de cada fato da faixa do 'sobre'." },
+      "lead": { "displayName": "Lead", "purpose": "Apoio do H1. Subtítulo de seção e apoio do fecho em 1.125rem." },
+      "question": { "displayName": "Pergunta", "purpose": "Resumo de cada pergunta frequente." },
+      "body": { "displayName": "Body", "purpose": "Texto corrido; parágrafos de serviço até 34rem, respostas até 40rem." },
+      "label": { "displayName": "Label", "purpose": "Texto das pílulas e dos links com seta (500)." },
+      "nav": { "displayName": "Nav", "purpose": "Links do menu e pílula compacta do topo." },
+      "caption": { "displayName": "Legenda", "purpose": "Etiquetas 'imagem ilustrativa' / 'cenas ilustrativas' no canto das imagens." }
+    },
+    "shadows": [
+      { "name": "fio-topo", "value": "0 1px 0 rgba(255, 255, 255, .16)", "purpose": "Separa o topo sólido do conteúdo; a barra do WhatsApp usa o mesmo fio virado pra cima (0 -1px 0)." },
+      { "name": "puxador", "value": "0 10px 28px rgba(0, 0, 0, .3)", "purpose": "Só o puxador do comparador antes e depois, o único objeto arrastável." },
+      { "name": "legenda-foto", "value": "text-shadow: 0 1px 2px rgba(0, 0, 0, .5)", "purpose": "Legibilidade das etiquetas sobre imagem." }
+    ],
+    "motion": [
+      { "name": "sai", "value": "cubic-bezier(.16, 1, .3, 1)", "purpose": "Saída longa (exponencial). Curva de todas as transições de estado em CSS." },
+      { "name": "estado", "value": ".3s", "purpose": "Cor e fundo de pílula, seta das linhas, cor de link." },
+      { "name": "seta", "value": ".35s", "purpose": "A seta do link anda 4px pra direita no hover." },
+      { "name": "topo-e-faq", "value": ".4s", "purpose": "Topo transparente para sólido; sinal de mais da pergunta gira 45°." },
+      { "name": "barra-wa", "value": ".45s", "purpose": "Barra do WhatsApp sobe de baixo no celular." },
+      { "name": "linha-e-marca", "value": ".5s", "purpose": "Nome da linha anda .4rem no hover; marca do topo aparece." },
+      { "name": "foco-da-lista", "value": ".6s", "purpose": "Serviço ativo volta de opacidade .38 para 1." },
+      { "name": "troca-de-imagem", "value": "opacity .9s, transform 1.4s", "purpose": "Imagem presa dos serviços dissolve e sai do zoom 1.04." },
+      { "name": "cubica-saida", "value": "1 - (1 - t)^3", "purpose": "Curva do script: zoom da cena 1, H1/apoio/ações assentando, comparador abrindo." },
+      { "name": "cubica-ida-e-volta", "value": "t < .5 ? 4t^3 : 1 - (-2t + 2)^3 / 2", "purpose": "Curva do script: a marca indo pro menu e a troca de cena." },
+      { "name": "entrada-trechos", "value": "marca 0–.34 · zoom 0–.5 · h1 .26–.42 · apoio .30–.46 · ações .34–.50 · troca .58–.86", "purpose": "Trechos do progresso (0 a 1) da entrada de 300svh com palco preso de 100svh." },
+      { "name": "assentar", "value": "translateY(28px) → 0", "purpose": "Maior deslocamento permitido; H1, apoio e ações." },
+      { "name": "rolar", "value": "desce 2.4s sai infinite", "purpose": "O fio da indicação 'Role' cresce e some, só na entrada." },
+      { "name": "comparador-abre", "value": "92% → 50% em 1600ms", "purpose": "Antes e depois abre sozinho ao entrar 45% na tela." },
+      { "name": "reduzir-movimento", "value": "prefers-reduced-motion: reduce → .estatico", "purpose": "Entrada vira uma tela, sem troca; transições de imagem, linha, seta e pergunta desligadas; comparador em 50%." },
+      { "name": "economia-de-dados", "value": "saveData ou 2g", "purpose": "A segunda cena não carrega e a troca fica em 0." }
+    ],
+    "breakpoints": [
+      { "name": "pilula-longa", "value": "30rem" },
+      { "name": "md", "value": "48rem" },
+      { "name": "lg", "value": "62rem" },
+      { "name": "xl", "value": "72rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Pílula branca (primária)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação de orçamento no WhatsApp sobre fundo escuro: entrada, fecho e barra do celular.",
+      "html": "<div class=\"ds-escuro\"><a class=\"ds-pilula ds-pilula-branca\" href=\"#\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M20.5 3.5A11.8 11.8 0 0 0 12 0C5.5 0 .2 5.3.2 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.5 1.4c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.3-8.4zM12 21.7c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.4 4.7z\"/></svg>Pedir orçamento</a></div>",
+      "css": ".ds-escuro { background: var(--tinta, #08192a); padding: 2rem; } .ds-pilula { display: inline-flex; align-items: center; gap: .6rem; min-height: 3.25rem; padding: .8rem 1.6rem; border-radius: 99px; font: 500 1rem/1.1 var(--fonte, 'Albert Sans', system-ui, sans-serif); text-decoration: none; transition: background-color .3s cubic-bezier(.16, 1, .3, 1), color .3s cubic-bezier(.16, 1, .3, 1), border-color .3s cubic-bezier(.16, 1, .3, 1); } .ds-pilula svg { width: 1.2rem; height: 1.2rem; flex: none; } .ds-pilula-branca { background: #fff; color: var(--tinta, #08192a); } .ds-pilula-branca:hover { background: var(--azul-claro, #8cc3e6); } .ds-pilula:focus-visible { outline: 2px solid var(--azul, #0095da); outline-offset: 3px; }"
+    },
+    {
+      "name": "Pílula de vidro (ghost)",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Contorno branco sobre o escuro; no topo, em tamanho compacto.",
+      "html": "<div class=\"ds-escuro\"><a class=\"ds-pilula-vidro\" href=\"#\">Orçamento no WhatsApp</a></div>",
+      "css": ".ds-escuro { background: var(--tinta, #08192a); padding: 2rem; } .ds-pilula-vidro { display: inline-flex; align-items: center; min-height: 2.75rem; padding: .5rem 1.15rem; border-radius: 99px; border: 1px solid rgba(255, 255, 255, .45); color: #fff; font: 500 .9375rem/1.1 var(--fonte, 'Albert Sans', system-ui, sans-serif); text-decoration: none; transition: background-color .3s cubic-bezier(.16, 1, .3, 1), color .3s cubic-bezier(.16, 1, .3, 1), border-color .3s cubic-bezier(.16, 1, .3, 1); } .ds-pilula-vidro:hover { background: #fff; color: var(--tinta, #08192a); border-color: #fff; } .ds-pilula-vidro:focus-visible { outline: 2px solid var(--azul, #0095da); outline-offset: 3px; }"
+    },
+    {
+      "name": "Link com seta",
+      "kind": "custom",
+      "refersTo": "link-arrow",
+      "description": "Ação secundária ao lado da pílula, ou ação de cada coluna no claro.",
+      "html": "<a class=\"ds-link-seta\" href=\"#\">Orçamento pro condomínio <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-link-seta { display: inline-flex; align-items: center; gap: .5rem; font: 500 1rem/1.65 var(--fonte, 'Albert Sans', system-ui, sans-serif); color: var(--azul-texto, #006596); text-decoration: none; } .ds-link-seta svg { width: 1.1rem; height: 1.1rem; transition: transform .35s cubic-bezier(.16, 1, .3, 1); } .ds-link-seta:hover svg { transform: translateX(4px); } .ds-link-seta:focus-visible { outline: 2px solid var(--azul, #0095da); outline-offset: 3px; border-radius: 4px; }"
+    },
+    {
+      "name": "Topo sólido",
+      "kind": "nav",
+      "refersTo": "header-solid",
+      "description": "Menu à esquerda, marca no centro, pílula à direita; transparente sobre a entrada, tinta depois dela.",
+      "html": "<header class=\"ds-topo\"><nav><a href=\"#\">Vidros</a><a href=\"#\">Fachada</a><a href=\"#\">Placa solar</a><a href=\"#\">Piso</a><a href=\"#\">Contato</a></nav><span class=\"ds-topo-marca\">Novo Ambiente</span><a class=\"ds-topo-pilula\" href=\"#\">Orçamento no WhatsApp</a></header>",
+      "css": ".ds-topo { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; height: 5.5rem; padding: 0 2.5rem; background: var(--tinta, #08192a); box-shadow: 0 1px 0 rgba(255, 255, 255, .16); color: #fff; font: 400 .9375rem/1.65 var(--fonte, 'Albert Sans', system-ui, sans-serif); } .ds-topo nav { display: flex; gap: 2rem; } .ds-topo nav a { color: inherit; text-decoration: none; opacity: .8; transition: opacity .2s; } .ds-topo nav a:hover { opacity: 1; } .ds-topo nav a:focus-visible { outline: 2px solid var(--azul, #0095da); outline-offset: 3px; border-radius: 4px; } .ds-topo-marca { font-weight: 300; font-size: 1.25rem; letter-spacing: -.02em; } .ds-topo-pilula { justify-self: end; display: inline-flex; align-items: center; min-height: 2.75rem; padding: .5rem 1.15rem; border-radius: 99px; border: 1px solid rgba(255, 255, 255, .45); color: #fff; font-weight: 500; text-decoration: none; transition: background-color .3s cubic-bezier(.16, 1, .3, 1), color .3s cubic-bezier(.16, 1, .3, 1); } .ds-topo-pilula:hover { background: #fff; color: var(--tinta, #08192a); }"
+    },
+    {
+      "name": "Faixa de fatos",
+      "kind": "card",
+      "description": "Fatos em definição separados por filete, sem caixa.",
+      "html": "<dl class=\"ds-fatos\"><div><dt>Há mais de 5 anos</dt><dd>limpando vidro em Curitiba</dd></div><div><dt>Curitiba e Região</dt><dd>Metropolitana, com data marcada</dd></div><div><dt>Do térreo ao topo</dt><dd>com rapel onde a escada não chega</dd></div><div><dt>Orçamento por foto</dt><dd>pelo WhatsApp, sem compromisso</dd></div></dl>",
+      "css": ".ds-fatos { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; padding: 0 1rem; background: var(--nevoa, #f1f4f6); border-top: 1px solid rgba(8, 25, 42, .14); border-bottom: 1px solid rgba(8, 25, 42, .14); font-family: var(--fonte, 'Albert Sans', system-ui, sans-serif); } .ds-fatos > div { display: grid; gap: .3rem; padding: 2rem 2rem 2rem 0; } .ds-fatos > div + div { border-left: 1px solid rgba(8, 25, 42, .14); padding-left: 2rem; } .ds-fatos dt { font-size: 1.6rem; font-weight: 400; letter-spacing: -.02em; line-height: 1.15; color: var(--texto, #0b1d2e); } .ds-fatos dd { margin: 0; color: var(--texto-2, #46596b); line-height: 1.65; }"
+    },
+    {
+      "name": "Índice de serviços com imagem presa",
+      "kind": "custom",
+      "refersTo": "service-image",
+      "description": "Assinatura: lista de serviços com a imagem 4:5 presa ao lado; o serviço fora do meio da tela fica em .38.",
+      "html": "<div class=\"ds-servicos\"><figure class=\"ds-quadro\"><span class=\"ds-quadro-img\"></span><figcaption>imagem ilustrativa</figcaption></figure><ol class=\"ds-lista\"><li class=\"ativo\"><h3>Vidros em altura e com rapel</h3><p>Pra onde escada e haste não chegam: a equipe desce de rapel e limpa o vidro de cima a baixo.</p><ul class=\"ds-termos\"><li>vidros altos</li><li>difícil acesso</li><li>pé-direito alto e átrios</li></ul></li><li><h3>Fachadas de vidro</h3><p>Vidros externos de prédios, edifícios comerciais e condomínios, limpos por fora, painel a painel.</p><ul class=\"ds-termos\"><li>pele de vidro</li><li>cortina de fachada</li></ul></li></ol></div>",
+      "css": ".ds-servicos { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 3rem; align-items: start; padding: 2rem; background: #fff; font-family: var(--fonte, 'Albert Sans', system-ui, sans-serif); color: var(--texto, #0b1d2e); } .ds-quadro { position: relative; margin: 0; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 4px; background: var(--nevoa-2, #e3e9ee); } .ds-quadro-img { position: absolute; inset: 0; background: linear-gradient(160deg, #8cc3e6 0%, #12324d 70%, #08192a 100%); } .ds-quadro figcaption { position: absolute; right: .8rem; bottom: .7rem; font-size: .6875rem; color: rgba(255, 255, 255, .8); text-shadow: 0 1px 2px rgba(0, 0, 0, .5); } .ds-lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(8, 25, 42, .14); } .ds-lista > li { display: grid; gap: 1rem; padding: 2.4rem 0 2.6rem; border-bottom: 1px solid rgba(8, 25, 42, .14); } .ds-lista h3 { margin: 0; font-size: 2rem; font-weight: 300; letter-spacing: -.025em; line-height: 1.05; } .ds-lista p { margin: 0; color: var(--texto-2, #46596b); line-height: 1.65; max-width: 34rem; } .ds-lista > li h3, .ds-lista > li p, .ds-lista > li .ds-termos { transition: opacity .6s cubic-bezier(.16, 1, .3, 1); } .ds-lista > li:not(.ativo) h3, .ds-lista > li:not(.ativo) p, .ds-lista > li:not(.ativo) .ds-termos { opacity: .38; } .ds-termos { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; font-size: .9375rem; } .ds-termos li { display: inline-flex; align-items: center; gap: .55rem; } .ds-termos li::before { content: ''; width: .35rem; height: .35rem; border-radius: 50%; background: var(--azul, #0095da); flex: none; }"
+    },
+    {
+      "name": "Linha de serviço",
+      "kind": "custom",
+      "description": "Link de linha inteira com nome, descrição e círculo com seta; 'também limpamos'.",
+      "html": "<ul class=\"ds-linhas\"><li><a href=\"#\"><h3>Fachada</h3><p>ACM, pastilha, textura e pedra em prédios e empresas.</p><span class=\"ds-seta\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li><li><a href=\"#\"><h3>Placa solar</h3><p>Placas de casas, comércios e indústrias, sem riscar o vidro.</p><span class=\"ds-seta\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li></ul>",
+      "css": ".ds-linhas { list-style: none; margin: 0; padding: 0 1rem; background: #fff; border-top: 1px solid rgba(8, 25, 42, .14); font-family: var(--fonte, 'Albert Sans', system-ui, sans-serif); color: var(--texto, #0b1d2e); } .ds-linhas li { border-bottom: 1px solid rgba(8, 25, 42, .14); } .ds-linhas a { display: grid; grid-template-columns: 14rem 1fr auto; gap: .4rem 2rem; align-items: center; padding: 2.2rem 0; color: inherit; text-decoration: none; } .ds-linhas h3 { margin: 0; font-size: 1.9rem; font-weight: 300; letter-spacing: -.025em; line-height: 1.05; transition: transform .5s cubic-bezier(.16, 1, .3, 1), color .3s; } .ds-linhas p { margin: 0; color: var(--texto-2, #46596b); } .ds-seta { width: 2.75rem; height: 2.75rem; border-radius: 50%; border: 1px solid rgba(8, 25, 42, .14); display: grid; place-items: center; transition: background-color .3s, color .3s, border-color .3s; } .ds-seta svg { width: 1.1rem; height: 1.1rem; } .ds-linhas a:hover h3 { transform: translateX(.4rem); color: var(--azul-texto, #006596); } .ds-linhas a:hover .ds-seta { background: var(--tinta, #08192a); color: #fff; border-color: var(--tinta, #08192a); } .ds-linhas a:focus-visible { outline: 2px solid var(--azul, #0095da); outline-offset: 3px; border-radius: 4px; }"
+    },
+    {
+      "name": "Pergunta frequente",
+      "kind": "custom",
+      "description": "details nativo com filete e sinal de mais que gira 45° ao abrir.",
+      "html": "<div class=\"ds-faq\"><details open><summary>Vocês atendem fora de Curitiba?<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" d=\"M12 5v14M5 12h14\"/></svg></summary><p>Sim. Atendemos Curitiba e a Região Metropolitana. Mande o endereço pelo WhatsApp e a gente confirma.</p></details><details><summary>Fazem limpeza pós-obra de vidros?<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" d=\"M12 5v14M5 12h14\"/></svg></summary><p>Sim. Tiramos resto de tinta, cimento e poeira de obra do vidro novo, com cuidado pra não riscar.</p></details></div>",
+      "css": ".ds-faq { padding: 0 1rem; background: var(--nevoa, #f1f4f6); border-top: 1px solid rgba(8, 25, 42, .14); font-family: var(--fonte, 'Albert Sans', system-ui, sans-serif); color: var(--texto, #0b1d2e); } .ds-faq details { border-bottom: 1px solid rgba(8, 25, 42, .14); } .ds-faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding: 1.5rem 0; font-size: 1.2rem; font-weight: 400; } .ds-faq summary::-webkit-details-marker { display: none; } .ds-faq summary svg { width: 1.3rem; height: 1.3rem; flex: none; color: var(--azul-texto, #006596); transition: transform .4s cubic-bezier(.16, 1, .3, 1); } .ds-faq details[open] summary svg { transform: rotate(45deg); } .ds-faq summary:hover { color: var(--azul-texto, #006596); } .ds-faq summary:focus-visible { outline: 2px solid var(--azul, #0095da); outline-offset: 3px; border-radius: 4px; } .ds-faq details p { margin: 0; padding: 0 0 1.6rem; color: var(--texto-2, #46596b); max-width: 40rem; line-height: 1.65; }"
+    },
+    {
+      "name": "Comparador antes e depois",
+      "kind": "custom",
+      "refersTo": "compare-handle",
+      "description": "Assinatura: duas imagens sobrepostas recortadas pelo puxador; range invisível por cima pra teclado e toque.",
+      "html": "<div class=\"ds-escuro\"><div class=\"ds-ba\" style=\"--pos: 50%\"><span class=\"ds-ba-antes\"></span><span class=\"ds-ba-depois\"></span><span class=\"ds-ba-linha\"></span><span class=\"ds-ba-puxador\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 6l-5 6 5 6M15 6l5 6-5 6\"/></svg></span><span class=\"ds-ba-rot ds-a\">antes</span><span class=\"ds-ba-rot ds-d\">depois</span><input type=\"range\" min=\"0\" max=\"100\" value=\"50\" aria-label=\"Comparar antes e depois\" oninput=\"this.parentNode.style.setProperty('--pos', this.value + '%')\"></div></div>",
+      "css": ".ds-escuro { background: var(--tinta, #08192a); padding: 2rem; } .ds-ba { position: relative; aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden; background: var(--tinta-2, #0d2438); touch-action: pan-y; font-family: var(--fonte, 'Albert Sans', system-ui, sans-serif); } .ds-ba-antes, .ds-ba-depois { position: absolute; inset: 0; } .ds-ba-antes { background: linear-gradient(160deg, #7d8a8f, #4b5559); } .ds-ba-depois { background: linear-gradient(160deg, #8cc3e6, #12324d); clip-path: inset(0 0 0 var(--pos)); } .ds-ba-linha { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 1px; background: #fff; pointer-events: none; } .ds-ba-puxador { position: absolute; top: 50%; left: var(--pos); width: 3.5rem; height: 3.5rem; margin: -1.75rem 0 0 -1.75rem; border-radius: 50%; background: #fff; color: var(--tinta, #08192a); display: grid; place-items: center; pointer-events: none; box-shadow: 0 10px 28px rgba(0, 0, 0, .3); } .ds-ba-puxador svg { width: 1.4rem; height: 1.4rem; } .ds-ba-rot { position: absolute; top: 1rem; padding: .3rem .85rem; border-radius: 99px; font-size: .8125rem; font-weight: 500; pointer-events: none; background: rgba(4, 14, 24, .7); color: #fff; } .ds-a { left: 1rem; } .ds-d { right: 1rem; background: #fff; color: var(--tinta, #08192a); } .ds-ba input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; } .ds-ba:has(input:focus-visible) { outline: 2px solid var(--azul-claro, #8cc3e6); outline-offset: 4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "O Estúdio de Altura",
+    "overview": "A página se apresenta como um estúdio de arquitetura apresentaria uma obra: primeiro uma cena em tela cheia, a marca grande no centro e silêncio em volta; só depois a informação. O trabalho é técnico e perigoso (rapel, pele de vidro, fachada de torre), e o sistema visual responde com calma, não com urgência. Nada pisca, nada chama atenção por chamar. A seriedade vem do espaço, do peso leve dos títulos e das linhas finas que organizam tudo.\n\nO mundo tem duas marés. A maré escura (o azul-marinho quase preto) carrega as cenas, a comparação antes e depois e o fecho; a maré clara (névoa fria e branco) carrega a leitura. Seções vizinhas nunca dividem o mesmo fundo, então a rolagem alterna respiração e cena. O azul da logo existe, mas como sinal pequeno: foco, seleção, o ponto que marca cada termo. A ação principal é uma pílula branca sobre o escuro, e a paleta continua sendo a da marca deles, só que usada com contenção.\n\nO movimento é guiado pela rolagem e aparece em dois lugares só: na entrada (a marca sobe pro menu, o título assenta, a cena troca de rapel pra vitrine) e no índice de serviços (a imagem presa ao lado troca a cada serviço). Fora disso, só dissolução e deslocamento curto com saída longa. O sistema recusa o padrão do ramo (foto com faixa escura, título, botão e quatro cards com ícone) e recusa o excesso (vídeo, efeito em toda seção).",
+    "keyCharacteristics": [
+      "Cena sangrada em tela cheia com véu escuro, marca no centro, informação depois.",
+      "Duas marés de fundo, escuro (#08192a) e claro (#f1f4f6 / #fff), alternando a cada seção.",
+      "Uma família só, Albert Sans, com títulos em peso 300 e espaçamento negativo.",
+      "Estrutura por filetes de 1px, sem cards, sem sombras em superfície.",
+      "Azul da logo como sinal, nunca como superfície; ação primária em pílula branca.",
+      "Movimento guiado pela rolagem em dois pontos só, com saída exponencial.",
+      "Toda cena gerada por IA leva a etiqueta \"ilustrativa\"."
+    ],
+    "rules": [
+      { "name": "A Regra do Azul de Sinal", "body": "O azul da logo só aparece em gotas: foco, seleção e o ponto de cada termo. Se ele estiver preenchendo um botão, um fundo ou um ícone grande, está errado. A ação primária é branca sobre tinta.", "section": "colors" },
+      { "name": "A Regra das Duas Marés", "body": "Seções vizinhas nunca dividem o mesmo fundo. A ordem construída é névoa, branco, tinta, névoa, branco, névoa, tinta, rodapé. Seção nova entra respeitando a alternância.", "section": "colors" },
+      { "name": "A Regra do Véu", "body": "Texto sobre cena nunca fica sobre a foto crua: sempre sobre o véu (gradiente do `veu`) que escurece a base, o topo e, na vitrine, a esquerda.", "section": "colors" },
+      { "name": "A Regra do Peso Leve", "body": "Todo h1, h2 e h3 sai em 300 com espaçamento -.025em (o H1 em -.03em) e `text-wrap: balance`. O peso 500 é reservado pra ação (pílula, link com seta) e pra linha que resolve (\"Equipe de altura e data marcada...\"). Não existe negrito de título.", "section": "typography" },
+      { "name": "A Regra da Família Única", "body": "Albert Sans em tudo. Hierarquia por tamanho e peso, nunca por uma segunda família.", "section": "typography" },
+      { "name": "A Regra da Linha que Organiza", "body": "Listas, fatos, colunas e perguntas são separados por filetes de 1px no topo e entre itens, nunca por caixas. O espaço entre os itens faz o resto.", "section": "layout" },
+      { "name": "A Regra do Plano por Padrão", "body": "Nenhum card, painel ou imagem leva sombra. Sombra só existe em objeto que a mão arrasta.", "section": "elevation" },
+      { "name": "A Regra da Pílula e do Retângulo", "body": "Pílula pra agir, retângulo pra ver. Imagem nunca vira pílula ou círculo, e botão nunca vira retângulo.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do pôr texto sobre cena só em cima do véu (gradiente do `veu`), nunca sobre a foto crua; o H1 continua texto real, legível na primeira tela.",
+      "Do alternar as duas marés: nenhuma seção nova encosta numa vizinha com o mesmo fundo.",
+      "Do separar itens com filete de 1px (`linha` no claro, `linha-clara` no escuro) e espaço, não com caixa.",
+      "Do usar a pílula branca (texto tinta, hover azul claro) pra toda ação de orçamento, com o link com seta ao lado como ação secundária.",
+      "Do animar só com dissolução e deslocamento curto (até 28px) na curva de saída longa `cubic-bezier(.16, 1, .3, 1)`.",
+      "Do etiquetar como \"imagem ilustrativa\" (ou \"cenas ilustrativas\") toda imagem gerada por IA, em legenda de .6875rem no canto, com a sombra de texto.",
+      "Do mostrar pessoas só com o uniforme real (camisa de manga longa com camuflado azul-marinho e azul-royal, calça escura, logo do rodo, capacete branco no rapel).",
+      "Do garantir que sem script ou com \"reduzir movimento\" tudo fique à vista e funcionando, sem nenhum estado escondido."
+    ],
+    "donts": [
+      "Don't usar o azul da logo (`azul`) como fundo de botão, de seção ou de ícone grande; ele é sinal de foco, seleção e marcador.",
+      "Don't montar a vitrine do ramo: foto com faixa escura, título, botão e quatro cards com ícone.",
+      "Don't pôr vídeo na primeira tela nem efeito de rolagem em toda seção; a troca guiada pela rolagem existe na entrada e no índice de serviços, e só.",
+      "Don't colocar sombra em card, imagem ou painel; sombra só no puxador do comparador.",
+      "Don't usar título em negrito ou peso acima de 500, nem uma segunda família.",
+      "Don't escrever texto dentro de imagem; todo texto é HTML indexável.",
+      "Don't emoldurar imagem com borda ou arredondar além de 4px."
+    ]
+  }
+}
