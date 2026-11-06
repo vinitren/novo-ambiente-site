@@ -70,13 +70,7 @@ components:
   topo-solido:
     backgroundColor: "{colors.off}"
     textColor: "{colors.marinho}"
-    height: "4.25rem"
-  comparador-pega:
-    backgroundColor: "{colors.off}"
-    textColor: "{colors.marinho}"
-    rounded: "{rounded.pega}"
-    width: "2.75rem"
-    height: "5.5rem"
+    height: "4.75rem"
 ---
 
 # Design System: Novo Ambiente Service
@@ -85,7 +79,7 @@ components:
 
 **Creative North Star: "A Passada do Rodo"**
 
-A página mostra o vidro voltando a ser vidro. O assunto não é a equipe nem o prédio: é a diferença entre o vidro sujo e o limpo, em Curitiba, com a araucária refletida. Tudo segue esse gesto: a foto se revela da direita pra esquerda, como uma passada, e o comparador de antes e depois é a própria lâmina.
+A página mostra o vidro voltando a ser vidro. O assunto não é a equipe nem o prédio: é a diferença entre o vidro sujo e o limpo, em Curitiba, com a araucária refletida. Tudo segue esse gesto: a foto se revela da direita pra esquerda, como uma passada, e no antes e depois é a própria rolagem da página que passa o rodo.
 
 **Key Characteristics:**
 - Campos inteiros de marinho e bege, com off-white nas seções de leitura.
@@ -104,17 +98,18 @@ A paleta do cliente é azul. O verde proposto pela outra IA foi recusado pelo Vi
 
 ## Typography
 
-Instrument Sans em peso 400 nos títulos e no texto. Source Serif 4 romana, sem itálico, na linha do título que carrega a ideia. Fontes hospedadas no próprio site, só o conjunto latino. Rótulos e botões em caixa alta com espaçamento de .05em.
+Instrument Sans em peso 400 nos títulos e no texto. Source Serif 4 romana, sem itálico, na linha do título que carrega a ideia. Fontes hospedadas no próprio site, só o conjunto latino. Botões em caixa alta com espaçamento de .05em. O menu usa a serifada, em 18px.
 
 ## Elevation
 
-Sem sombra de superfície. A única sombra é a da pega do comparador, porque ela fica por cima da foto.
+Sem sombra de superfície.
 
 ## Components
 
 - **Botão:** reto, raio de 8px, altura de 52px. A seta anda 3px na diagonal no hover.
-- **Menu:** transparente com logo branca sobre a entrada; depois da entrada, encolhe e fica off-white com logo escura.
-- **Comparador:** imagem sangrada, lâmina de 2px e pega reta. Arrasta em qualquer ponto, com mouse ou dedo; o teclado usa o controle deslizante. Abre sozinho de 92% a 50% ao chegar na tela.
+- **Menu:** transparente sobre a entrada, off-white com logo escura depois dela. Sublinhado de 1px que entra da direita pra esquerda.
+- **Logo:** nasce grande acima do título, sobe junto com a página, encolhe e encaixa no menu. Sem script ou com "reduzir movimento", já fica no menu.
+- **Antes e depois:** imagem sangrada, fixa enquanto a página desce; o vidro limpa da direita pra esquerda com a rolagem, marcado por um filete de 1px. Sem botão e sem arrasto. Sem script ou com "reduzir movimento", fica parado no meio.
 - **Lista de serviços:** numerada, com a foto ao lado no computador (troca no hover, no foco e na rolagem) e sangrada acima de cada item no celular.
 - **Como funciona:** título fixo à esquerda, numeral grande na serifada à direita.
 - **Barra do WhatsApp:** fixa no celular, some quando já há um botão na tela.

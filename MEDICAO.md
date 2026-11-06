@@ -18,7 +18,7 @@ no endereço e olhar o console.
 | `rolagem` | Passou de 25, 50, 75 e 100% da página | `porcentagem` |
 | `secao_vista` | Uma seção apareceu na tela | `secao` |
 | `servico_visto` | Passou o mouse ou focou num serviço | `servico` |
-| `antes_depois_usado` | Arrastou o comparador | |
+| `antes_depois_visto` | A rolagem limpou metade do vidro no antes e depois | |
 | `pergunta_aberta` | Abriu uma pergunta | `pergunta` |
 
 Todo evento leva também a origem da visita, guardada no primeiro toque:
