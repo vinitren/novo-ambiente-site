@@ -109,7 +109,7 @@ Sem sombra de superfície.
 - **Botão:** reto, raio de 8px, altura de 52px. A seta anda 3px na diagonal no hover.
 - **Menu:** transparente sobre a entrada, off-white com logo escura depois dela. Sublinhado de 1px que entra da direita pra esquerda.
 - **Logo:** nasce grande acima do título, sobe junto com a página, encolhe e encaixa no menu. Sem script ou com "reduzir movimento", já fica no menu.
-- **Antes e depois:** imagem sangrada, fixa enquanto a página desce; o vidro limpa da direita pra esquerda com a rolagem, marcado por um filete de 1px. Sem botão e sem arrasto. Sem script ou com "reduzir movimento", fica parado no meio.
+- **Antes e depois:** imagem sangrada, fixa enquanto a página desce; o vidro clareia da direita pra esquerda com a rolagem, por uma borda larga e irregular (`img/mascara-vidro.webp`), com inércia. As duas fotos têm a mesma geometria: a suja foi alinhada à limpa. Sem botão, filete ou arrasto. Sem script ou com "reduzir movimento", fica parado no meio.
 - **Lista de serviços:** numerada, com a foto ao lado no computador (troca no hover, no foco e na rolagem) e sangrada acima de cada item no celular.
 - **Como funciona:** título fixo à esquerda, numeral grande na serifada à direita.
 - **Barra do WhatsApp:** fixa no celular, some quando já há um botão na tela.
