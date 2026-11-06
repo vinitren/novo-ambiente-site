@@ -5,8 +5,8 @@
   "extensions": {
     "colorMeta": {
       "marinho": { "role": "primary", "displayName": "Marinho", "canonical": "#08192a" },
-      "bege": { "role": "neutral", "displayName": "Bege", "canonical": "#eae5da" },
-      "off": { "role": "neutral", "displayName": "Off-white", "canonical": "#f6f4ef" },
+      "bege": { "role": "neutral", "displayName": "Azul-gelo", "canonical": "#d8e6ef" },
+      "off": { "role": "neutral", "displayName": "Off-white", "canonical": "#f4f8fa" },
       "azul": { "role": "accent", "displayName": "Azul da Logo", "canonical": "#0095da" },
       "azul-texto": { "role": "accent", "displayName": "Azul de Leitura", "canonical": "#006596" },
       "texto": { "role": "neutral", "displayName": "Texto", "canonical": "#0b1d2e" },

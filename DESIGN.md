@@ -5,16 +5,16 @@ colors:
   marinho: "#08192a"
   marinho-2: "#0d2438"
   marinho-3: "#020b14"
-  bege: "#eae5da"
-  off: "#f6f4ef"
+  bege: "#d8e6ef"
+  off: "#f4f8fa"
   azul: "#0095da"
   azul-texto: "#006596"
   azul-claro: "#8cc3e6"
   texto: "#0b1d2e"
   texto-2: "#4a5866"
-  claro-2: "rgba(246, 244, 239, .8)"
+  claro-2: "rgba(244, 248, 250, .8)"
   linha: "rgba(8, 25, 42, .16)"
-  linha-clara: "rgba(246, 244, 239, .2)"
+  linha-clara: "rgba(244, 248, 250, .2)"
 typography:
   display:
     fontFamily: "Instrument Sans, system-ui, sans-serif"
@@ -82,7 +82,7 @@ components:
 A página mostra o vidro voltando a ser vidro. O assunto não é a equipe nem o prédio: é a diferença entre o vidro sujo e o limpo, em Curitiba, com a araucária refletida. Tudo segue esse gesto: a foto se revela da direita pra esquerda, como uma passada, e no antes e depois é a própria rolagem da página que passa o rodo.
 
 **Key Characteristics:**
-- Campos inteiros de marinho e bege, com off-white nas seções de leitura.
+- Campos inteiros de marinho e azul-gelo, com off-white nas seções de leitura.
 - Sem card, sombra de superfície, ícone em bolinha ou selo. A estrutura é feita de filetes de 1px.
 - Foto sempre sangrada, de borda a borda, sem moldura.
 - Toda imagem de IA leva etiqueta de "ilustrativa".
@@ -90,8 +90,8 @@ A página mostra o vidro voltando a ser vidro. O assunto não é a equipe nem o 
 ## Colors
 
 - **Marinho (#08192a):** entrada, comparador, fechamento e botão sobre fundo claro.
-- **Bege (#eae5da):** seções "Como funciona" e "Também limpamos".
-- **Off (#f6f4ef):** fundo de leitura e botão sobre foto.
+- **Bege (#d8e6ef):** seções "Como funciona" e "Também limpamos".
+- **Off (#f4f8fa):** fundo de leitura e botão sobre foto.
 - **Azul da logo (#0095da):** só no foco e na logo. Nunca como superfície.
 
 A paleta do cliente é azul. O verde proposto pela outra IA foi recusado pelo Vinicius em 05/11.
