@@ -76,10 +76,13 @@ da busca.
   `trentini/clientes/Novo-Ambiente-Service/logos/logo-nova.svg` e
   `logo-nova-uniforme.pdf`). Rodo com escova, onda azul e brilhos; "NOVO
   AMBIENTE SERVICE · LIMPEZA ESPECIALIZADA". Também em selo redondo
-- **Uniforme real:** camisa de manga longa com camuflado azul (azul-marinho e
-  azul-royal), calça escura, logo do rodo nas costas e no peito, capacete
-  branco no rapel. Qualquer pessoa em imagem do site usa **esse** uniforme. Um
-  uniforme diferente derruba a imagem (foi o que reprovou a prévia 4)
+- **Uniforme real (corrigido em 05/11):** azul-marinho muito escuro, quase
+  preto, com manchas e respingos de tinta em azul médio. **Não é camuflado:** o
+  camuflado vinha das imagens de IA 001 a 008. Arte em
+  `trentini/clientes/Novo-Ambiente-Service/dados/uniforme-real-arte-05-11.png`.
+  Qualquer pessoa em imagem do site usa **esse** uniforme. Um uniforme diferente
+  derruba a imagem (foi o que reprovou a prévia 4). **A IA não desenha a logo:**
+  a camisa é gerada sem logo e, se a logo precisar aparecer, entra a arte real
 - Cores da marca: azul-marinho e azul-claro da logo. A cliente tem medo de que
   uma entrada "chique" não case com a paleta deles: a paleta é deles
 - Referência que eles mandaram: a entrada do hola.design (imagem em tela cheia,
