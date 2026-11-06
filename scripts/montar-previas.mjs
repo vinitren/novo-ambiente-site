@@ -23,7 +23,11 @@ const base = readFileSync(join(raiz, 'index.html'), 'utf8')
   .replace('href="fonts/', 'href="../assets/fonts/')
   .replace('href="estilo.css"', 'href="../assets/estilo.css"')
   .replace('src="medicao.js"', 'src="../assets/medicao.js"')
-  .replace('src="script.js"', 'src="../assets/script.js"');
+  .replace('src="script.js"', 'src="../assets/script.js"')
+  // Aviso de prévia, logo abaixo do botão da entrada. Só existe aqui, nunca no site no ar.
+  .replace(/(Pedir orçamento no WhatsApp<svg aria-hidden="true"><use href="#i-seta"\/><\/svg><\/a>)/,
+    '$1\n    <p class="aviso-previa"><strong>Prévia da página principal.</strong> As páginas de vidro, fachada, placa solar, piso e contato vêm depois da aprovação. <a href="../">Voltar à apresentação</a></p>');
+if (!base.includes('aviso-previa')) throw new Error('Não achei o botão da entrada pra pôr o aviso de prévia');
 
 const ALT_A = 'Rodo abrindo uma faixa de vidro limpo numa fachada suja, com uma araucária refletida';
 const ALT_B = 'Técnico em rapel limpando a fachada de vidro de um prédio, com araucárias refletidas no vidro';
