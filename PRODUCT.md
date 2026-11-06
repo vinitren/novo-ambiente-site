@@ -83,7 +83,7 @@ da busca.
   Qualquer pessoa em imagem do site usa **esse** uniforme. Um uniforme diferente
   derruba a imagem (foi o que reprovou a prévia 4). **A IA não desenha a logo:**
   a camisa é gerada sem logo e, se a logo precisar aparecer, entra a arte real
-- Cores da marca: azul-marinho e azul-claro da logo. A cliente tem medo de que
+- Cores da marca: azul-marinho e azul da logo, com bege de apoio (05/11). A cliente tem medo de que
   uma entrada "chique" não case com a paleta deles: a paleta é deles
 - Referência que eles mandaram: a entrada do hola.design (imagem em tela cheia,
   marca grande, "mais chique"), só a ideia, sem copiar. Detalhe em

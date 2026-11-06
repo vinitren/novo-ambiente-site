@@ -1,177 +1,118 @@
-/* Novo Ambiente · página principal
-   Entrada: a marca grande no centro sobe pro menu, o título assenta e a cena
-   troca pra vitrine, tudo guiado pela rolagem. Sem biblioteca. Sem script ou com
-   "reduzir movimento", a entrada aparece pronta numa tela só. */
+/* Novo Ambiente · página principal. Sem biblioteca. Tudo já aparece sem script;
+   aqui só entram o menu que encolhe, a passada do rodo nas fotos e o comparador. */
 (function () {
-  var raiz = document.documentElement;
   var calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var conexao = navigator.connection || {};
-  var economia = conexao.saveData || /2g/.test(conexao.effectiveType || '');
-
-  var entrada = document.querySelector('.entrada');
-  var palco = entrada.querySelector('.palco');
-  var topo = document.querySelector('.topo');
-  var grande = entrada.querySelector('.marca-centro img');
-  var pequena = topo.querySelector('.marca-topo img');
-
+  var temIO = 'IntersectionObserver' in window;
   function lim(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
-  function trecho(p, a, b) { return lim((p - a) / (b - a)); }
   function sai(t) { return 1 - Math.pow(1 - t, 3); }
-  function vaiVem(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
 
-  /* ---------- a segunda cena só carrega depois da primeira ---------- */
-  function carregarCena2() {
-    if (economia) return;
-    var c2 = entrada.querySelector('.cena-2');
-    c2.querySelectorAll('[data-srcset]').forEach(function (s) { s.srcset = s.dataset.srcset; });
-    var im = c2.querySelector('img');
-    im.srcset = im.dataset.srcset; im.src = im.dataset.src;
-  }
-
-  var c1 = entrada.querySelector('.cena-1');
-  var c2 = entrada.querySelector('.cena-2');
-  var veuCentro = entrada.querySelector('.veu-centro');
-  var veuTroca = entrada.querySelector('.veu-troca');
-  var veuTexto = entrada.querySelector('.veu-texto');
-  var linha = entrada.querySelector('.linha-marca');
-  var rolar = entrada.querySelector('.rolar');
-  var chegam = entrada.querySelectorAll('.chegada .wrap > *');
-
-  /* medidas lidas uma vez (e de novo ao redimensionar), nunca no meio da animação */
-  var m = { ini: 0, total: 1, fimTopo: 0 };
-  function medirPagina() {
-    m.ini = entrada.offsetTop;
-    m.total = Math.max(1, entrada.offsetHeight - window.innerHeight);
-    m.fimTopo = m.ini + entrada.offsetHeight - topo.offsetHeight - 2;
-  }
-  var solido = null;
-  function topoSolido() {
-    var s = window.scrollY > m.fimTopo;
-    if (s !== solido) { solido = s; topo.classList.toggle('solido', s); }
-  }
-
-  if (calmo) {
-    raiz.classList.add('estatico');
-    medirPagina(); topoSolido();
-    window.addEventListener('scroll', topoSolido, { passive: true });
-    window.addEventListener('resize', function () { medirPagina(); topoSolido(); });
+  /* ---------- menu: transparente sobre a foto, sólido depois dela ---------- */
+  var topo = document.querySelector('.topo');
+  var entrada = document.querySelector('.entrada');
+  if (temIO) {
+    new IntersectionObserver(function (es) {
+      topo.classList.toggle('solido', !es[0].isIntersecting);
+    }, { rootMargin: '-80px 0px 0px 0px' }).observe(entrada);
   } else {
-    if (document.readyState === 'complete') carregarCena2();
-    else window.addEventListener('load', carregarCena2);
-
-    /* quanto a marca grande anda e encolhe pra cair em cima da do menu */
-    var alvo = { x: 0, y: 0, s: .2 };
-    function medirMarca() {
-      grande.style.transform = 'none';
-      var g = grande.getBoundingClientRect(), p = pequena.getBoundingClientRect();
-      // a do menu é a mesma marca sem a linha de baixo (85% da altura da grande)
-      alvo.s = p.width / g.width;
-      var dy = -0.0748 * g.height;
-      alvo.x = (p.left + p.width / 2) - (g.left + g.width / 2);
-      alvo.y = (p.top + p.height / 2) - (g.top + g.height / 2) - dy * alvo.s;
-    }
-
-    var noMenu = null;
-    function aplicar(p) {
-      var tm = vaiVem(trecho(p, 0, .34));
-      var sc = 1 + (alvo.s - 1) * tm;
-      grande.style.transform = 'translate3d(' + (alvo.x * tm).toFixed(2) + 'px,' + (alvo.y * tm).toFixed(2) + 'px,0) scale(' + sc.toFixed(4) + ')';
-      var nm = tm > .985;
-      grande.style.opacity = nm ? 0 : 1;
-      if (nm !== noMenu) { noMenu = nm; raiz.classList.toggle('no-menu', nm); }
-      linha.style.opacity = lim(1 - 2.5 * tm);
-      rolar.style.opacity = lim(1 - 4 * tm);
-      veuCentro.style.opacity = 1 - tm;
-
-      c1.style.transform = 'scale(' + (1.08 - .08 * sai(trecho(p, 0, .5))).toFixed(4) + ')';
-
-      var ch = [sai(trecho(p, .26, .42)), sai(trecho(p, .3, .46)), sai(trecho(p, .34, .5))];
-      for (var i = 0; i < chegam.length; i++) {
-        var t = ch[Math.min(i, 2)];
-        chegam[i].style.opacity = t;
-        chegam[i].style.transform = 'translate3d(0,' + (28 * (1 - t)).toFixed(2) + 'px,0)';
-      }
-      veuTexto.style.opacity = ch[0];
-
-      var tt = economia ? 0 : vaiVem(trecho(p, .58, .86));
-      c2.style.opacity = tt;
-      c2.style.transform = 'scale(' + (1.06 - .06 * tt).toFixed(4) + ')';
-      veuTroca.style.opacity = tt;
-    }
-
-    /* suavizador: a animação vai atrás da rolagem em vez de pular junto com
-       a roda do mouse (que no Windows anda de 100 em 100 px) */
-    var toque = window.matchMedia('(pointer: coarse)').matches;
-    var forca = toque ? .24 : .12;
-    var alvoP = 0, atual = 0, ultimo = 0, rodando = false;
-    function lerAlvo() { alvoP = lim((window.scrollY - m.ini) / m.total); }
-    function passo(t) {
-      var dt = ultimo ? Math.min(64, t - ultimo) : 16.667;
-      ultimo = t;
-      atual += (alvoP - atual) * (1 - Math.pow(1 - forca, dt / 16.667));
-      if (Math.abs(alvoP - atual) < .0003) atual = alvoP;
-      aplicar(atual);
-      if (atual !== alvoP) requestAnimationFrame(passo);
-      else { rodando = false; ultimo = 0; }
-    }
-    function rolou() {
-      topoSolido();
-      lerAlvo();
-      if (!rodando) { rodando = true; requestAnimationFrame(passo); }
-    }
-
-    function preparar() { medirPagina(); medirMarca(); lerAlvo(); atual = alvoP; aplicar(atual); topoSolido(); }
-    preparar();
-    window.addEventListener('scroll', rolou, { passive: true });
-    window.addEventListener('resize', preparar);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(preparar);
+    topo.classList.add('solido');
   }
 
-  /* ---------- serviços: a imagem ao lado troca com o serviço que está na tela ---------- */
+  /* ---------- foto que se revela na passada do rodo ---------- */
+  var revelas = document.querySelectorAll('.revela');
+  if (temIO && !calmo) {
+    var ver = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('vis'); ver.unobserve(e.target); }
+      });
+    }, { threshold: .2 });
+    revelas.forEach(function (r) { ver.observe(r); });
+  } else {
+    revelas.forEach(function (r) { r.classList.add('vis'); });
+  }
+
+  /* ---------- serviços: passar o mouse ou focar troca a foto ao lado ---------- */
   var lista = document.querySelector('[data-servicos]');
   var fotos = document.querySelectorAll('.quadro img');
-  if (lista && 'IntersectionObserver' in window) {
-    var itens = lista.querySelectorAll(':scope > li');
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        itens.forEach(function (li) { li.classList.toggle('ativo', li === e.target); });
-        var i = e.target.dataset.foto;
-        fotos.forEach(function (f, k) { f.classList.toggle('vis', String(k) === i); });
-      });
-    }, { rootMargin: '-45% 0px -45% 0px' });
-    itens.forEach(function (li) { io.observe(li); });
-    itens[0].classList.add('ativo');
+  var atual = 0;
+  function trocar(i) {
+    if (i === atual || !fotos[i]) return;
+    var antes = fotos[atual], nova = fotos[i];
+    atual = i;
+    fotos.forEach(function (f) { if (f !== antes && f !== nova) f.classList.remove('vis', 'entra'); });
+    if (calmo) { antes.classList.remove('vis', 'entra'); nova.classList.add('vis'); return; }
+    antes.classList.remove('entra'); antes.classList.add('vis');
+    nova.classList.remove('vis');
+    void nova.offsetWidth;
+    nova.classList.add('entra');
+    nova.addEventListener('transitionend', function fim() {
+      nova.removeEventListener('transitionend', fim);
+      if (fotos[atual] !== nova) return;
+      antes.classList.remove('vis');
+      nova.classList.remove('entra'); nova.classList.add('vis');
+    });
+  }
+  if (lista) {
+    lista.querySelectorAll(':scope > li').forEach(function (li) {
+      var i = Number(li.dataset.foto);
+      li.addEventListener('pointerenter', function () { trocar(i); });
+      li.addEventListener('focusin', function () { trocar(i); });
+    });
+    /* quem só rola a página também vê a foto de cada serviço */
+    if (temIO) {
+      var largo = window.matchMedia('(min-width: 62rem)');
+      var itens = lista.querySelectorAll(':scope > li');
+      var porRolagem = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          itens.forEach(function (li) { li.classList.toggle('ativo', li === e.target); });
+          if (largo.matches) trocar(Number(e.target.dataset.foto));
+        });
+      }, { rootMargin: '-45% 0px -45% 0px' });
+      itens.forEach(function (li) { porRolagem.observe(li); });
+    }
   }
 
   /* ---------- antes e depois: abre sozinho ao chegar na tela ---------- */
   document.querySelectorAll('[data-ba]').forEach(function (ba) {
     var r = ba.querySelector('input');
     function por(v) { ba.style.setProperty('--pos', v + '%'); r.value = v; }
-    r.addEventListener('input', function () { por(r.value); });
-    if (calmo || !('IntersectionObserver' in window)) { por(50); return; }
+    var mexeu = false;
+    r.addEventListener('input', function () { mexeu = true; por(r.value); });
+    /* arrastar em qualquer ponto da imagem, com mouse ou dedo */
+    function pelaPosicao(ev) {
+      var q = ba.getBoundingClientRect();
+      r.value = lim((ev.clientX - q.left) / q.width) * 100;
+      r.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+    var arrastando = false;
+    ba.addEventListener('pointerdown', function (ev) { arrastando = true; ba.setPointerCapture(ev.pointerId); pelaPosicao(ev); });
+    ba.addEventListener('pointermove', function (ev) { if (arrastando) pelaPosicao(ev); });
+    ba.addEventListener('pointerup', function () { arrastando = false; });
+    ba.addEventListener('pointercancel', function () { arrastando = false; });
+    if (calmo || !temIO) { por(50); return; }
     por(92);
     var o = new IntersectionObserver(function (es) {
       if (!es[0].isIntersecting) return;
       o.disconnect();
       var t0 = performance.now();
       (function anda(t) {
+        if (mexeu) return;
         var k = lim((t - t0) / 1600);
         por(92 - 42 * sai(k));
         if (k < 1) requestAnimationFrame(anda);
       })(t0);
-    }, { threshold: .45 });
+    }, { threshold: .4 });
     o.observe(ba);
   });
 
-  /* ---------- barra do WhatsApp no celular ---------- */
+  /* ---------- barra do WhatsApp no celular: some quando já tem botão na tela ---------- */
   var barra = document.querySelector('.barra-wa');
-  if (barra && 'IntersectionObserver' in window) {
+  if (barra && temIO) {
     var vistos = new Set();
     var ob = new IntersectionObserver(function (es) {
       es.forEach(function (e) { e.isIntersecting ? vistos.add(e.target) : vistos.delete(e.target); });
       barra.classList.toggle('vis', vistos.size === 0);
     });
-    document.querySelectorAll('[data-esconde-barra], .entrada').forEach(function (a) { ob.observe(a); });
+    document.querySelectorAll('[data-esconde-barra]').forEach(function (a) { ob.observe(a); });
   }
 })();
