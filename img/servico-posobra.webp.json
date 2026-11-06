@@ -1,5 +1,5 @@
 {
-  "prompt": "Uma única foto realista, uma cena só, contínua, sem colagem, sem marca d'água, sem nenhum texto, sem logo. Fotografia editorial de detalhe, cores sóbrias em azul-marinho, cinza e bege, luz natural suave, sem HDR, sem cor saturada.\n\nClose de um painel de vidro do chão ao teto numa sala comercial recém-terminada, com a câmera de frente para o vidro e pouco abaixo dele. O vidro está coberto de respingos secos de tinta branca e de manchas de cimento bem visíveis. Duas mãos de luva preta, vindas de baixo, seguram um raspador profissional de lâmina larga de metal, encostado no vidro, tirando a tinta em raspas finas. Por onde o raspador passou, sobra uma faixa diagonal de vidro limpo, com a cidade desfocada ao longe.\n\nAs mangas são longas e seguem a estampa da imagem de referência: fundo azul-marinho muito escuro, quase preto, com manchas e respingos de tinta em azul médio. Não é camuflado. Nenhum rosto.\n",
-  "origem": "Gerada por IA em 05/11/2026 (servico-posobra-2.jpg). Cena ilustrativa, não é foto de obra.",
-  "createdAt": "2026-11-06T02:50:13.473Z"
+  "prompt": "Mantenha exatamente a primeira imagem de referência: o mesmo vidro, os mesmos respingos de tinta, o mesmo raspador, as mesmas luvas e a mesma vista, tudo no mesmo lugar. Mude só o tecido das duas mangas: agora é azul-marinho muito escuro, quase preto e liso, com poucos respingos redondos e soltos de tinta em azul médio, espaçados, exatamente como a manga da segunda imagem de referência. Sem blocos, sem manchas grandes, sem nada que lembre camuflado. Sem texto, sem logo.\n",
+  "origem": "Gerada por IA em 05/11/2026 (servico-posobra-3-nano.jpg, a partir de servico-posobra-2.jpg). Cena ilustrativa, nao e foto de obra.",
+  "createdAt": "2026-11-06T02:59:42.733Z"
 }
