@@ -97,7 +97,7 @@ da busca.
   avaliações. O lugar das credenciais fica reservado
 - **Imagens:** as cenas da equipe que eles mandaram em 30/10 (001 a 008) são
   **geradas por IA**, não fotos de obra. Servem como cena, nunca como prova.
-  Antes e depois de IA só com a etiqueta "imagem ilustrativa"
+  Antes e depois de IA sem etiqueta na página (decisão do Vinicius em 07/11); a origem fica registrada no `.json` de cada imagem
 - **Fotos de obra reais, antes e depois:** ainda não existem. Não inventar
 - Ícones dos serviços (vidro, fachada, placa solar, piso, lustre) e versões da
   logo: `Desktop\Clientes\Novo-Ambiente-Service\material-do-cliente\2026-10-30-fotos\originais\` (009 a 029)

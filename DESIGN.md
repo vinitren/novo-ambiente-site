@@ -85,7 +85,7 @@ A página mostra o vidro voltando a ser vidro. O assunto não é a equipe nem o 
 - Campos inteiros de marinho e azul-gelo, com off-white nas seções de leitura.
 - Sem card, sombra de superfície, ícone em bolinha ou selo. A estrutura é feita de filetes de 1px.
 - Foto sempre sangrada, de borda a borda, sem moldura.
-- Toda imagem de IA leva etiqueta de "ilustrativa".
+- Sem etiqueta de "imagem ilustrativa" na página nem na apresentação (pedido do Vinicius em 07/11). A origem de cada imagem fica só no `.json` ao lado dela.
 
 ## Colors
 
