@@ -108,15 +108,15 @@ Sem sombra de superfície.
 
 - **Botão:** reto, raio de 8px, altura de 52px. A seta anda 3px na diagonal no hover.
 - **Menu:** transparente sobre a entrada, off-white com logo escura depois dela. Sublinhado de 1px que entra da direita pra esquerda.
-- **Logo:** nasce grande acima do título, sobe junto com a página, encolhe e encaixa no menu. Sem script ou com "reduzir movimento", já fica no menu.
-- **Antes e depois:** imagem sangrada, fixa enquanto a página desce; o vidro clareia da direita pra esquerda com a rolagem, por uma borda larga e irregular (`img/mascara-vidro.webp`), com inércia. As duas fotos têm a mesma geometria: a suja foi alinhada à limpa. Sem botão, filete ou arrasto. Sem script ou com "reduzir movimento", fica parado no meio.
+- **Logo:** presa no canto do menu, sem mudar de lugar. Nasce grande e só diminui até o tamanho do menu conforme a página desce, terminando antes do título chegar nela. Sem script ou com "reduzir movimento", já fica no tamanho do menu.
+- **Antes e depois:** imagem sangrada, fixa enquanto a página desce; o vidro clareia da direita pra esquerda com a rolagem, por uma borda larga e irregular (`img/mascara-vidro.webp`), com inércia. A máscara fica parada numa camada que desliza, sem repintar durante a rolagem. As duas fotos têm a mesma geometria: a suja foi alinhada à limpa. Sem botão, filete ou arrasto. Sem script ou com "reduzir movimento", fica parado no meio.
 - **Lista de serviços:** numerada, com a foto ao lado no computador (troca no hover, no foco e na rolagem) e sangrada acima de cada item no celular.
 - **Como funciona:** título fixo à esquerda, numeral grande na serifada à direita.
 - **Barra do WhatsApp:** fixa no celular, some quando já há um botão na tela.
 
 ## Motion
 
-Uma ideia só: a passada do rodo, com `clip-path` da direita pra esquerda e saída exponencial. Na entrada, zoom de 1.04 a 1 e título subindo 18px. Com "reduzir movimento", tudo aparece parado.
+Uma ideia só: a passada do rodo, da direita pra esquerda com saída exponencial. No celular as fotos ficam paradas: a passada ali é só o antes e depois, que anda em camada pronta. No computador a faixa e a foto dos serviços entram com `clip-path`. Na entrada, zoom de 1.04 a 1 e título subindo 18px. Com "reduzir movimento", tudo aparece parado.
 
 ## Do's and Don'ts
 

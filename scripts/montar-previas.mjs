@@ -13,15 +13,16 @@ rmSync(destino, { recursive: true, force: true });
 mkdirSync(join(destino, 'assets', 'img'), { recursive: true });
 cpSync(join(raiz, 'fonts'), join(destino, 'assets', 'fonts'), { recursive: true });
 
-for (const f of ['estilo.css', 'script.js', 'medicao.js']) cpSync(join(raiz, f), join(destino, 'assets', f));
+for (const f of ['estilo.css', 'script.js', 'medicao.js', 'blindagem.js']) cpSync(join(raiz, f), join(destino, 'assets', f));
 for (const f of readdirSync(join(raiz, 'img'))) {
   if (!f.endsWith('.json')) cpSync(join(raiz, 'img', f), join(destino, 'assets', 'img', f));
 }
 
 const base = readFileSync(join(raiz, 'index.html'), 'utf8')
   .replace(/(["' ])img\//g, '$1../assets/img/')
-  .replace('href="fonts/', 'href="../assets/fonts/')
+  .replaceAll('href="fonts/', 'href="../assets/fonts/')
   .replace('href="estilo.css"', 'href="../assets/estilo.css"')
+  .replace('src="blindagem.js"', 'src="../assets/blindagem.js"')
   .replace('src="medicao.js"', 'src="../assets/medicao.js"')
   .replace('src="script.js"', 'src="../assets/script.js"')
   // Aviso de prévia, logo abaixo do botão da entrada. Só existe aqui, nunca no site no ar.
