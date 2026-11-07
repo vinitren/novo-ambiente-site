@@ -46,8 +46,8 @@ da busca.
 - Hospedagem: Cloudflare Pages, conta deles com acesso da Trentini. Domínio no
   registro.br
 - Contato principal: WhatsApp (41) 99779-9646. E-mail
-  contato@novoambienteservice.com.br. Endereço: Rua Pedro Locatelli Júnior,
-  103, Curitiba/PR. Instagram @novoambienteservice
+  contato@novoambienteservice.com.br. Endereço: **não aparece no site**,
+  nem no rodapé nem nos dados do Google, só "Curitiba/PR" (pedido deles, 07/11; o Google Meu Negócio também não mostra endereço). Instagram @novoambienteservice
 - A aprovação é pelo WhatsApp, com quem decide do lado deles (o Lucas e a
   esposa)
 
