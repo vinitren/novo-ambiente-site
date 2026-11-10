@@ -92,7 +92,9 @@ da busca.
 
 ## Evidence on Hand
 
-- **Afirmável hoje:** mais de 5 anos de mercado (está no site atual)
+- **Afirmável hoje:** visita técnica presencial pra avaliar e montar proposta personalizada; serviço pontual e contrato periódico (semanal, quinzenal, mensal, trimestral, semestral). Pedido deles em 10/11 (`trentini/clientes/Novo-Ambiente-Service/dados/retorno-previa-6-esposa-lucas-10-11.md`)
+- **Tempo de mercado: não aparece** (pedido deles, 10/11)
+- **Termos que saíram a pedido deles (10/11):** marca ou mancha de chuva, "envidraçamento de fachada" e "fachadas envidraçadas". "Cortina de vidro" aparece uma vez só. Fachada de vidro é "limpeza interna e externa"
 - **Não afirmar até chegar:** NR-35, seguro, ART, número de obras, clientes,
   avaliações. O lugar das credenciais fica reservado
 - **Imagens:** as cenas da equipe que eles mandaram em 30/10 (001 a 008) são

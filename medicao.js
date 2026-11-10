@@ -132,7 +132,7 @@
       if (det.open) registrar('pergunta_aberta', { pergunta: det.querySelector('summary').textContent.trim() });
     });
   });
-  /* script.js avisa quando a rolagem limpou metade do vidro */
+  /* script.js avisa quando o antes e depois aparece inteiro na tela */
   var ba = document.querySelector('[data-ba]');
   if (ba) ba.addEventListener('limpou-metade', function () { registrar('antes_depois_visto', {}); });
   var vistos = {};

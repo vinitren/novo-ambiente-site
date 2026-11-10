@@ -1,6 +1,6 @@
 ---
 name: Novo Ambiente Service
-description: Limpeza técnica de vidros em Curitiba, com o vidro limpo como assunto da página.
+description: Limpeza técnica de vidros em Curitiba. A página é uma fachada de vidro, no marinho da entrada do rapel.
 colors:
   marinho: "#08192a"
   marinho-2: "#0d2438"
@@ -77,50 +77,53 @@ components:
 
 ## Overview
 
-**Creative North Star: "A Passada do Rodo"**
+**Creative North Star: "A Fachada"** (prévia 7, 10/11/2026)
 
-A página mostra o vidro voltando a ser vidro. O assunto não é a equipe nem o prédio: é a diferença entre o vidro sujo e o limpo, em Curitiba, com a araucária refletida. Tudo segue esse gesto: a foto se revela da direita pra esquerda, como uma passada, e no antes e depois é a própria rolagem da página que passa o rodo.
+A página é uma pele de vidro. O clima da entrada do rapel (a opção B que a cliente escolheu) continua pela página inteira: marinho, foto grande e gente trabalhando. As fotos são os painéis de vidro, e o filete escuro de 3px entre elas é a esquadria. A prévia 6 ("A Passada do Rodo") foi achada simples pela cliente: o corpo era texto fino em fundo claro e as fotos mudavam com a rolagem. **Nada muda com a rolagem agora.**
 
 **Key Characteristics:**
-- Campos inteiros de marinho e azul-gelo, com off-white nas seções de leitura.
-- Sem card, sombra de superfície, ícone em bolinha ou selo. A estrutura é feita de filetes de 1px.
-- Foto sempre sangrada, de borda a borda, sem moldura.
-- Sem etiqueta de "imagem ilustrativa" na página nem na apresentação (pedido do Vinicius em 07/11). A origem de cada imagem fica só no `.json` ao lado dela.
+- Marinho na maior parte da página, em três tons pra separar as seções. Azul-gelo só nos planos e off-white nas perguntas, como respiro.
+- Foto sempre sangrada, sem moldura, raio ou sombra. Várias fotos juntas formam uma grade com filete de 3px (`--marinho-3`), nunca cards.
+- Títulos grandes, com a linha da ideia na serifada.
+- Sem etiqueta de "imagem ilustrativa" na página (pedido do Vinicius em 07/11). A origem de cada imagem fica só no `.json` ao lado dela.
 
 ## Colors
 
-- **Marinho (#08192a):** entrada, comparador, fechamento e botão sobre fundo claro.
-- **Bege (#d8e6ef):** seções "Como funciona" e "Também limpamos".
-- **Off (#f4f8fa):** fundo de leitura e botão sobre foto.
-- **Azul da logo (#0095da):** só no foco e na logo. Nunca como superfície.
-
-A paleta do cliente é azul. O verde proposto pela outra IA foi recusado pelo Vinicius em 05/11.
+- **Marinho (#08192a):** sobre, antes e depois, pra quem, fechamento.
+- **Marinho-2 (#0d2438):** como funciona.
+- **Marinho-3 (#020b14):** serviços, também limpamos, rodapé e o filete da esquadria.
+- **Azul-gelo (#d8e6ef, token `--bege` por histórico):** planos.
+- **Off (#f4f8fa):** perguntas, botão sobre foto e menu sólido.
+- **Azul-claro (#8cc3e6):** destaque de texto no escuro (a frase do sobre, os numerais, os termos dos serviços).
+- **Azul da logo (#0095da):** foco e logo. **Azul-texto (#006596):** destaque no claro (o plano pontual).
 
 ## Typography
 
-Instrument Sans em peso 400 nos títulos e no texto. Source Serif 4 romana, sem itálico, na linha do título que carrega a ideia. Fontes hospedadas no próprio site, só o conjunto latino. Botões em caixa alta com espaçamento de .05em. O menu usa a serifada, em 18px.
+Instrument Sans em peso 400 nos títulos e no texto. Source Serif 4 romana, sem itálico, na linha do título que carrega a ideia, nos nomes dos planos, nos fatos e nos itens de "Também limpamos". Títulos de seção de 40 a 80px, o da frase do sobre até 76px. Botões em caixa alta com espaçamento de .05em. Fontes hospedadas no próprio site, só o conjunto latino.
 
 ## Elevation
 
-Sem sombra de superfície.
+Sem sombra de superfície. Legibilidade sobre foto vem de véu em gradiente marinho.
 
 ## Components
 
+- **Entrada e menu:** não mudaram na prévia 7 (a cliente gostou). Logo presa no canto, nasce grande e diminui até o menu; menu transparente sobre a foto e off-white depois dela.
+- **Sobre:** frase grande no topo; abaixo, a foto do rodo sangrada à esquerda e o texto com 4 fatos (grade 2×2 de filetes) à direita.
+- **Serviços, a fachada:** mosaico de 5 painéis de foto parada. No computador, 12 colunas e 2 linhas: vidro em altura alto à esquerda (5 colunas, 2 linhas), os outros 4 à direita. No tablet, 2 colunas com o de altura na largura toda; no celular, um embaixo do outro. Texto por cima, embaixo, sobre véu. No hover, só a foto aproxima 4% devagar.
+- **Antes e depois:** duas fotos paradas lado a lado (empilhadas no celular), com a etiqueta "Antes" em marinho e "Depois" em off-white no canto de baixo.
+- **Planos:** a régua do ano. Uma linha por plano (semanal, quinzenal, mensal, trimestral, semestral, pontual), com um risco por limpeza no mesmo intervalo, os meses em cima no computador e a frequência por extenso à direita. O pontual leva o azul-texto.
+- **Como funciona:** três colunas com numeral grande na serifada em azul-claro (empilhadas no celular).
+- **Faixa:** foto das araucárias com "Curitiba e Região Metropolitana" grande por cima.
 - **Botão:** reto, raio de 8px, altura de 52px. A seta anda 3px na diagonal no hover.
-- **Menu:** transparente sobre a entrada, off-white com logo escura depois dela. Sublinhado de 1px que entra da direita pra esquerda.
-- **Logo:** presa no canto do menu, sem mudar de lugar. Nasce grande e só diminui até o tamanho do menu conforme a página desce, terminando antes do título chegar nela. Sem script ou com "reduzir movimento", já fica no tamanho do menu.
-- **Antes e depois:** imagem sangrada, fixa enquanto a página desce; o vidro clareia da direita pra esquerda com a rolagem, por uma borda larga e irregular (`img/mascara-vidro.webp`), com inércia. A máscara fica parada numa camada que desliza, sem repintar durante a rolagem. As duas fotos têm a mesma geometria: a suja foi alinhada à limpa. Sem botão, filete ou arrasto. Sem script ou com "reduzir movimento", fica parado no meio.
-- **Lista de serviços:** numerada, com a foto ao lado no computador (troca no hover, no foco e na rolagem) e sangrada acima de cada item no celular.
-- **Como funciona:** título fixo à esquerda, numeral grande na serifada à direita.
 - **Barra do WhatsApp:** fixa no celular, some quando já há um botão na tela.
 
 ## Motion
 
-Uma ideia só: a passada do rodo, da direita pra esquerda com saída exponencial. No celular as fotos ficam paradas: a passada ali é só o antes e depois, que anda em camada pronta. No computador a faixa e a foto dos serviços entram com `clip-path`. Na entrada, zoom de 1.04 a 1 e título subindo 18px. Com "reduzir movimento", tudo aparece parado.
+Pouco e parado: zoom de 1.04 a 1 na foto da entrada e o título subindo 18px, a logo diminuindo com a rolagem, e o hover dos painéis. Nenhuma foto troca ou se revela com a rolagem (a cliente não gostou na prévia 6). Com "reduzir movimento", tudo aparece parado.
 
 ## Do's and Don'ts
 
-- **Faça:** deixe o vidro ser o assunto e rotule toda imagem de IA.
+- **Faça:** foto grande e sangrada, gente de uniforme real trabalhando, o marinho da entrada continuando pela página.
 - **Faça:** use a roupa com a estampa de respingos da arte real e aplique a logo real quando ela precisar aparecer.
-- **Não faça:** camuflado, nem logo desenhada por IA.
-- **Não faça:** card, pílula, gradiente decorativo, fundo verde ou prova que não existe (NR-35, seguro, clientes, avaliações) antes do documento.
+- **Não faça:** foto que troca ou se revela na rolagem, camuflado, logo desenhada por IA.
+- **Não faça:** card, pílula, gradiente decorativo, fundo verde ou prova que não existe (NR-35, seguro, clientes, avaliações, tempo de mercado) antes do documento.

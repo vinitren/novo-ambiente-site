@@ -7,7 +7,7 @@ related_targets: []
 
 # Home · Novo Ambiente Service
 
-**Modo:** Persuade. **Público:** prédio (síndico, administradora), comércio e casa, por igual. **Ação:** pedir orçamento no WhatsApp. **Prova disponível:** mais de 5 anos; as imagens são cenas de IA, rotuladas como ilustrativas. **Restrições:** site estático leve, H1 com a palavra principal, termos proibidos fora, copy da prévia 5 mantida (lapidar depois).
+**Modo:** Persuade. **Público:** prédio (síndico, administradora), comércio e casa, por igual. **Ação:** pedir orçamento no WhatsApp. **Prova disponível:** visita técnica e planos recorrentes (sem tempo de mercado, pedido deles em 10/11); as imagens são cenas de IA. **Restrições:** site estático leve, H1 com a palavra principal, termos proibidos fora, copy da prévia 5 mantida (lapidar depois).
 
 **Direção travada pelo Vinicius em 05/11**, por cima do sorteio: marinho com bege, Instrument Sans + Source Serif 4, botão reto, lista numerada, uma imagem só na entrada. Fotos escolhidas por ele: duas opções de entrada (janela limpa e rapel), o site é igual nas duas.
 
@@ -26,3 +26,8 @@ FIRST VIEWPORT: Foto em tela cheia com zoom de 1.04 a 1; menu transparente com l
 FORM: Pinned pelo usuário, sem sorteio (brief-pinned beats the roll; seed: nenhuma, direção de 05/11). Interação assinatura: a passada do rodo, com a foto revelada da direita pra esquerda nos serviços e na faixa, e o comparador de antes e depois como lâmina com pega reta.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+
+
+## Prévia 7 (10/11/2026)
+
+Retorno da cliente sobre a prévia 6: "muito simples", não gostou das fotos trocando na rolagem, quer o visual da opção B (rapel) e mais chamativo. Entrada e menu ficam. O corpo vira "A Fachada": marinho com respiro em azul-gelo, serviços em mosaico de fotos paradas com filete de esquadria, antes e depois lado a lado parado, seção nova de planos com a régua do ano. Uma versão só, entrada do rapel. Detalhe em DESIGN.md.
