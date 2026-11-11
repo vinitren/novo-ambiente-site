@@ -1,0 +1,9 @@
+{
+  "prompt": "A desktop landing page for Novo Ambiente Service, a window and glass-facade cleaning company in Curitiba, Brazil, rendered edge to edge with crisp readable Portuguese text, no browser window or device around it. The visitor is a building manager or shop owner deciding if this company is serious enough to put a rope-access technician on their building, and asking for a quote on WhatsApp.\n\nThe screen shows the page scrolled just past its full-screen rope-access photo hero: the bottom strip of that dark navy hero photo at the top, then the services section, which leads the comp. The services section is a full-width field of the logo's bright blue (#0095da) with navy (#08192a) type: a huge numbered list, in very large heavy sans-serif type, ordered like a building from the top floor down: \"01 Vidros em altura\", \"02 Fachadas de vidro\", \"03 Vitrines e lojas\", \"04 Casas e sacadas\", \"05 Pós-obra\", each separated by a thick 3px navy rule, the numbers set in a serif. To the right, one large bleeding photo of a technician in a dark navy uniform with medium-blue paint splashes, cleaning glass, with a caption \"Rapel onde a escada não chega\" and a light off-white button \"Orçamento de vidro em altura\". Above the field, a solid off-white menu with the logo at left, links Vidros, Fachada, Placa solar, Piso, Contato, and an \"Orçamento\" button at right.\n\nThe reference screenshots carry the brand's palette, typefaces, photography and component character; do not copy their layout or their sections. Only two inks for everything: the logo blue and the navy, plus off-white.\n",
+  "modelo": "nano-pro (gemini-3-pro-image)",
+  "refs": [
+    ".impeccable/review/p7-ref-topo.png",
+    ".impeccable/review/p7-ref-servicos.png"
+  ],
+  "createdAt": "2026-11-11T01:12:15.915Z"
+}

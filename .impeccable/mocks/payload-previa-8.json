@@ -1,0 +1,76 @@
+{
+  "title": "Novo Ambiente · prévia 8, o corpo do site",
+  "question": "A entrada do rapel fica. Qual destes três corpos a gente monta, já com as páginas de vidro, fachada, placa solar, piso e contato?",
+  "options": [
+    {
+      "id": "cartaz",
+      "label": "O cartaz azul",
+      "kicker": "THE ROLL",
+      "lineage": "cartaz de obra e letreiro, no azul da logo",
+      "thesis": "O azul da logo vira chão de seção inteira, alternando com o marinho, e os serviços viram uma lista gigante numerada, de 01 a 05.",
+      "palette": ["#0095da", "#08192a", "#f4f8fa", "#020b14"],
+      "materials": ["campos inteiros de azul da logo", "títulos em peso 600 de 80px", "filete grosso de 3px", "foto grande ao lado"],
+      "viewport": "Logo depois da entrada: campo azul de ponta a ponta, a lista 01 a 05 dos serviços em letra enorme à esquerda e a foto do serviço com o botão de orçamento à direita. No celular, cada número vira um bloco com a sua foto.",
+      "risk": "Azul cheio pode lembrar a faixa azul comum do ramo se o tipo ficar tímido; só funciona com a letra grande e pesada.",
+      "raised": [
+        {"from": "challenger-predio", "raise": "A lista segue a ordem do prédio, do alto pro térreo: altura, fachada, vitrine, casa, pós-obra."},
+        {"from": "challenger-duas-tintas", "raise": "Duas tintas só pra tudo: número, filete, botão e destaque em azul ou marinho, sem cor de enfeite."}
+      ],
+      "html": ".impeccable/mocks/decision/p8-cartaz.html",
+      "comp": ".impeccable/mocks/decision/p8-cartaz.webp"
+    },
+    {
+      "id": "respingo",
+      "label": "O uniforme",
+      "lineage": "a estampa de respingos do uniforme real da equipe",
+      "thesis": "A estampa de respingos do uniforme vira a textura da marca nos campos escuros, com títulos enormes e a equipe sempre à vista.",
+      "palette": ["#050f1a", "#1d5f95", "#0095da", "#f4f8fa"],
+      "materials": ["respingo da arte real do uniforme", "selo redondo da logo", "grade de fotos com filete", "títulos de 130px"],
+      "viewport": "Fundo marinho com os respingos do uniforme, título enorme \"A equipe que sobe onde a escada não chega\", selo redondo da logo e, embaixo, a grade de fotos dos serviços sangrada.",
+      "risk": "Textura demais pode puxar pro camuflado que derrubou a prévia 4; tem que ser a arte real, em pouca área.",
+      "html": ".impeccable/mocks/decision/p8-respingo.html",
+      "comp": ".impeccable/mocks/decision/p8-respingo.webp"
+    },
+    {
+      "id": "ficha",
+      "label": "A ficha da visita",
+      "lineage": "a ficha que o técnico preenche na visita técnica",
+      "thesis": "O corpo pergunta \"qual é o seu vidro?\": o visitante toca no tipo, na altura e na frequência e a mensagem do WhatsApp já sai pronta, pedindo orçamento ou visita.",
+      "palette": ["#08192a", "#0d2438", "#0095da", "#8cc3e6"],
+      "materials": ["botões de escolha grandes", "foto do serviço que acompanha a escolha", "planos dentro da ficha", "filete fino de ficha técnica"],
+      "viewport": "Foto grande à esquerda com \"Qual é o seu vidro?\"; à direita, a ficha em três linhas (tipo, altura, frequência) com botões grandes, e o botão de mandar no WhatsApp e pedir a visita técnica.",
+      "risk": "Pode parecer formulário; precisa continuar com foto grande, e ninguém é obrigado a preencher pra chamar no WhatsApp.",
+      "html": ".impeccable/mocks/decision/p8-ficha.html",
+      "comp": ".impeccable/mocks/decision/p8-ficha.webp"
+    },
+    {
+      "id": "challenger-predio",
+      "label": "O prédio em corte",
+      "verdict": "declined",
+      "lineage": "livro infantil de cidade em corte, com cada coisa etiquetada",
+      "thesis": "O prédio sem parede, cada andar com um tipo de vidro etiquetado.",
+      "palette": ["#f4f1e6", "#c0392b", "#f2c230"],
+      "materials": ["guache", "etiquetas finas"],
+      "viewport": "Um prédio ilustrado em corte, andar por andar.",
+      "case": "Ilustração infantil troca a cara da marca e não passa a seriedade que o síndico procura.",
+      "kept": "A ordem do prédio, do alto pro térreo, na lista de serviços.",
+      "risk": "Tira a foto real da equipe da frente."
+    },
+    {
+      "id": "challenger-duas-tintas",
+      "label": "Revista de duas tintas",
+      "verdict": "declined",
+      "lineage": "revista de tecnologia dos anos 90 em duotone",
+      "thesis": "Duas tintas para tudo, título inclinado.",
+      "palette": ["#ff6a00", "#00c2ff"],
+      "materials": ["duotone", "título inclinado"],
+      "viewport": "Foto e texto na mesma tinta, título a 11 graus.",
+      "case": "Laranja e duotone saem da paleta deles e escondem a foto real.",
+      "kept": "O compromisso total com duas tintas, no azul e no marinho deles.",
+      "risk": "Tira as cores da marca."
+    }
+  ],
+  "reroll": true,
+  "buildPath": {"value": "code", "toggle": true},
+  "steer": true
+}

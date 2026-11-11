@@ -1,0 +1,9 @@
+{
+  "prompt": "A desktop landing page for Novo Ambiente Service, a window and glass-facade cleaning company in Curitiba, Brazil, rendered edge to edge with crisp readable Portuguese text, no browser window or device around it. The visitor is a building manager, shop owner or homeowner who wants a quote for glass cleaning, or a technical visit, on WhatsApp.\n\nThe screen shows the page scrolled just past its full-screen rope-access photo hero, with the solid off-white menu at top (logo at left, links Vidros, Fachada, Placa solar, Piso, Contato, \"Orçamento\" button at right). The section that leads the comp is a split: at left, a large bleeding photo of a technician in a dark navy uniform with blue paint splashes cleaning a glass facade, with a huge heavy headline over it: \"Qual é o seu vidro?\". At right, on navy, the technical-visit sheet the visitor fills with three taps: \"Monte o pedido em três toques\", then three rows separated by fine rules, each with a small label and large selectable choice buttons: \"1 · Tipo de vidro\": Fachada de vidro (selected, filled logo blue), Vitrine, Sacada, Janela alta, Pós-obra; \"2 · Altura\": Térreo, Até 4 andares (selected), Prédio alto; \"3 · Frequência\": Pontual, Semanal, Quinzenal, Mensal (selected), Trimestral, Semestral. Below, a summary line of the message in a quiet box and a large off-white button \"Mandar no WhatsApp e pedir visita técnica\".\n\nThe reference screenshots carry the brand's palette, typefaces, photography and component character; do not copy their layout or their sections.\n",
+  "modelo": "nano-pro (gemini-3-pro-image)",
+  "refs": [
+    ".impeccable/review/p7-ref-topo.png",
+    ".impeccable/review/p7-ref-servicos.png"
+  ],
+  "createdAt": "2026-11-11T01:12:16.484Z"
+}
