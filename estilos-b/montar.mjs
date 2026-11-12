@@ -83,34 +83,79 @@ const entradaVidraca = (p) => `<section class="entrada v-entrada" aria-labelledb
 </section>
 `;
 
-const VERSOES = {
-  painel: { classe: 'eb-painel-home', titulo: 'página principal', preload: true, entrada: entradaPainel, barra: barraFixa, css: '' },
-  vidraca: { classe: 'ev', titulo: 'página principal, versão vidraça', preload: false, entrada: entradaVidraca, barra: barraWa, css: 'vidraca.css' },
-};
+/* Foto grande e ícones (12/11): a foto do rapel inteira, como ela gostou, e logo abaixo do título os serviços
+   em ícone (o jeito da B que ela aprovou), pro Lucas: quem olha rápido vê que não é só rapel */
+const iconesNovos = `<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-janela" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4.5 3.5h15v17h-15zM12 3.5v17M4.5 12h15"/><path d="m7 9.5 2.5-2.5M14.5 17l2.5-2.5"/></g></symbol>
+  <symbol id="i-altura" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M14 21V3h7v18M2.5 21h19M16.5 6.5h2M16.5 10h2M16.5 13.5h2"/><path d="M9 3v8.5"/><circle cx="9" cy="13.2" r="1.6"/><path d="M9 14.8v3.4l-1.8 2.3M9 16.2l2.6-1.3M9 18.2l1.6 2.3"/></g></symbol>
+  <symbol id="i-posobra" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3.5 4h11v4.5h-11zM14.5 6.2H18v5.3h-8.5V14"/><path d="M8.5 14h2v6.5h-2z"/></g></symbol>
+</svg>`;
+const servIcones = [
+  { ico: 'i-janela', h: 'Vidros e janelas', href: '#vidros' },
+  { ico: 'i-altura', h: 'Altura e rapel', href: '#vidros' },
+  { ico: 'i-posobra', h: 'Pós-obra', href: '#vidros' },
+  { ico: 'i-fachada', h: 'Fachada', href: '#fachada' },
+  { ico: 'i-solar', h: 'Placa solar', href: '#placa-solar' },
+  { ico: 'i-piso', h: 'Piso', href: '#piso' },
+];
+const entradaIcones = (p) => `${iconesNovos}
+<section class="entrada" aria-labelledby="t-entrada">
+  <picture class="entrada-foto">
+    <source media="(max-width: 47.99rem)" srcset="${p}img/entrada-rapel-cel-750.webp 750w, ${p}img/entrada-rapel-cel-1080.webp 1080w" sizes="100vw" width="1080" height="1920">
+    <img src="${p}img/entrada-rapel-1600.webp" srcset="${p}img/entrada-rapel-1600.webp 1600w, ${p}img/entrada-rapel-2560.webp 2560w" sizes="100vw" width="2560" height="1440" alt="Técnico em rapel limpando a fachada de vidro de um prédio, com araucárias refletidas no vidro" fetchpriority="high">
+  </picture>
+  <div class="entrada-veu"></div>
+  <div class="wrap entrada-texto">
+    <h1 id="t-entrada">Limpeza de vidros <em>em Curitiba</em></h1>
+    <p>Do térreo ao último andar, em prédios, comércios e casas.</p>
+    <a class="botao botao-claro" data-esconde-barra href="${wa(MSG.geral)}" ${ext}>Pedir orçamento no WhatsApp${seta}</a>
+    <nav class="i-servicos" aria-label="Serviços">
+      <ul>
+        ${servIcones.map((s, i) => `<li style="--i: ${i}"><a href="${s.href}"><span class="i-disco">${ico(s.ico)}</span><span class="i-nome">${s.h}</span></a></li>`).join('\n        ')}
+      </ul>
+    </nav>
+  </div>
+</section>
+`;
 
-function pagina(p, css, versao) {
-  const V = VERSOES[versao];
+/* um link só: as três entradas vão na mesma página, e o script do começo do <body> deixa só a escolhida.
+   Trocar de entrada recarrega a página (a logo e a barra medem a entrada na abertura); trocar de cor é na hora */
+const HOMES = [
+  { id: 'a', nome: 'Painel de serviços', classe: 'eb-painel-home', entrada: entradaPainel, barra: barraFixa },
+  { id: 'b', nome: 'Vidraça', classe: 'ev', entrada: entradaVidraca, barra: barraWa },
+  { id: 'c', nome: 'Foto e ícones', classe: 'ei', entrada: entradaIcones, barra: barraWa },
+];
+const classes = Object.fromEntries(HOMES.map((h) => [h.id, h.classe]));
+
+function pagina(p, css) {
   return `<!doctype html>
-<html lang="pt-BR" class="sem-js estilo-b eb ${V.classe}" data-entrada="rapel" data-paleta="1">
+<html lang="pt-BR" class="sem-js estilo-b eb eb-painel-home" data-entrada="rapel" data-home="a" data-paleta="1">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Prévia · ${V.titulo} | Novo Ambiente Service</title>
+<title>Prévia · página principal | Novo Ambiente Service</title>
 <meta name="theme-color" content="#08192a">
 <link rel="icon" href="${p}img/icone-48.png" type="image/png">
-${V.preload ? `<link rel="preload" as="image" imagesrcset="${p}img/entrada-rapel-1600.webp 1600w, ${p}img/entrada-rapel-2560.webp 2560w" imagesizes="100vw" media="(min-width: 48rem)" fetchpriority="high">
-<link rel="preload" as="image" imagesrcset="${p}img/entrada-rapel-cel-750.webp 750w, ${p}img/entrada-rapel-cel-1080.webp 1080w" imagesizes="100vw" media="(max-width: 47.99rem)" fetchpriority="high">` : ''}
+<link rel="preload" as="image" imagesrcset="${p}img/entrada-rapel-1600.webp 1600w, ${p}img/entrada-rapel-2560.webp 2560w" imagesizes="100vw" media="(min-width: 48rem)" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="${p}img/entrada-rapel-cel-750.webp 750w, ${p}img/entrada-rapel-cel-1080.webp 1080w" imagesizes="100vw" media="(max-width: 47.99rem)" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="${p}fonts/instrument-sans-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="${p}fonts/source-serif-4-latin.woff2" crossorigin>
 <link rel="stylesheet" href="${p}estilo.css">
 <link rel="stylesheet" href="${css}estilos/comum.css">
 <link rel="stylesheet" href="${css}estilos/b.css">
-<link rel="stylesheet" href="${css}estilos-b/pagina.css">${V.css ? `
-<link rel="stylesheet" href="${css}estilos-b/${V.css}">` : ''}
+<link rel="stylesheet" href="${css}estilos-b/pagina.css">
+<link rel="stylesheet" href="${css}estilos-b/vidraca.css">
+<link rel="stylesheet" href="${css}estilos-b/icones.css">
 <script>
 document.documentElement.classList.replace('sem-js', 'js');
-(function () { var c = new URLSearchParams(location.search).get('cor'); try { c = c || localStorage.getItem('na-cor'); } catch (e) {} if (/^[123]$/.test(c || '')) document.documentElement.dataset.paleta = c; })();
+(function () {
+  var q = new URLSearchParams(location.search), h = document.documentElement, c = q.get('cor'), e = q.get('home');
+  try { c = c || localStorage.getItem('na-cor'); e = e || localStorage.getItem('na-home'); } catch (x) {}
+  if (/^[123]$/.test(c || '')) h.dataset.paleta = c;
+  var classes = ${JSON.stringify(classes)};
+  if (classes[e]) { h.classList.remove('eb-painel-home'); h.classList.add(classes[e]); h.dataset.home = e; }
+})();
 </script>
 </head>
 <body>
@@ -133,7 +178,8 @@ ${icones}
 </header>
 
 <main id="conteudo">
-${V.entrada(p)}
+${HOMES.map((h) => `<div class="eb-home" data-home="${h.id}">${h.entrada(p)}</div>`).join('')}
+<script>(function () { var e = document.documentElement.dataset.home; document.querySelectorAll('.eb-home').forEach(function (d) { if (d.dataset.home !== e) d.remove(); }); })();</script>
 <section class="secao b-quem" aria-labelledby="t-quem">
   <div class="wrap">
     <div class="b-cabeca">
@@ -240,13 +286,17 @@ ${planos.replace('<div class="ano">', '<div class="ano" data-anima>')}
   </div>
 </footer>
 
-${V.barra(p)}
-<div class="eb-cor" role="group" aria-label="Escolher a cor do site">
-  <span class="eb-cor-rotulo">Cor do site</span>
-  ${CORES.map((c) => `<button type="button" data-cor="${c.n}" aria-pressed="false" title="${c.nome}: ${c.frase}"><span class="so-leitor">Cor </span>${c.n}</button>`).join('')}
-  <a class="eb-cor-responder" href="#" data-vinicius="${VINICIUS}" ${ext}>Escolher<span class="eb-cor-nome"></span></a>
+${HOMES.map((h) => `<div class="eb-home-barra" data-home="${h.id}">${h.barra(p)}</div>`).join('')}
+<script>(function () { var e = document.documentElement.dataset.home; document.querySelectorAll('.eb-home-barra').forEach(function (d) { if (d.dataset.home !== e) d.remove(); }); })();</script>
+<div class="eb-cor" role="group" aria-label="Escolher a entrada e a cor da página">
+  <button type="button" class="eb-cor-abrir" aria-expanded="false">Entrada <b data-mostra="home">A</b> · Cor <b data-mostra="cor">1</b></button>
+  <div class="eb-cor-linha"><span class="eb-cor-rotulo">Entrada</span>
+  ${HOMES.map((h) => `<button type="button" data-home="${h.id}" aria-pressed="false" title="${h.nome}"><span class="so-leitor">Entrada </span>${h.id.toUpperCase()}</button>`).join('')}</div>
+  <div class="eb-cor-linha"><span class="eb-cor-rotulo">Cor</span>
+  ${CORES.map((c) => `<button type="button" data-cor="${c.n}" aria-pressed="false" title="${c.nome}: ${c.frase}"><span class="so-leitor">Cor </span>${c.n}</button>`).join('')}</div>
+  <a class="eb-cor-responder" href="#" data-vinicius="${VINICIUS}" ${ext}>Escolher</a>
 </div>
-<script>window.EB_CORES = ${JSON.stringify(CORES.map(({ n, nome }) => ({ n, nome })))};</script>
+<script>window.EB_CORES = ${JSON.stringify(CORES.map(({ n, nome }) => ({ n, nome })))}; window.EB_HOMES = ${JSON.stringify(HOMES.map(({ id, nome }) => ({ id, nome })))};</script>
 
 <script src="${p}blindagem.js" defer></script>
 <script src="${p}script.js" defer></script>
@@ -256,28 +306,24 @@ ${V.barra(p)}
 `;
 }
 
-writeFileSync(join(aqui, 'index.html'), pagina('../', '../', 'painel'));
-mkdirSync(join(aqui, 'vidraca'), { recursive: true });
-writeFileSync(join(aqui, 'vidraca', 'index.html'), pagina('../../', '../../', 'vidraca'));
-console.log('Montadas em', aqui, '(index.html e vidraca/index.html)');
+writeFileSync(join(aqui, 'index.html'), pagina('../', '../'));
+for (const velha of ['vidraca', 'icones']) rmSync(join(aqui, velha), { recursive: true, force: true });
+console.log('Montada em', join(aqui, 'index.html'), '(as três entradas, ?home=a|b|c)');
 
-/* cada versão publica com os próprios arquivos, pra uma não quebrar quando a outra mudar */
-function publicar(pasta, versao) {
-  const destino = join(raiz, '..', 'aprovar', 'public', 'novo-ambiente', pasta);
-  rmSync(destino, { recursive: true, force: true });
+if (process.argv.includes('--aprovar')) {
+  const base = join(raiz, '..', 'aprovar', 'public', 'novo-ambiente');
+  const destino = join(base, 'home');
+  /* as versões soltas de antes saem: o link é um só */
+  for (const velha of ['estilos-b', 'vidraca', 'icones', 'home']) rmSync(join(base, velha), { recursive: true, force: true });
   for (const d of ['img', 'estilos', 'estilos-b']) mkdirSync(join(destino, 'assets', d), { recursive: true });
   cpSync(join(raiz, 'fonts'), join(destino, 'assets', 'fonts'), { recursive: true });
   for (const f of ['estilo.css', 'script.js', 'blindagem.js']) cpSync(join(raiz, f), join(destino, 'assets', f));
   for (const f of ['comum.css', 'b.css']) cpSync(join(raiz, 'estilos', f), join(destino, 'assets', 'estilos', f));
-  for (const f of ['pagina.css', 'pagina.js', 'vidraca.css']) cpSync(join(aqui, f), join(destino, 'assets', 'estilos-b', f));
+  for (const f of ['pagina.css', 'pagina.js', 'vidraca.css', 'icones.css']) cpSync(join(aqui, f), join(destino, 'assets', 'estilos-b', f));
   const usadas = /^(entrada-rapel|entrada-janela|servico-|mini-|vidro-|estampa-|logo|icone)/;
   for (const f of readdirSync(join(raiz, 'img'))) {
     if (usadas.test(f) && !f.endsWith('.json')) cpSync(join(raiz, 'img', f), join(destino, 'assets', 'img', f));
   }
-  writeFileSync(join(destino, 'index.html'), pagina('assets/', 'assets/', versao));
+  writeFileSync(join(destino, 'index.html'), pagina('assets/', 'assets/'));
   console.log('Publicável em', destino);
-}
-if (process.argv.includes('--aprovar')) {
-  publicar('estilos-b', 'painel');
-  publicar('vidraca', 'vidraca');
 }
