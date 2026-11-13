@@ -2,12 +2,14 @@
 //  · a entrada mostra os 4 serviços num painel com foto (o Lucas: "parece que só trabalham com rapel")
 //  · barra fixa no celular, sempre visível: ligar e orçamento no WhatsApp
 //  · a página inteira em 3 cores pra ela escolher (marinho "carregado", azul-clarinho "básico")
+//  · num link só: 3 entradas, 3 jeitos das seções (corpos.mjs) e 3 cores, cada um trocado no seletor
 // Uso: node estilos-b/montar.mjs            → estilos-b/index.html (abre local)
 //      node estilos-b/montar.mjs --aprovar  → também em aprovar/public/novo-ambiente/estilos-b/
 import { cpSync, mkdirSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { FONE, wa, seta, ico, ext, publicos, servicos, passos, tambem, T, MSG, icones, planos, imgServ, parFotos, fotoRodo, acoesFecho } from '../estilos/conteudo.mjs';
+import { CORPOS, iconesNovos } from './corpos.mjs';
 
 const aqui = dirname(fileURLToPath(import.meta.url));
 const raiz = join(aqui, '..');
@@ -85,11 +87,7 @@ const entradaVidraca = (p) => `<section class="entrada v-entrada" aria-labelledb
 
 /* Foto grande e ícones (12/11): a foto do rapel inteira, como ela gostou, e logo abaixo do título os serviços
    em ícone (o jeito da B que ela aprovou), pro Lucas: quem olha rápido vê que não é só rapel */
-const iconesNovos = `<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-janela" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4.5 3.5h15v17h-15zM12 3.5v17M4.5 12h15"/><path d="m7 9.5 2.5-2.5M14.5 17l2.5-2.5"/></g></symbol>
-  <symbol id="i-altura" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M14 21V3h7v18M2.5 21h19M16.5 6.5h2M16.5 10h2M16.5 13.5h2"/><path d="M9 3v8.5"/><circle cx="9" cy="13.2" r="1.6"/><path d="M9 14.8v3.4l-1.8 2.3M9 16.2l2.6-1.3M9 18.2l1.6 2.3"/></g></symbol>
-  <symbol id="i-posobra" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3.5 4h11v4.5h-11zM14.5 6.2H18v5.3h-8.5V14"/><path d="M8.5 14h2v6.5h-2z"/></g></symbol>
-</svg>`;
+
 const servIcones = [
   { ico: 'i-janela', h: 'Vidros e janelas', href: '#vidros' },
   { ico: 'i-altura', h: 'Altura e rapel', href: '#vidros' },
@@ -98,8 +96,7 @@ const servIcones = [
   { ico: 'i-solar', h: 'Placa solar', href: '#placa-solar' },
   { ico: 'i-piso', h: 'Piso', href: '#piso' },
 ];
-const entradaIcones = (p) => `${iconesNovos}
-<section class="entrada" aria-labelledby="t-entrada">
+const entradaIcones = (p) => `<section class="entrada" aria-labelledby="t-entrada">
   <picture class="entrada-foto">
     <source media="(max-width: 47.99rem)" srcset="${p}img/entrada-rapel-cel-750.webp 750w, ${p}img/entrada-rapel-cel-1080.webp 1080w" sizes="100vw" width="1080" height="1920">
     <img src="${p}img/entrada-rapel-1600.webp" srcset="${p}img/entrada-rapel-1600.webp 1600w, ${p}img/entrada-rapel-2560.webp 2560w" sizes="100vw" width="2560" height="1440" alt="Técnico em rapel limpando a fachada de vidro de um prédio, com araucárias refletidas no vidro" fetchpriority="high">
@@ -126,10 +123,11 @@ const HOMES = [
   { id: 'c', nome: 'Foto e ícones', classe: 'ei', entrada: entradaIcones, barra: barraWa },
 ];
 const classes = Object.fromEntries(HOMES.map((h) => [h.id, h.classe]));
+const classesCorpo = Object.fromEntries(CORPOS.map((c) => [c.id, c.classe]));
 
 function pagina(p, css) {
   return `<!doctype html>
-<html lang="pt-BR" class="sem-js estilo-b eb eb-painel-home" data-entrada="rapel" data-home="a" data-paleta="1">
+<html lang="pt-BR" class="sem-js estilo-b eb eb-painel-home cc" data-entrada="rapel" data-home="a" data-corpo="a" data-paleta="1">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -147,19 +145,23 @@ function pagina(p, css) {
 <link rel="stylesheet" href="${css}estilos-b/pagina.css">
 <link rel="stylesheet" href="${css}estilos-b/vidraca.css">
 <link rel="stylesheet" href="${css}estilos-b/icones.css">
+<link rel="stylesheet" href="${css}estilos-b/corpo-fotos.css">
+<link rel="stylesheet" href="${css}estilos-b/corpo-guia.css">
 <script>
 document.documentElement.classList.replace('sem-js', 'js');
 (function () {
-  var q = new URLSearchParams(location.search), h = document.documentElement, c = q.get('cor'), e = q.get('home');
-  try { c = c || localStorage.getItem('na-cor'); e = e || localStorage.getItem('na-home'); } catch (x) {}
+  var q = new URLSearchParams(location.search), h = document.documentElement, c = q.get('cor'), e = q.get('home'), s = q.get('corpo');
+  try { c = c || localStorage.getItem('na-cor'); e = e || localStorage.getItem('na-home'); s = s || localStorage.getItem('na-corpo'); } catch (x) {}
   if (/^[123]$/.test(c || '')) h.dataset.paleta = c;
-  var classes = ${JSON.stringify(classes)};
+  var classes = ${JSON.stringify(classes)}, corpos = ${JSON.stringify(classesCorpo)};
   if (classes[e]) { h.classList.remove('eb-painel-home'); h.classList.add(classes[e]); h.dataset.home = e; }
+  if (corpos[s]) { h.classList.remove('cc'); h.classList.add(corpos[s]); h.dataset.corpo = s; }
 })();
 </script>
 </head>
 <body>
 ${icones}
+${iconesNovos}
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
 <header class="topo">
@@ -180,92 +182,8 @@ ${icones}
 <main id="conteudo">
 ${HOMES.map((h) => `<div class="eb-home" data-home="${h.id}">${h.entrada(p)}</div>`).join('')}
 <script>(function () { var e = document.documentElement.dataset.home; document.querySelectorAll('.eb-home').forEach(function (d) { if (d.dataset.home !== e) d.remove(); }); })();</script>
-<section class="secao b-quem" aria-labelledby="t-quem">
-  <div class="wrap">
-    <div class="b-cabeca">
-      <h2 id="t-quem">${T.quem}</h2>
-    </div>
-    <div class="b-cartoes-3">
-      ${publicos.map((q) => `<article class="b-cartao">
-        <span class="b-bolinha">${ico(q.ico)}</span>
-        <h3>${q.h}</h3>
-        <p>${q.p}</p>
-        <p class="resolve">${q.r}</p>
-        <a class="link-seta" href="${wa(q.m)}" ${ext}>${q.l}${seta}</a>
-      </article>`).join('\n      ')}
-    </div>
-  </div>
-</section>
-
-<section class="secao b-vidros" id="vidros" aria-labelledby="t-vidros">
-  <div class="wrap">
-    <div class="b-cabeca">
-      <h2 id="t-vidros">${T.vidros}</h2>
-      <p>${T.vidrosP}</p>
-    </div>
-    <ul class="b-servicos" data-anima>
-      ${servicos.map((s, i) => `<li class="b-cartao b-servico${i === 0 ? ' b-servico-grande' : ''}" style="--i: ${i}">
-        <figure>${imgServ(s, p, i === 0 ? '(min-width: 62rem) 30vw, 100vw' : '(min-width: 62rem) 30vw, (min-width: 48rem) 50vw, 100vw')}</figure>
-        <div class="b-servico-texto">
-          <h3>${s.h}</h3>
-          <p>${s.p}</p>
-          <p class="termos">${s.t}</p>
-          <a class="${i === 0 ? 'botao botao-azul' : 'link-seta'}" href="${wa(s.m)}" ${ext}>${s.l}${seta}</a>
-        </div>
-      </li>`).join('\n      ')}
-    </ul>
-  </div>
-</section>
-
-<section class="secao b-par" aria-labelledby="t-ba">
-  <div class="wrap">
-    <div class="b-painel">
-      <div class="b-cabeca">
-        <h2 id="t-ba">${T.ba}</h2>
-        <p>${T.baP}</p>
-      </div>
-      <div class="b-fotos" data-ba>
-        ${parFotos(p).map((f) => `<figure>${f.img}<figcaption>${f.cap}</figcaption></figure>`).join('\n        ')}
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="secao b-passos" aria-labelledby="t-passos">
-  <div class="wrap">
-    <div class="b-cabeca">
-      <h2 id="t-passos">${T.passos}</h2>
-    </div>
-    <ol class="b-trilha" data-anima>
-      ${passos.map((s, i) => `<li style="--i: ${i}"><span class="b-bolinha b-bolinha-grande">${ico(s.ico)}</span><span class="b-passo">Passo ${i + 1}</span><h3>${s.h}</h3><p>${s.p}</p></li>`).join('\n      ')}
-    </ol>
-    <div class="b-centro"><a class="botao botao-azul" href="${wa(MSG.foto)}" ${ext}>Mandar foto do vidro${seta}</a></div>
-  </div>
-</section>
-${planos.replace('<div class="ano">', '<div class="ano" data-anima>')}
-<section class="secao b-tambem" aria-labelledby="t-tambem">
-  <div class="wrap">
-    <div class="b-cabeca">
-      <h2 id="t-tambem">${T.tambem}</h2>
-    </div>
-    <ul class="b-cartoes-3">
-      ${tambem.map((s) => `<li id="${s.id}" class="b-cartao b-cartao-link"><a href="${wa(s.m)}" ${ext}><span class="b-bolinha">${ico(s.ico)}</span><h3>${s.h}</h3><p>${s.p}</p><span class="link-seta">Pedir orçamento${seta}</span></a></li>`).join('\n      ')}
-    </ul>
-  </div>
-</section>
-
-<section class="secao b-fecho" aria-labelledby="t-fecho">
-  <div class="wrap">
-    <div class="b-fecho-painel">
-      <figure>${fotoRodo(p, '(min-width: 62rem) 45vw, 100vw')}</figure>
-      <div class="b-fecho-texto">
-        <h2 id="t-fecho">${T.fecho}</h2>
-        <p>${T.fechoP}</p>
-        ${acoesFecho('botao-claro')}
-      </div>
-    </div>
-  </div>
-</section>
+${CORPOS.map((c) => `<div class="eb-corpo" data-corpo="${c.id}">${c.corpo(p)}</div>`).join('')}
+<script>(function () { var e = document.documentElement.dataset.corpo; document.querySelectorAll('.eb-corpo').forEach(function (d) { if (d.dataset.corpo !== e) d.remove(); }); })();</script>
 </main>
 
 <footer class="rodape" id="contato">
@@ -288,15 +206,17 @@ ${planos.replace('<div class="ano">', '<div class="ano" data-anima>')}
 
 ${HOMES.map((h) => `<div class="eb-home-barra" data-home="${h.id}">${h.barra(p)}</div>`).join('')}
 <script>(function () { var e = document.documentElement.dataset.home; document.querySelectorAll('.eb-home-barra').forEach(function (d) { if (d.dataset.home !== e) d.remove(); }); })();</script>
-<div class="eb-cor" role="group" aria-label="Escolher a entrada e a cor da página">
-  <button type="button" class="eb-cor-abrir" aria-expanded="false">Entrada <b data-mostra="home">A</b> · Cor <b data-mostra="cor">1</b></button>
+<div class="eb-cor" role="group" aria-label="Escolher a entrada, as seções e a cor da página">
+  <button type="button" class="eb-cor-abrir" aria-expanded="false">Entrada <b data-mostra="home">A</b> · Seções <b data-mostra="corpo">A</b> · Cor <b data-mostra="cor">1</b></button>
   <div class="eb-cor-linha"><span class="eb-cor-rotulo">Entrada</span>
   ${HOMES.map((h) => `<button type="button" data-home="${h.id}" aria-pressed="false" title="${h.nome}"><span class="so-leitor">Entrada </span>${h.id.toUpperCase()}</button>`).join('')}</div>
+  <div class="eb-cor-linha"><span class="eb-cor-rotulo">Seções</span>
+  ${CORPOS.map((c) => `<button type="button" data-corpo="${c.id}" aria-pressed="false" title="${c.nome}"><span class="so-leitor">Seções </span>${c.id.toUpperCase()}</button>`).join('')}</div>
   <div class="eb-cor-linha"><span class="eb-cor-rotulo">Cor</span>
   ${CORES.map((c) => `<button type="button" data-cor="${c.n}" aria-pressed="false" title="${c.nome}: ${c.frase}"><span class="so-leitor">Cor </span>${c.n}</button>`).join('')}</div>
   <a class="eb-cor-responder" href="#" data-vinicius="${VINICIUS}" ${ext}>Escolher</a>
 </div>
-<script>window.EB_CORES = ${JSON.stringify(CORES.map(({ n, nome }) => ({ n, nome })))}; window.EB_HOMES = ${JSON.stringify(HOMES.map(({ id, nome }) => ({ id, nome })))};</script>
+<script>window.EB_CORES = ${JSON.stringify(CORES.map(({ n, nome }) => ({ n, nome })))}; window.EB_HOMES = ${JSON.stringify(HOMES.map(({ id, nome }) => ({ id, nome })))}; window.EB_CORPOS = ${JSON.stringify(CORPOS.map(({ id, nome }) => ({ id, nome })))};</script>
 
 <script src="${p}blindagem.js" defer></script>
 <script src="${p}script.js" defer></script>
@@ -308,7 +228,7 @@ ${HOMES.map((h) => `<div class="eb-home-barra" data-home="${h.id}">${h.barra(p)}
 
 writeFileSync(join(aqui, 'index.html'), pagina('../', '../'));
 for (const velha of ['vidraca', 'icones']) rmSync(join(aqui, velha), { recursive: true, force: true });
-console.log('Montada em', join(aqui, 'index.html'), '(as três entradas, ?home=a|b|c)');
+console.log('Montada em', join(aqui, 'index.html'), '(?home=a|b|c, ?corpo=a|b|c, ?cor=1|2|3)');
 
 if (process.argv.includes('--aprovar')) {
   const base = join(raiz, '..', 'aprovar', 'public', 'novo-ambiente');
@@ -319,7 +239,7 @@ if (process.argv.includes('--aprovar')) {
   cpSync(join(raiz, 'fonts'), join(destino, 'assets', 'fonts'), { recursive: true });
   for (const f of ['estilo.css', 'script.js', 'blindagem.js']) cpSync(join(raiz, f), join(destino, 'assets', f));
   for (const f of ['comum.css', 'b.css']) cpSync(join(raiz, 'estilos', f), join(destino, 'assets', 'estilos', f));
-  for (const f of ['pagina.css', 'pagina.js', 'vidraca.css', 'icones.css']) cpSync(join(aqui, f), join(destino, 'assets', 'estilos-b', f));
+  for (const f of ['pagina.css', 'pagina.js', 'vidraca.css', 'icones.css', 'corpo-fotos.css', 'corpo-guia.css']) cpSync(join(aqui, f), join(destino, 'assets', 'estilos-b', f));
   const usadas = /^(entrada-rapel|entrada-janela|servico-|mini-|vidro-|estampa-|logo|icone)/;
   for (const f of readdirSync(join(raiz, 'img'))) {
     if (usadas.test(f) && !f.endsWith('.json')) cpSync(join(raiz, 'img', f), join(destino, 'assets', 'img', f));
