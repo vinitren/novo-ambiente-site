@@ -17,8 +17,8 @@ const VINICIUS = '5541997128458';
 
 const CORES = [
   { n: 1, nome: 'Branco e azul', frase: 'Fundo branco, o azul da logo nos detalhes e o marinho só na entrada e no fim' },
-  { n: 2, nome: 'Estampa do uniforme', frase: 'A 1, com a estampa do uniforme em dois blocos' },
-  { n: 3, nome: 'Marinho e branco', frase: 'Blocos marinho e branco se alternando, como o uniforme' },
+  { n: 2, nome: 'Uniforme', frase: 'A 1, com a estampa do uniforme em dois blocos' },
+  { n: 3, nome: 'Marinho', frase: 'Blocos marinho e branco se alternando, como o uniforme' },
 ];
 
 /* o painel da entrada: o que a pessoa precisa limpar, cada linha abre o WhatsApp com a mensagem certa */
@@ -118,7 +118,7 @@ const entradaIcones = (p) => `<section class="entrada" aria-labelledby="t-entrad
 /* um link só: as três entradas vão na mesma página, e o script do começo do <body> deixa só a escolhida.
    Trocar de entrada recarrega a página (a logo e a barra medem a entrada na abertura); trocar de cor é na hora */
 const HOMES = [
-  { id: 'a', nome: 'Painel de serviços', classe: 'eb-painel-home', entrada: entradaPainel, barra: barraFixa },
+  { id: 'a', nome: 'Painel', classe: 'eb-painel-home', entrada: entradaPainel, barra: barraFixa },
   { id: 'b', nome: 'Vidraça', classe: 'ev', entrada: entradaVidraca, barra: barraWa },
   { id: 'c', nome: 'Foto e ícones', classe: 'ei', entrada: entradaIcones, barra: barraWa },
 ];
@@ -206,15 +206,35 @@ ${CORPOS.map((c) => `<div class="eb-corpo" data-corpo="${c.id}">${c.corpo(p)}</d
 
 ${HOMES.map((h) => `<div class="eb-home-barra" data-home="${h.id}">${h.barra(p)}</div>`).join('')}
 <script>(function () { var e = document.documentElement.dataset.home; document.querySelectorAll('.eb-home-barra').forEach(function (d) { if (d.dataset.home !== e) d.remove(); }); })();</script>
-<div class="eb-cor" role="group" aria-label="Escolher a entrada, as seções e a cor da página">
-  <button type="button" class="eb-cor-abrir" aria-expanded="false">Entrada <b data-mostra="home">A</b> · Seções <b data-mostra="corpo">A</b> · Cor <b data-mostra="cor">1</b></button>
-  <div class="eb-cor-linha"><span class="eb-cor-rotulo">Entrada</span>
-  ${HOMES.map((h) => `<button type="button" data-home="${h.id}" aria-pressed="false" title="${h.nome}"><span class="so-leitor">Entrada </span>${h.id.toUpperCase()}</button>`).join('')}</div>
-  <div class="eb-cor-linha"><span class="eb-cor-rotulo">Seções</span>
-  ${CORPOS.map((c) => `<button type="button" data-corpo="${c.id}" aria-pressed="false" title="${c.nome}"><span class="so-leitor">Seções </span>${c.id.toUpperCase()}</button>`).join('')}</div>
-  <div class="eb-cor-linha"><span class="eb-cor-rotulo">Cor</span>
-  ${CORES.map((c) => `<button type="button" data-cor="${c.n}" aria-pressed="false" title="${c.nome}: ${c.frase}"><span class="so-leitor">Cor </span>${c.n}</button>`).join('')}</div>
-  <a class="eb-cor-responder" href="#" data-vinicius="${VINICIUS}" ${ext}>Escolher</a>
+<div class="eb-guia" role="region" aria-label="Escolher a página, um passo por vez" hidden>
+  <button type="button" class="eb-guia-abrir" aria-expanded="true">Escolher <span data-guia-num>1 de 3</span></button>
+  <div class="eb-guia-caixa">
+    <div class="eb-guia-topo"><span class="eb-guia-passo" data-guia-num>1 de 3</span><button type="button" class="eb-guia-esconder" aria-label="Esconder pra ver a página">Esconder</button></div>
+    <div class="eb-guia-etapa" data-passo="1">
+      <p class="eb-guia-pergunta">Qual <b>entrada</b> vocês preferem?</p>
+      <p class="eb-guia-dica">É o topo da página. Toque e veja cada uma.</p>
+      <div class="eb-guia-opcoes">${HOMES.map((h) => `<button type="button" data-home="${h.id}" aria-pressed="false">${h.nome}</button>`).join('')}</div>
+    </div>
+    <div class="eb-guia-etapa" data-passo="2">
+      <p class="eb-guia-pergunta">Qual <b>cor</b> vocês preferem?</p>
+      <p class="eb-guia-dica">Toque e desça a página pra ver a cor no site todo.</p>
+      <div class="eb-guia-opcoes">${CORES.map((c) => `<button type="button" data-cor="${c.n}" aria-pressed="false">${c.nome}</button>`).join('')}</div>
+    </div>
+    <div class="eb-guia-etapa" data-passo="3">
+      <p class="eb-guia-pergunta">O <b>meio da página</b> fica nos Cartões?</p>
+      <p class="eb-guia-dica">Foi o que vocês aprovaram. Se quiser, veja os outros dois jeitos.</p>
+      <div class="eb-guia-opcoes">${CORPOS.map((c) => `<button type="button" data-corpo="${c.id}" aria-pressed="false">${c.nome}</button>`).join('')}</div>
+    </div>
+    <div class="eb-guia-etapa" data-passo="4">
+      <p class="eb-guia-pergunta">Ficou assim:</p>
+      <ul class="eb-guia-resumo"><li>Entrada: <b data-mostra="home"></b></li><li>Cor: <b data-mostra="cor"></b></li><li>Meio da página: <b data-mostra="corpo"></b></li></ul>
+    </div>
+    <div class="eb-guia-acoes">
+      <button type="button" class="eb-guia-voltar">Voltar</button>
+      <button type="button" class="eb-guia-proximo">Próximo</button>
+      <a class="eb-guia-mandar" href="#" data-vinicius="${VINICIUS}" ${ext}>Mandar pelo WhatsApp</a>
+    </div>
+  </div>
 </div>
 <script>window.EB_CORES = ${JSON.stringify(CORES.map(({ n, nome }) => ({ n, nome })))}; window.EB_HOMES = ${JSON.stringify(HOMES.map(({ id, nome }) => ({ id, nome })))}; window.EB_CORPOS = ${JSON.stringify(CORPOS.map(({ id, nome }) => ({ id, nome })))};</script>
 
