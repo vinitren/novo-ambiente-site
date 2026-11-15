@@ -7,7 +7,7 @@
 //      node estilos-b/montar.mjs --aprovar  → também em aprovar/public/novo-ambiente/estilos-b/
 import { cpSync, mkdirSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { FONE, wa, seta, ico, ext, publicos, servicos, passos, tambem, T, MSG, icones, planos, imgServ, parFotos, fotoRodo, acoesFecho } from '../estilos/conteudo.mjs';
 import { CORPOS, iconesNovos } from './corpos.mjs';
 
@@ -23,7 +23,7 @@ const CORES = [
 
 /* o painel da entrada: o que a pessoa precisa limpar, cada linha abre o WhatsApp com a mensagem certa */
 const msgDe = (id) => tambem.find((s) => s.id === id).m;
-const painel = [
+export const painel = [
   { id: 'vidros', mini: 'vitrine', h: 'Vidros e janelas', p: 'Vitrine, janela alta, pé-direito alto, fachada de vidro', m: MSG.janelas, alt: 'Vitrine de loja sendo limpa com rodo' },
   { id: 'fachada', mini: 'fachada-acm', h: 'Fachada', p: 'ACM, pastilha, textura e pedra', m: msgDe('fachada'), alt: 'Técnico limpando fachada de ACM' },
   { id: 'placa-solar', mini: 'placa-solar', h: 'Placa solar', p: 'Casa, comércio e indústria', m: msgDe('placa-solar'), alt: 'Técnico limpando placas solares no telhado' },
@@ -31,7 +31,7 @@ const painel = [
 ];
 
 /* ---------- as duas entradas ---------- */
-const entradaPainel = (p) => `<section class="entrada" aria-labelledby="t-entrada">
+export const entradaPainel = (p) => `<section class="entrada" aria-labelledby="t-entrada">
   <picture class="entrada-foto">
     <source media="(max-width: 47.99rem)" srcset="${p}img/entrada-rapel-cel-750.webp 750w, ${p}img/entrada-rapel-cel-1080.webp 1080w" sizes="100vw" width="1080" height="1920">
     <img src="${p}img/entrada-rapel-1600.webp" srcset="${p}img/entrada-rapel-1600.webp 1600w, ${p}img/entrada-rapel-2560.webp 2560w" sizes="100vw" width="2560" height="1440" alt="Técnico em rapel limpando a fachada de vidro de um prédio, com araucárias refletidas no vidro" fetchpriority="high">
@@ -55,7 +55,7 @@ const entradaPainel = (p) => `<section class="entrada" aria-labelledby="t-entrad
     </nav>
   </div>
 </section>`;
-const barraFixa = () => `<div class="barra-fixa">
+export const barraFixa = () => `<div class="barra-fixa">
   <a class="bf-wa" href="${wa(MSG.topo)}" ${ext}><svg class="wa" aria-hidden="true"><use href="#i-wa"/></svg>Orçamento no WhatsApp</a>
 </div>`;
 const barraWa = () => `<div class="barra-wa"><a class="botao botao-azul" href="${wa(MSG.geral)}" ${ext}><svg class="wa" aria-hidden="true"><use href="#i-wa"/></svg>Pedir orçamento no WhatsApp</a></div>`;
@@ -250,6 +250,8 @@ ${final ? '' : `<div class="eb-guia" role="region" aria-label="Escolher a págin
 `;
 }
 
+/* só monta quando é chamado direto; o site/montar.mjs importa as peças daqui */
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
 writeFileSync(join(aqui, 'index.html'), pagina('../', '../'));
 for (const velha of ['vidraca', 'icones']) rmSync(join(aqui, velha), { recursive: true, force: true });
 console.log('Montada em', join(aqui, 'index.html'), '(?home=a|b|c, ?corpo=a|b|c, ?cor=1|2|3)');
@@ -270,4 +272,5 @@ if (process.argv.includes('--aprovar')) {
   }
   writeFileSync(join(destino, 'index.html'), pagina('assets/', 'assets/'));
   console.log('Publicável em', destino);
+}
 }

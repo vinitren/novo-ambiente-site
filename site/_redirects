@@ -1,0 +1,27 @@
+# 301 do site antigo (WordPress) pro novo, 15/11/2026. Lista tirada do sitemap do site antigo
+# (trentini/clientes/Novo-Ambiente-Service/antes/sitemap-urls-15-11.txt).
+# Os endereços das 4 páginas e do contato são os mesmos de antes e não precisam de linha aqui.
+/limpeza-de-vitrine/*       /limpeza-de-vidros/  301
+/limpeza-de-vitrine         /limpeza-de-vidros/  301
+/limpeza-pos-obra/*         /limpeza-de-vidros/  301
+/limpeza-pos-obra           /limpeza-de-vidros/  301
+/produto/limpeza-de-vidros-em-curitiba/*  /limpeza-de-vidros/  301
+/limpeza-para-condominio/*  /  301
+/limpeza-para-empresa/*     /  301
+/limpeza-para-escritorio/*  /  301
+/limpeza-para-residencia/*  /  301
+/limpeza-para-industria/*   /  301
+/limpeza-de-alto-padrao/*   /  301
+/limpeza-de-carpete/*       /  301
+/limpeza-industrial/*       /  301
+/quem-somos/*               /  301
+/minha-conta/*              /  301
+/sitemap/*                  /  301
+/politica-de-privacidade/*  /  301
+/produto/*                  /  301
+/category/*                 /  301
+/ola-mundo/*                /  301
+/x/*                        /  301
+/x-:n/*                     /  301
+/wp-sitemap.xml             /sitemap.xml  301
+/sitemap_index.xml          /sitemap.xml  301

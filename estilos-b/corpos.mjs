@@ -22,7 +22,8 @@ const fotoTambem = {
 };
 
 /* ---------------------------------------------------------------- A · Cartões */
-const corpoCartoes = (p) => `<section class="secao b-quem" aria-labelledby="t-quem">
+/* rotas (15/11): no site de verdade, "Também limpamos" leva pra página de cada serviço e a seção de vidros aponta pra dela */
+export const corpoCartoes = (p, rotas) => `<section class="secao b-quem" aria-labelledby="t-quem">
   <div class="wrap">
     <div class="b-cabeca">
       <h2 id="t-quem">${T.quem}</h2>
@@ -43,7 +44,8 @@ const corpoCartoes = (p) => `<section class="secao b-quem" aria-labelledby="t-qu
   <div class="wrap">
     <div class="b-cabeca">
       <h2 id="t-vidros">${T.vidros}</h2>
-      <p>${T.vidrosP}</p>
+      <p>${T.vidrosP}</p>${rotas ? `
+      <a class="link-seta" href="${rotas.vidros}">Ver a página de limpeza de vidros${seta}</a>` : ''}
     </div>
     <ul class="b-servicos" data-anima>
       ${servicos.map((s, i) => `<li class="b-cartao b-servico${i === 0 ? ' b-servico-grande' : ''}" style="--i: ${i}">
@@ -91,7 +93,7 @@ ${planos.replace('<div class="ano">', '<div class="ano" data-anima>')}
       <h2 id="t-tambem">${T.tambem}</h2>
     </div>
     <ul class="b-cartoes-3">
-      ${tambem.map((s) => `<li id="${s.id}" class="b-cartao b-cartao-link"><a href="${wa(s.m)}" ${ext}><span class="b-bolinha">${ico(s.ico)}</span><h3>${s.h}</h3><p>${s.p}</p><span class="link-seta">Pedir orçamento${seta}</span></a></li>`).join('\n      ')}
+      ${tambem.map((s) => `<li id="${s.id}" class="b-cartao b-cartao-link"><a href="${rotas ? rotas[s.id] : wa(s.m)}"${rotas ? '' : ` ${ext}`}><span class="b-bolinha">${ico(s.ico)}</span><h3>${s.h}</h3><p>${s.p}</p><span class="link-seta">${rotas ? 'Ver o serviço' : 'Pedir orçamento'}${seta}</span></a></li>`).join('\n      ')}
     </ul>
   </div>
 </section>
