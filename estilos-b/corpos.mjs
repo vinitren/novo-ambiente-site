@@ -287,7 +287,7 @@ ${planos.replace('<div class="ano">', '<div class="ano" data-anima>')}
     <ul class="g-jeitos" data-esconde-barra>
       <li><a href="${wa(MSG.geral)}" ${ext}><span class="b-bolinha"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg></span><span><strong>Pedir orçamento</strong><small>Pelo WhatsApp, com uma foto do vidro</small></span>${seta}</a></li>
       <li><a href="${wa(MSG.visita)}" ${ext}><span class="b-bolinha">${ico('i-agenda')}</span><span><strong>Agendar visita técnica</strong><small>Pra avaliar o vidro com você</small></span>${seta}</a></li>
-      <li><a href="tel:+${FONE}"><span class="b-bolinha">${ico('i-fone')}</span><span><strong>Ligar</strong><small>(41) 99779-9646</small></span>${seta}</a></li>
+      <li><a href="${wa(MSG.plano)}" ${ext}><span class="b-bolinha">${ico('i-agenda')}</span><span><strong>Montar um plano</strong><small>Limpeza recorrente, pelo WhatsApp</small></span>${seta}</a></li>
     </ul>
   </div>
 </section>

@@ -72,6 +72,9 @@ export const T = {
 };
 export const MSG = {
   geral: 'Olá! Vim pelo site e quero um orçamento de limpeza de vidros.',
+  /* menu, barra do celular e rodapé: valem pra qualquer serviço (15/11) */
+  topo: 'Olá! Vim pelo site da Novo Ambiente e quero um orçamento.',
+  janelas: 'Olá! Vim pelo site e quero um orçamento de limpeza de vidros e janelas.',
   foto: 'Olá! Vim pelo site. Vou mandar uma foto do vidro pra vocês me passarem o orçamento.',
   plano: 'Olá! Vim pelo site e quero saber dos planos de limpeza recorrente.',
   visita: 'Olá! Vim pelo site e quero agendar uma visita técnica.',
@@ -125,5 +128,4 @@ export const fotoRodo = (p, sizes) => `<img src="${p}img/entrada-janela-1600.web
 export const acoesFecho = (cls = 'botao-azul') => `<div class="acoes" data-esconde-barra>
       <a class="botao ${cls}" href="${wa(MSG.geral)}" ${ext}>Pedir orçamento no WhatsApp${seta}</a>
       <a class="link-seta" href="${wa(MSG.visita)}" ${ext}>Agendar visita técnica${seta}</a>
-      <a class="link-seta" href="tel:+${FONE}">Ligar: (41) 99779-9646${seta}</a>
     </div>`;

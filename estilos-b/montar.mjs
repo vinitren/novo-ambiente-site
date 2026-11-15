@@ -1,6 +1,6 @@
 // A B escolhida em 12/11/2026, com as ressalvas dos áudios dela e do Lucas:
 //  · a entrada mostra os 4 serviços num painel com foto (o Lucas: "parece que só trabalham com rapel")
-//  · barra fixa no celular, sempre visível: ligar e orçamento no WhatsApp
+//  · barra fixa no celular, sempre visível: orçamento no WhatsApp (15/11: o Ligar saiu, "é muito raro atendermos chamadas")
 //  · a página inteira em 3 cores pra ela escolher (marinho "carregado", azul-clarinho "básico")
 //  · num link só: 3 entradas, 3 jeitos das seções (corpos.mjs) e 3 cores, cada um trocado no seletor
 // Uso: node estilos-b/montar.mjs            → estilos-b/index.html (abre local)
@@ -24,7 +24,7 @@ const CORES = [
 /* o painel da entrada: o que a pessoa precisa limpar, cada linha abre o WhatsApp com a mensagem certa */
 const msgDe = (id) => tambem.find((s) => s.id === id).m;
 const painel = [
-  { id: 'vidros', mini: 'vitrine', h: 'Vidros e janelas', p: 'Vitrine, janela alta, pé-direito alto, fachada de vidro', m: MSG.geral, alt: 'Vitrine de loja sendo limpa com rodo' },
+  { id: 'vidros', mini: 'vitrine', h: 'Vidros e janelas', p: 'Vitrine, janela alta, pé-direito alto, fachada de vidro', m: MSG.janelas, alt: 'Vitrine de loja sendo limpa com rodo' },
   { id: 'fachada', mini: 'fachada-acm', h: 'Fachada', p: 'ACM, pastilha, textura e pedra', m: msgDe('fachada'), alt: 'Técnico limpando fachada de ACM' },
   { id: 'placa-solar', mini: 'placa-solar', h: 'Placa solar', p: 'Casa, comércio e indústria', m: msgDe('placa-solar'), alt: 'Técnico limpando placas solares no telhado' },
   { id: 'piso', mini: 'piso', h: 'Piso', p: 'Pisos, pedras e áreas externas', m: msgDe('piso'), alt: 'Técnico lavando piso de pedra' },
@@ -51,13 +51,12 @@ const entradaPainel = (p) => `<section class="entrada" aria-labelledby="t-entrad
           <span class="eb-linha-texto"><strong>${s.h}</strong><small>${s.p}</small></span>${seta}
         </a></li>`).join('\n        ')}
       </ul>
-      <p class="eb-ligar">Prefere ligar? <a href="tel:+${FONE}" data-servico="ligar">(41) 99779-9646</a></p>
+      <p class="eb-ligar">Outro serviço? <a href="${wa(MSG.topo)}" data-servico="outro" ${ext}>Chame no WhatsApp</a></p>
     </nav>
   </div>
 </section>`;
 const barraFixa = () => `<div class="barra-fixa">
-  <a class="bf-ligar" href="tel:+${FONE}" data-servico="ligar">${ico('i-fone')}Ligar</a>
-  <a class="bf-wa" href="${wa(MSG.geral)}" ${ext}><svg class="wa" aria-hidden="true"><use href="#i-wa"/></svg>Orçamento no WhatsApp</a>
+  <a class="bf-wa" href="${wa(MSG.topo)}" ${ext}><svg class="wa" aria-hidden="true"><use href="#i-wa"/></svg>Orçamento no WhatsApp</a>
 </div>`;
 const barraWa = () => `<div class="barra-wa"><a class="botao botao-azul" href="${wa(MSG.geral)}" ${ext}><svg class="wa" aria-hidden="true"><use href="#i-wa"/></svg>Pedir orçamento no WhatsApp</a></div>`;
 
@@ -125,9 +124,22 @@ const HOMES = [
 const classes = Object.fromEntries(HOMES.map((h) => [h.id, h.classe]));
 const classesCorpo = Object.fromEntries(CORPOS.map((c) => [c.id, c.classe]));
 
-function pagina(p, css) {
+/* final (15/11): a escolha voltou "Painel · Uniforme · Cartões". Sai o seletor e as outras versões; --escolha monta a de antes */
+const ESCOLHA = { home: 'a', cor: '2', corpo: 'a' };
+function pagina(p, css, final = !process.argv.includes('--escolha')) {
+  const H = final ? HOMES.filter((h) => h.id === ESCOLHA.home) : HOMES;
+  const C = final ? CORPOS.filter((c) => c.id === ESCOLHA.corpo) : CORPOS;
+  const selecao = final ? '' : `
+(function () {
+  var q = new URLSearchParams(location.search), h = document.documentElement, c = q.get('cor'), e = q.get('home'), s = q.get('corpo');
+  try { c = c || localStorage.getItem('na-cor'); e = e || localStorage.getItem('na-home'); s = s || localStorage.getItem('na-corpo'); } catch (x) {}
+  if (/^[123]$/.test(c || '')) h.dataset.paleta = c;
+  var classes = ${JSON.stringify(classes)}, corpos = ${JSON.stringify(classesCorpo)};
+  if (classes[e]) { h.classList.remove('eb-painel-home'); h.classList.add(classes[e]); h.dataset.home = e; }
+  if (corpos[s]) { h.classList.remove('cc'); h.classList.add(corpos[s]); h.dataset.corpo = s; }
+})();`;
   return `<!doctype html>
-<html lang="pt-BR" class="sem-js estilo-b eb eb-painel-home cc" data-entrada="rapel" data-home="a" data-corpo="a" data-paleta="1">
+<html lang="pt-BR" class="sem-js estilo-b eb eb-painel-home cc" data-entrada="rapel" data-home="a" data-corpo="a" data-paleta="${final ? ESCOLHA.cor : '1'}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -148,15 +160,7 @@ function pagina(p, css) {
 <link rel="stylesheet" href="${css}estilos-b/corpo-fotos.css">
 <link rel="stylesheet" href="${css}estilos-b/corpo-guia.css">
 <script>
-document.documentElement.classList.replace('sem-js', 'js');
-(function () {
-  var q = new URLSearchParams(location.search), h = document.documentElement, c = q.get('cor'), e = q.get('home'), s = q.get('corpo');
-  try { c = c || localStorage.getItem('na-cor'); e = e || localStorage.getItem('na-home'); s = s || localStorage.getItem('na-corpo'); } catch (x) {}
-  if (/^[123]$/.test(c || '')) h.dataset.paleta = c;
-  var classes = ${JSON.stringify(classes)}, corpos = ${JSON.stringify(classesCorpo)};
-  if (classes[e]) { h.classList.remove('eb-painel-home'); h.classList.add(classes[e]); h.dataset.home = e; }
-  if (corpos[s]) { h.classList.remove('cc'); h.classList.add(corpos[s]); h.dataset.corpo = s; }
-})();
+document.documentElement.classList.replace('sem-js', 'js');${selecao}
 </script>
 </head>
 <body>
@@ -175,14 +179,14 @@ ${iconesNovos}
     <nav aria-label="Principal">
       <a href="#vidros">Vidros</a><a href="#fachada">Fachada</a><a href="#placa-solar">Placa solar</a><a href="#piso">Piso</a><a href="#contato">Contato</a>
     </nav>
-    <a class="botao botao-topo" href="${wa(MSG.geral)}" ${ext}>Orçamento${seta}</a>
+    <a class="botao botao-topo" href="${wa(MSG.topo)}" ${ext}>Orçamento${seta}</a>
   </div>
 </header>
 
 <main id="conteudo">
-${HOMES.map((h) => `<div class="eb-home" data-home="${h.id}">${h.entrada(p)}</div>`).join('')}
+${H.map((h) => `<div class="eb-home" data-home="${h.id}">${h.entrada(p)}</div>`).join('')}
 <script>(function () { var e = document.documentElement.dataset.home; document.querySelectorAll('.eb-home').forEach(function (d) { if (d.dataset.home !== e) d.remove(); }); })();</script>
-${CORPOS.map((c) => `<div class="eb-corpo" data-corpo="${c.id}">${c.corpo(p)}</div>`).join('')}
+${C.map((c) => `<div class="eb-corpo" data-corpo="${c.id}">${c.corpo(p)}</div>`).join('')}
 <script>(function () { var e = document.documentElement.dataset.corpo; document.querySelectorAll('.eb-corpo').forEach(function (d) { if (d.dataset.corpo !== e) d.remove(); }); })();</script>
 </main>
 
@@ -195,8 +199,7 @@ ${CORPOS.map((c) => `<div class="eb-corpo" data-corpo="${c.id}">${c.corpo(p)}</d
       Limpeza de vidros em Curitiba e Região Metropolitana
     </address>
     <ul>
-      <li><a href="${wa(MSG.geral)}" ${ext}>WhatsApp</a></li>
-      <li><a href="tel:+${FONE}">(41) 99779-9646</a></li>
+      <li><a href="${wa(MSG.topo)}" ${ext}>WhatsApp (41) 99779-9646</a></li>
       <li><a href="mailto:contato@novoambienteservice.com.br">contato@novoambienteservice.com.br</a></li>
       <li><a href="https://www.instagram.com/novoambienteservice/" ${ext}>@novoambienteservice</a></li>
     </ul>
@@ -204,9 +207,9 @@ ${CORPOS.map((c) => `<div class="eb-corpo" data-corpo="${c.id}">${c.corpo(p)}</d
   </div>
 </footer>
 
-${HOMES.map((h) => `<div class="eb-home-barra" data-home="${h.id}">${h.barra(p)}</div>`).join('')}
+${H.map((h) => `<div class="eb-home-barra" data-home="${h.id}">${h.barra(p)}</div>`).join('')}
 <script>(function () { var e = document.documentElement.dataset.home; document.querySelectorAll('.eb-home-barra').forEach(function (d) { if (d.dataset.home !== e) d.remove(); }); })();</script>
-<div class="eb-guia" role="region" aria-label="Escolher a página, um passo por vez" hidden>
+${final ? '' : `<div class="eb-guia" role="region" aria-label="Escolher a página, um passo por vez" hidden>
   <button type="button" class="eb-guia-abrir" aria-expanded="true">Escolher <span data-guia-num>1 de 3</span></button>
   <div class="eb-guia-caixa">
     <div class="eb-guia-topo"><span class="eb-guia-passo" data-guia-num>1 de 3</span><button type="button" class="eb-guia-esconder" aria-label="Esconder pra ver a página">Esconder</button></div>
@@ -236,6 +239,7 @@ ${HOMES.map((h) => `<div class="eb-home-barra" data-home="${h.id}">${h.barra(p)}
     </div>
   </div>
 </div>
+`}
 <script>window.EB_CORES = ${JSON.stringify(CORES.map(({ n, nome }) => ({ n, nome })))}; window.EB_HOMES = ${JSON.stringify(HOMES.map(({ id, nome }) => ({ id, nome })))}; window.EB_CORPOS = ${JSON.stringify(CORPOS.map(({ id, nome }) => ({ id, nome })))};</script>
 
 <script src="${p}blindagem.js" defer></script>
