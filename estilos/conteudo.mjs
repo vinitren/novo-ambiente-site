@@ -61,7 +61,7 @@ export const tambem = [
 
 export const T = {
   quem: 'Pra quem <em>limpamos</em>',
-  vidros: 'Limpeza de vidros: cada vidro pede <em>um jeito de chegar e um jeito de limpar</em>',
+  vidros: 'Limpeza de vidros: cada vidro pede<br> <em>um jeito de chegar<br> e um jeito de limpar</em>',
   vidrosP: 'Da sacada à pele de vidro de um prédio comercial, a Novo Ambiente limpa vidros em Curitiba e na Região Metropolitana. Orçamento por foto ou com visita técnica presencial.',
   ba: 'O mesmo vidro, <em>antes e depois</em>',
   baP: 'Poeira, resto de obra e marca de dedo saem. A fachada volta a refletir o céu, e quem está dentro volta a ver a cidade.',

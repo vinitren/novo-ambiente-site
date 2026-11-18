@@ -73,7 +73,7 @@ export const SERVICOS = [
         t: 'Vidros comerciais · lojas de alto padrão · portas e painéis do chão ao teto · muros e painéis de vidro', l: 'Orçamento de vitrine', m: msg('limpeza de vitrine e vidros comerciais') },
       { img: 'servico-sacada', pos: '50% 50%', alt: 'Técnico de uniforme limpando com haste o vidro alto de uma sala com pé-direito alto',
         h: 'Casas, apartamentos e sacadas', p: 'Janela alta, vidro de sacada e guarda-corpo transparentes de novo, sem ninguém da família subir em escada.',
-        t: 'Vidros residenciais · janelas e esquadrias · limpeza de sacada de vidro e/ou de vidros de varanda · guarda-corpos de vidro', l: 'Orçamento pra casa ou sacada', m: msg('limpeza de vidros pra minha casa') },
+        t: 'Vidros residenciais · janelas e esquadrias · limpeza de sacada de vidro e de vidros de varanda · guarda-corpos de vidro', l: 'Orçamento pra casa ou sacada', m: msg('limpeza de vidros pra minha casa') },
       { img: 'servico-posobra', pos: '55% 40%', alt: 'Técnico com raspador tirando respingos de tinta do vidro de uma sala comercial recém-terminada',
         h: 'Pós-obra de vidros', p: 'Resto de tinta, cimento e poeira saem do vidro novo antes da entrega, com cuidado pra não riscar.',
         t: 'Limpeza pós-obra de vidros · salas e lojas recém-entregues', l: 'Orçamento de pós-obra', m: msg('limpeza pós-obra de vidros') },

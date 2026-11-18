@@ -66,11 +66,7 @@ ${PRODUCAO ? '' : '<meta name="robots" content="noindex, nofollow">\n'}<title>${
 ${preload}
 <link rel="preload" as="font" type="font/woff2" href="${p}fonts/instrument-sans-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="${p}fonts/source-serif-4-latin.woff2" crossorigin>
-<link rel="stylesheet" href="${p}estilo.css">
-<link rel="stylesheet" href="${p}estilos/comum.css">
-<link rel="stylesheet" href="${p}estilos/b.css">
-<link rel="stylesheet" href="${p}estilos-b/pagina.css">
-<link rel="stylesheet" href="${p}site/servico.css">
+<link rel="stylesheet" href="${p}site.css">
 <script>document.documentElement.classList.replace('sem-js', 'js');</script>
 ${[ld(EMPRESA), ...schemas.map(ld)].join('\n')}
 </head>
@@ -430,6 +426,12 @@ function montar(destino, producao) {
   for (const f of ['comum.css', 'b.css']) cpSync(join(raiz, 'estilos', f), join(destino, 'estilos', f));
   for (const f of ['pagina.css', 'pagina.js']) cpSync(join(raiz, 'estilos-b', f), join(destino, 'estilos-b', f));
   cpSync(join(aqui, 'servico.css'), join(destino, 'site', 'servico.css'));
+  /* 18/11: os 5 CSS viram um site.css enxuto na raiz (uma requisição só segurando a primeira pintura no 4G).
+     Mesma ordem de antes; os url() de estilos-b/ ("../img/") passam a valer a partir da raiz */
+  const css = [join(raiz, 'estilo.css'), join(raiz, 'estilos', 'comum.css'), join(raiz, 'estilos', 'b.css'), join(raiz, 'estilos-b', 'pagina.css'), join(aqui, 'servico.css')]
+    .map((f) => readFileSyncUtf(f).replaceAll('url("../img/', 'url("img/')).join('\n')
+    .replace(/\/\*[\s\S]*?\*\//g, '').replace(/\n\s*/g, '\n').replace(/\n+/g, '\n');
+  writeFileSync(join(destino, 'site.css'), css);
   const html = readdirSync(destino, { recursive: true }).filter((f) => String(f).endsWith('.html')).map((f) => String(f));
   const tudo = html.map((f) => readFileSyncUtf(join(destino, f))).join('\n') + readFileSyncUtf(join(raiz, 'estilos-b', 'pagina.css'));
   for (const f of readdirSync(join(raiz, 'img'))) {
