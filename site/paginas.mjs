@@ -31,15 +31,25 @@ export const SEGURANCA = {
   ],
 };
 
-/* 17/11: os elogios (resposta dela à pergunta 2). Só os de vidro e de atendimento: os dois que falam de
-   telhado e cobertura ficam fora (termos que não entram no site). Nota e número do Google de 15/11 */
+/* 17/11: os elogios (resposta dela à pergunta 2). 18/11: as avaliações reais do perfil, com nome abreviado e o texto
+   como está no Google (trentini/clientes/Novo-Ambiente-Service/dados/avaliacoes-google-18-11.md). Só positivas; as de
+   telhado e cobertura ficam fora (termos que não entram no site). Os 3 primeiros são os que já estavam */
 export const ELOGIOS = {
   h: 'O que dizem <em>os clientes</em>',
-  p: 'Nota 4,8 no Google, com 16 avaliações. Capricho, pontualidade e atenção do técnico são o que os clientes mais elogiam.',
+  p: 'Capricho, pontualidade e atenção do técnico são o que os clientes mais elogiam.',
+  nota: '4,8', total: 16,
+  perfil: 'https://www.google.com/maps?cid=16360888106714828583',
   itens: [
-    'Nossa, atendimento incrível! Meus vidros ficaram irreconhecíveis!',
-    'Excelente! Pontuais e eficientes.',
-    'Serviço 5 estrelas, os moços que vieram aqui são muito competentes e atenciosos.',
+    { n: 'Lisye D.', t: 'Nossa, atendimento incrível! Meus vidros ficaram irreconhecíveis! Obrigada 🙏🏼' },
+    { n: 'Flavia F.', t: 'Excelente!!! Pontuais e eficientes.' },
+    { n: 'Jose Miguel R.', t: 'Serviço 5 estrelas, os moços que vieram aqui são muito competentes e atenciosos.' },
+    { n: 'Maykon B.', cargo: 'Síndico profissional', t: 'Ótima empresa, me atenderam super bem. Pessoal e equipamentos qualificados. Super recomendo.' },
+    { n: 'Carlos O.', t: 'Excelentes profissionais com preço justo!' },
+    { n: 'Mariana B.', t: 'Cuidadosos e profissionais.' },
+    { n: 'Rogério F.', t: 'Trabalho excelente e impecável!' },
+    { n: 'Francielle T.', t: 'Serviço de qualidade e ótimo atendimento!' },
+    { n: 'Eloise W.', t: 'Excelentes profissionais!' },
+    { n: 'Jessica O.', t: 'Ótimo serviço.' },
   ],
 };
 
@@ -158,25 +168,42 @@ export const SERVICOS = [
     tiposP: 'A sujeira em cima do vidro tira luz da placa. Limpa, ela volta a receber o sol inteiro.',
     tipos: [
       { img: 'solar-residencial-limpo-1000', pos: '50% 50%', alt: 'Placas solares limpas no telhado de um sobrado, com araucárias ao fundo', wide: true,
-        h: 'Casas e sobrados', p: 'Placas no telhado de casa e sobrado, limpas sem riscar o vidro.',
+        h: 'Casas e sobrados', p: 'Placas no telhado de casa e sobrado, limpas sem riscar o vidro. Você não precisa subir no telhado: mande uma foto das placas e combinamos o dia.',
         t: 'Placa solar residencial · painel solar em telhado', l: 'Orçamento pra casa', m: msg('limpeza de placa solar pra minha casa') },
       { img: 'solar-galpao-1000', pos: '50% 50%', alt: 'Técnico de uniforme limpando com rodo as placas solares no telhado de um galpão', wide: true,
-        h: 'Comércios, condomínios e indústrias', p: 'Telhados grandes, com muitas placas, em empresas, condomínios e galpões.',
+        h: 'Comércios, condomínios e indústrias', p: 'Telhados grandes, com muitas placas, em empresas, condomínios e galpões. Quanto mais placas, mais energia a sujeira tira todo mês. Dia e acesso são combinados com a administração.',
         t: 'Placa solar comercial · painel solar industrial · galpões', l: 'Orçamento pra empresa ou indústria', m: msg('limpeza de placa solar pra minha empresa') },
     ],
+    /* 18/11: a dor de quem tem placa suja (pedido do Vinicius: a página dava pouco contexto). Só o que é observável
+       pelo dono e o que eles já afirmaram (sem riscar o vidro, perto de estrada, árvore, obra ou indústria); nenhum número */
+    sinais: {
+      h: 'Sinais de que a placa <em>precisa de limpeza</em>',
+      p: 'Como a placa fica no telhado, a sujeira passa despercebida. Estes são os sinais mais comuns.',
+      itens: [
+        { h: 'A conta de luz voltou a subir', p: 'Sem você ter passado a gastar mais energia em casa ou na empresa.' },
+        { h: 'O aplicativo mostra menos geração', p: 'O app do inversor marca menos energia do que antes, em dias de sol parecidos.' },
+        { h: 'Dá para ver a sujeira', p: 'Poeira, barro, folha ou sujeira de pássaro em cima do vidro das placas.' },
+        { h: 'Tem poeira por perto', p: 'Estrada de terra, árvore, obra ou indústria perto da casa fazem a placa sujar mais rápido.' },
+      ],
+      sozinho: { h: 'Por que não limpar sozinho', p: 'Subir no telhado sem equipamento é arriscado, e escova ou produto errado pode riscar o vidro da placa. Nós subimos com equipamento de segurança e limpamos com cuidado para não riscar.' },
+    },
     par: { a: 'solar-residencial-sujo', d: 'solar-residencial-limpo', larguras: [1000, 1600], alts: ['Placas solares de uma casa com poeira, barro e sujeira de pássaro, antes da limpeza', 'As mesmas placas solares depois da limpeza'],
       h: 'A mesma placa, <em>antes e depois</em>', p: 'Poeira, barro e sujeira de pássaro saem, e o vidro da placa volta a receber o sol inteiro.' },
     publicosEspecificos: [
-      { ico: 'i-casa', h: 'Casa', p: 'Quem investiu na placa quer que ela gere o que prometeu na conta de luz.', l: 'Orçamento pra casa', m: msg('limpeza de placa solar pra minha casa') },
-      { ico: 'i-loja', h: 'Comércio e condomínio', p: 'Placas em loja, escritório e prédio, limpas no dia combinado.', l: 'Orçamento pra empresa', m: msg('limpeza de placa solar pra minha empresa') },
-      { ico: 'i-predio', h: 'Indústria e galpão', p: 'Telhados grandes, com muitas placas e acesso planejado.', l: 'Orçamento pra indústria', m: msg('limpeza de placa solar em indústria ou galpão') },
+      { ico: 'i-casa', h: 'Casa', p: 'Quem investiu na placa quer que ela gere o que prometeu na conta de luz.', r: 'Placa limpa sem ninguém da família subir no telhado.', l: 'Orçamento pra casa', m: msg('limpeza de placa solar pra minha casa') },
+      { ico: 'i-loja', h: 'Comércio e condomínio', p: 'Placas em loja, escritório e prédio, limpas no dia combinado.', r: 'Limpeza pontual ou com plano, no dia e no horário que não atrapalham.', l: 'Orçamento pra empresa', m: msg('limpeza de placa solar pra minha empresa') },
+      { ico: 'i-predio', h: 'Indústria e galpão', p: 'Telhados grandes, com muitas placas e acesso planejado.', r: 'Data combinada e, quando o serviço pede, APR e OS feitas por nós.', l: 'Orçamento pra indústria', m: msg('limpeza de placa solar em indústria ou galpão') },
     ],
+    seguranca: true, /* 18/11: placa fica no telhado, é trabalho em altura; o bloco é o mesmo da página de vidros */
     planos: { m: 'Olá! Vim pelo site da Novo Ambiente e quero saber dos planos de limpeza de placa solar.' },
     botaoFoto: 'Mandar foto das placas', mFoto: 'Olá! Vim pelo site da Novo Ambiente. Vou mandar uma foto das placas solares pra vocês me passarem o orçamento.',
     faq: [
       faqOrcamento('limpeza de placa solar'),
       { q: 'De quanto em quanto tempo devo limpar a placa solar?', r: 'Depende do lugar: perto de estrada de terra, árvore, obra ou indústria, a placa suja mais rápido. Na visita técnica avaliamos e indicamos a frequência certa pras suas placas.' },
       { q: 'A limpeza risca a placa?', r: 'Não. A limpeza é feita com cuidado pra não riscar o vidro da placa.' },
+      { q: 'Por que limpar a placa solar?', r: 'Porque a sujeira em cima do vidro tira luz da placa, e placa com menos luz gera menos energia. Limpa, ela volta a receber o sol inteiro.' },
+      { q: 'A chuva não limpa a placa?', r: 'Ajuda, mas não resolve sozinha: barro e sujeira de pássaro ficam grudados no vidro, e a poeira volta a assentar depois que seca.' },
+      { q: 'Vocês limpam placas em galpão e indústria?', r: 'Sim. Telhados grandes, com muitas placas, com acesso planejado e data combinada. Quando o serviço pede, fazemos a APR e a OS, com valor à parte.' },
       faqPlano('placa solar'),
       ...faqFechar, faqVisita, faqRegiao,
     ],
@@ -204,15 +231,28 @@ export const SERVICOS = [
       { ico: 'i-predio', h: 'Áreas comuns de condomínio', p: 'Entrada, garagem, salão e área de lazer do prédio.' },
       { ico: 'i-loja', h: 'Empresas e lojas', p: 'Piso de comércio e escritório, no horário que não atrapalha o atendimento.' },
     ],
+    /* 18/11: a dor de quem tem piso encardido, no mesmo molde da placa solar. Só o observável e o que eles afirmam */
+    sinais: {
+      h: 'Sinais de que o piso <em>precisa de limpeza</em>',
+      p: 'O encardido aparece aos poucos, até o dia em que a vassoura e a mangueira já não resolvem.',
+      itens: [
+        { h: 'Limo na área externa', p: 'Calçada, pátio e entrada com limo ficam escorregadios, principalmente em dia de chuva.' },
+        { h: 'Encardido que não sai', p: 'Mancha escura de barro e sujeira que a limpeza do dia a dia não tira.' },
+        { h: 'Pedra sem a cor de antes', p: 'A pedra fica escura e opaca, longe da cor de quando foi colocada.' },
+      ],
+      sozinho: { h: 'Por que chamar quem faz', p: 'Produto errado pode manchar a pedra, e lavar sem o equipamento certo só espalha a sujeira. Avaliamos o piso antes de escolher como limpar.' },
+    },
     publicosEspecificos: [
-      { ico: 'i-predio', h: 'Condomínio', p: 'Área comum limpa é o que o morador percebe todo dia.', l: 'Orçamento pro condomínio', m: msg('limpeza de piso pro condomínio') },
-      { ico: 'i-loja', h: 'Empresa e comércio', p: 'Piso limpo na entrada é a primeira coisa que o cliente pisa.', l: 'Orçamento pra empresa', m: msg('limpeza de piso pra minha empresa') },
-      { ico: 'i-casa', h: 'Casa', p: 'Quintal, garagem e área de churrasqueira como novos.', l: 'Orçamento pra casa', m: msg('limpeza de piso pra minha casa') },
+      { ico: 'i-predio', h: 'Condomínio', p: 'Área comum limpa é o que o morador percebe todo dia.', r: 'Data combinada com a administração, pontual ou com plano.', l: 'Orçamento pro condomínio', m: msg('limpeza de piso pro condomínio') },
+      { ico: 'i-loja', h: 'Empresa e comércio', p: 'Piso limpo na entrada é a primeira coisa que o cliente pisa.', r: 'Limpeza no horário que não atrapalha o atendimento.', l: 'Orçamento pra empresa', m: msg('limpeza de piso pra minha empresa') },
+      { ico: 'i-casa', h: 'Casa', p: 'Quintal, garagem e área de churrasqueira como novos.', r: 'Orçamento por foto, sem compromisso.', l: 'Orçamento pra casa', m: msg('limpeza de piso pra minha casa') },
     ],
     botaoFoto: 'Mandar foto do piso', mFoto: 'Olá! Vim pelo site da Novo Ambiente. Vou mandar uma foto do piso pra vocês me passarem o orçamento.',
     faq: [
       faqOrcamento('limpeza de piso'),
       { q: 'Que tipos de piso vocês limpam?', r: 'Pisos e pedras de áreas externas, áreas comuns de condomínio, empresas, lojas e casas. Mande uma foto que confirmamos.' },
+      { q: 'Vocês limpam piso de pedra?', r: 'Sim. Pisos e revestimentos de pedra, com o cuidado que cada pedra pede. Avaliamos o piso antes de escolher como limpar.' },
+      { q: 'Dá para limpar fora do horário de funcionamento?', r: 'Sim. Com agendamento antecipado, atendemos fora do horário comercial e no fim de semana, para não atrapalhar o movimento.' },
       faqPlano('piso'),
       ...faqFechar, faqVisita, faqRegiao,
     ],

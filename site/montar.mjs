@@ -145,14 +145,29 @@ const seguranca = () => `<section class="secao sv-seguranca" aria-labelledby="t-
   </div>
 </section>
 `;
+/* 18/11: o "G" do Google (as 4 cores oficiais) marca de onde vem a avaliação; avatar com a inicial, como no Google */
+const G_LOGO = `<svg class="gg-g" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>`;
+const GG_CORES = ['#5c6bc0', '#00897b', '#8e24aa', '#f4511e', '#3949ab', '#6d4c41', '#039be5', '#7cb342', '#c2185b', '#546e7a'];
 const elogios = () => `<section class="secao sv-elogios" aria-labelledby="t-elogios">
   <div class="wrap">
     <div class="b-cabeca">
       <h2 id="t-elogios">${ELOGIOS.h}</h2>
       <p>${ELOGIOS.p}</p>
     </div>
-    <ul class="b-cartoes-3">
-      ${ELOGIOS.itens.map((t) => `<li class="b-cartao"><figure><span class="sv-estrelas" role="img" aria-label="5 estrelas">★★★★★</span><blockquote><p>${t}</p></blockquote><figcaption>Avaliação no Google</figcaption></figure></li>`).join('\n      ')}
+    <a class="gg-resumo" href="${ELOGIOS.perfil}" ${ext}>
+      ${G_LOGO}
+      <span class="gg-nota">${ELOGIOS.nota}</span>
+      <span class="gg-estrelas" role="img" aria-label="Nota ${ELOGIOS.nota} de 5">★★★★★</span>
+      <span class="gg-total">${ELOGIOS.total} avaliações no Google</span>
+      <span class="gg-ver">Ver no Google${seta}</span>
+    </a>
+    <ul class="gg-lista" tabindex="0" aria-label="Avaliações de clientes no Google">
+      ${ELOGIOS.itens.map((a, i) => `<li class="gg-cartao">
+        <div class="gg-quem"><span class="gg-avatar" style="--c: ${GG_CORES[i % GG_CORES.length]}" aria-hidden="true">${a.n[0]}</span>
+          <span class="gg-nome">${a.n}<small>${a.cargo ? a.cargo + ' · ' : ''}Avaliação no Google</small></span>${G_LOGO}</div>
+        <span class="gg-estrelas" role="img" aria-label="5 estrelas">★★★★★</span>
+        <blockquote><p>${a.t}</p></blockquote>
+      </li>`).join('\n      ')}
     </ul>
   </div>
 </section>
@@ -249,6 +264,24 @@ function servico(s) {
     </div>` : `
     <div class="b-centro sv-cta"><a class="botao botao-azul" href="${wa(s.fecho.m)}" ${ext}>Pedir orçamento no WhatsApp${seta}</a></div>`}`;
 
+  /* 18/11: sinais de que precisa limpar + por que não fazer sozinho (placa solar e piso) */
+  const sinais = s.sinais ? `<section class="secao sv-sinais" aria-labelledby="t-sinais">
+  <div class="wrap">
+    <div class="b-cabeca">
+      <h2 id="t-sinais">${s.sinais.h}</h2>
+      <p>${s.sinais.p}</p>
+    </div>
+    <ol class="sv-sinais-lista sv-sinais-${s.sinais.itens.length}">
+      ${s.sinais.itens.map((x) => `<li><h3>${x.h}</h3><p>${x.p}</p></li>`).join('\n      ')}
+    </ol>
+    <div class="sv-sozinho">
+      <h3>${s.sinais.sozinho.h}</h3>
+      <p>${s.sinais.sozinho.p}</p>
+      <a class="botao botao-azul" href="${wa(s.mFoto)}" ${ext}>${s.botaoFoto}${seta}</a>
+    </div>
+  </div>
+</section>
+` : '';
   const quem = s.publicos ? publicos : s.publicosEspecificos;
   const par = s.par ? `<section class="secao b-par" aria-labelledby="t-ba">
   <div class="wrap">
@@ -305,7 +338,7 @@ function servico(s) {
     ${tipos}
   </div>
 </section>
-
+${sinais}
 <section class="secao b-quem" aria-labelledby="t-quem">
   <div class="wrap">
     <div class="b-cabeca"><h2 id="t-quem">Pra quem <em>limpamos</em></h2></div>
@@ -452,7 +485,9 @@ montar(dist, PRODUCAO);
 console.log('Site montado em', dist, PRODUCAO ? '(produção)' : '(prévia, noindex)');
 if (process.argv.includes('--aprovar')) {
   if (PRODUCAO) throw new Error('--aprovar é sempre prévia: rode sem --producao');
-  const destino = join(raiz, '..', 'aprovar', 'public', 'novo-ambiente', 'site');
+  /* --pasta=site-v2 monta uma prévia separada pro Vinicius ver antes de trocar o link que o cliente tem */
+  const pasta = (process.argv.find((a) => a.startsWith('--pasta=')) || '--pasta=site').slice(8);
+  const destino = join(raiz, '..', 'aprovar', 'public', 'novo-ambiente', pasta);
   rmSync(destino, { recursive: true, force: true });
   cpSync(dist, destino, { recursive: true });
   console.log('Publicável em', destino);
