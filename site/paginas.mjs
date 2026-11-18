@@ -23,11 +23,11 @@ const faqFechar = [
    "nossa equipe tem IRATA". Seguro e ART eles não têm, e não aparecem em lugar nenhum */
 export const SEGURANCA = {
   h: 'Trabalho em altura <em>com segurança</em>',
-  p: 'Cada serviço em altura é planejado antes, com o acesso e o equipamento certos pro lugar.',
+  p: 'Treinamento, certificação e documentação de quem trabalha em altura.',
   itens: [
-    { ico: 'i-altura', h: 'NR-35', p: 'Quem trabalha em altura tem o treinamento da NR-35, a norma de trabalho em altura.' },
+    { ico: 'i-altura', h: 'NR-35', p: 'O Lucas tem o treinamento da NR-35, a norma de trabalho em altura, e os parceiros que fazem o rapel também.' },
     { ico: 'i-corda', h: 'Rapel com IRATA', p: 'Nos serviços de rapel, os técnicos têm certificação IRATA (nível 1 ou 2) e NR-35.' },
-    { ico: 'i-proposta', h: 'Documentação', p: 'A empresa tem PGR, PCMSO e LTCAT. Quando o condomínio ou a empresa pede, preparamos a APR e a ordem de serviço da obra, com valor à parte.' },
+    { ico: 'i-proposta', h: 'Documentação', p: 'A empresa tem PGR, PCMSO e LTCAT. Quando o serviço pede, fazemos a APR (análise preliminar de risco) e a OS (ordem de serviço) do cliente, com valor à parte.' },
   ],
 };
 
@@ -73,7 +73,7 @@ export const SERVICOS = [
         t: 'Vidros comerciais · lojas de alto padrão · portas e painéis do chão ao teto · muros e painéis de vidro', l: 'Orçamento de vitrine', m: msg('limpeza de vitrine e vidros comerciais') },
       { img: 'servico-sacada', pos: '50% 50%', alt: 'Técnico de uniforme limpando com haste o vidro alto de uma sala com pé-direito alto',
         h: 'Casas, apartamentos e sacadas', p: 'Janela alta, vidro de sacada e guarda-corpo transparentes de novo, sem ninguém da família subir em escada.',
-        t: 'Vidros residenciais · janelas e esquadrias · limpeza de sacada de vidro · vidros de varanda · guarda-corpos de vidro', l: 'Orçamento pra casa ou sacada', m: msg('limpeza de vidros pra minha casa') },
+        t: 'Vidros residenciais · janelas e esquadrias · limpeza de sacada de vidro e/ou de vidros de varanda · guarda-corpos de vidro', l: 'Orçamento pra casa ou sacada', m: msg('limpeza de vidros pra minha casa') },
       { img: 'servico-posobra', pos: '55% 40%', alt: 'Técnico com raspador tirando respingos de tinta do vidro de uma sala comercial recém-terminada',
         h: 'Pós-obra de vidros', p: 'Resto de tinta, cimento e poeira saem do vidro novo antes da entrega, com cuidado pra não riscar.',
         t: 'Limpeza pós-obra de vidros · salas e lojas recém-entregues', l: 'Orçamento de pós-obra', m: msg('limpeza pós-obra de vidros') },
