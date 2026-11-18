@@ -33,7 +33,9 @@ export const SEGURANCA = {
 
 /* 17/11: os elogios (resposta dela à pergunta 2). 18/11: as avaliações reais do perfil, com nome abreviado e o texto
    como está no Google (trentini/clientes/Novo-Ambiente-Service/dados/avaliacoes-google-18-11.md). Só positivas; as de
-   telhado e cobertura ficam fora (termos que não entram no site). Os 3 primeiros são os que já estavam */
+   telhado e cobertura ficam fora (termos que não entram no site). Os 3 primeiros são os que já estavam.
+   18/11, depois: 6 em vez de 10, em cartões maiores numa faixa que corre de lado (pedido do Vinicius). Saíram as de
+   duas ou três palavras (Mariana B., Francielle T., Eloise W., Jessica O.); continuam no arquivo de fonte */
 export const ELOGIOS = {
   h: 'O que dizem <em>os clientes</em>',
   p: 'Capricho, pontualidade e atenção do técnico são o que os clientes mais elogiam.',
@@ -41,15 +43,11 @@ export const ELOGIOS = {
   perfil: 'https://www.google.com/maps?cid=16360888106714828583',
   itens: [
     { n: 'Lisye D.', t: 'Nossa, atendimento incrível! Meus vidros ficaram irreconhecíveis! Obrigada 🙏🏼' },
-    { n: 'Flavia F.', t: 'Excelente!!! Pontuais e eficientes.' },
-    { n: 'Jose Miguel R.', t: 'Serviço 5 estrelas, os moços que vieram aqui são muito competentes e atenciosos.' },
     { n: 'Maykon B.', cargo: 'Síndico profissional', t: 'Ótima empresa, me atenderam super bem. Pessoal e equipamentos qualificados. Super recomendo.' },
+    { n: 'Jose Miguel R.', t: 'Serviço 5 estrelas, os moços que vieram aqui são muito competentes e atenciosos.' },
+    { n: 'Flavia F.', t: 'Excelente!!! Pontuais e eficientes.' },
     { n: 'Carlos O.', t: 'Excelentes profissionais com preço justo!' },
-    { n: 'Mariana B.', t: 'Cuidadosos e profissionais.' },
     { n: 'Rogério F.', t: 'Trabalho excelente e impecável!' },
-    { n: 'Francielle T.', t: 'Serviço de qualidade e ótimo atendimento!' },
-    { n: 'Eloise W.', t: 'Excelentes profissionais!' },
-    { n: 'Jessica O.', t: 'Ótimo serviço.' },
   ],
 };
 
