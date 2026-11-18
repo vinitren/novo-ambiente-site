@@ -25,11 +25,11 @@ export const publicos = [
 ];
 
 export const servicos = [
-  { id: 'altura', img: 'servico-altura', pos: '40% 30%', alt: 'Técnico em rapel limpando a fachada de vidro de uma torre em Curitiba',
+  { id: 'altura', img: 'servico-altura', pos: '50% 40%', alt: 'Técnico de uniforme e capacete em rapel limpando com rodo a pele de vidro de um prédio, com a cidade ao fundo',
     h: 'Vidros em altura e com rapel', p: 'Pra onde escada e haste não chegam: a equipe desce de rapel e limpa o vidro de cima a baixo.',
     t: 'Vidros altos · difícil acesso · pé-direito alto e átrios · elevadores panorâmicos',
     l: 'Orçamento de vidro em altura', m: 'Olá! Vim pelo site e quero um orçamento de limpeza de vidros em altura.' },
-  { id: 'fachada-de-vidro', img: 'servico-fachada', pos: '60% 40%', alt: 'Técnico na calçada limpando a fachada de vidro de um prédio comercial com haste e rodo',
+  { id: 'fachada-de-vidro', img: 'servico-fachada', pos: '50% 70%', alt: 'Técnico de uniforme na calçada limpando com haste longa os vidros de um prédio comercial',
     h: 'Fachadas de vidro', p: 'Vidros de prédios, edifícios comerciais e condomínios, com limpeza interna e externa, painel a painel.',
     t: 'Pele de vidro (Structural Glazing) · cortina de vidro (Curtain Wall)',
     l: 'Orçamento de fachada de vidro', m: 'Olá! Vim pelo site e quero um orçamento de limpeza de fachada de vidro.' },
@@ -37,7 +37,7 @@ export const servicos = [
     h: 'Vitrines, lojas, clínicas e escritórios', p: 'Vitrine sem marca de dedo, no dia e no horário que não atrapalham o atendimento.',
     t: 'Vidros comerciais · portas e painéis do chão ao teto · muros e painéis de vidro',
     l: 'Orçamento de vitrine', m: 'Olá! Vim pelo site e quero um orçamento de limpeza de vitrine e vidros comerciais.' },
-  { id: 'casa-e-sacada', img: 'servico-sacada', pos: '50% 45%', alt: 'Rodo limpando o vidro da sacada de um apartamento alto em Curitiba',
+  { id: 'casa-e-sacada', img: 'servico-sacada', pos: '50% 50%', alt: 'Técnico de uniforme limpando com haste o vidro alto de uma sala com pé-direito alto',
     h: 'Casas e sacadas', p: 'Vidro alto e de sacada transparente de novo, sem ninguém da família subir em escada.',
     t: 'Vidros residenciais · janelas e esquadrias · sacada de vidro · vidros de varanda · guarda-corpos',
     l: 'Orçamento pra casa ou sacada', m: 'Olá! Vim pelo site e quero um orçamento de limpeza de vidros pra minha casa.' },
@@ -124,7 +124,7 @@ export const parFotos = (p) => [
   { src: 'vidro-sujo', alt: 'Fachada de vidro sem brilho, com poeira e manchas, antes da limpeza', cap: 'Antes' },
   { src: 'vidro-limpo', alt: 'A mesma fachada de vidro depois da limpeza, refletindo o céu e as araucárias', cap: 'Depois' },
 ].map((f) => ({ ...f, img: `<img src="${p}img/${f.src}-1920.webp" srcset="${p}img/${f.src}-1000.webp 1000w, ${p}img/${f.src}-1920.webp 1920w" sizes="(min-width: 48rem) 50vw, 100vw" width="1920" height="1080" alt="${f.alt}" loading="lazy" decoding="async">` }));
-export const fotoRodo = (p, sizes) => `<img src="${p}img/entrada-janela-1600.webp" srcset="${p}img/entrada-janela-800.webp 800w, ${p}img/entrada-janela-1600.webp 1600w" sizes="${sizes}" width="1600" height="900" alt="Rodo abrindo uma faixa de vidro limpo numa fachada, com uma araucária refletida" loading="lazy" decoding="async">`;
+export const fotoRodo = (p, sizes) => `<img src="${p}img/entrada-janela-1600.webp" srcset="${p}img/entrada-janela-800.webp 800w, ${p}img/entrada-janela-1600.webp 1600w" sizes="${sizes}" width="1600" height="900" alt="Técnico da Novo Ambiente em rapel limpando com rodo a pele de vidro de um prédio, com a cidade ao fundo" loading="lazy" decoding="async">`;
 export const acoesFecho = (cls = 'botao-azul') => `<div class="acoes" data-esconde-barra>
       <a class="botao ${cls}" href="${wa(MSG.geral)}" ${ext}>Pedir orçamento no WhatsApp${seta}</a>
       <a class="link-seta" href="${wa(MSG.visita)}" ${ext}>Agendar visita técnica${seta}</a>
