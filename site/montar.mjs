@@ -156,13 +156,12 @@ const elogios = () => `<section class="secao sv-elogios" aria-labelledby="t-elog
       <p>${ELOGIOS.p}</p>
     </div>
     <div class="gg-barra">
-      <a class="gg-resumo" href="${ELOGIOS.perfil}" ${ext}>
+      <div class="gg-resumo">
         ${G_LOGO}
         <span class="gg-nota">${ELOGIOS.nota}</span>
         <span class="gg-estrelas" role="img" aria-label="Nota ${ELOGIOS.nota} de 5">★★★★★</span>
         <span class="gg-total">${ELOGIOS.total} avaliações no Google</span>
-        <span class="gg-ver">Ver no Google${seta}</span>
-      </a>
+      </div>
       <div class="gg-setas" hidden>
         <button type="button" class="gg-seta gg-ant" aria-label="Avaliação anterior">${SETA_RETA}</button>
         <button type="button" class="gg-seta gg-prox" aria-label="Próxima avaliação">${SETA_RETA}</button>
