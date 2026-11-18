@@ -1,7 +1,7 @@
 // O site inteiro da Novo Ambiente (15/11/2026): a home aprovada (Painel · Uniforme · Cartões), as 4 páginas de
-// serviço e a de contato, em dist/, pronto pra Cloudflare Pages. Os endereços são os do site antigo.
+// serviço e a de contato, em dist/, pronto para Cloudflare Pages. Os endereços são os do site antigo.
 // Uso: node site/montar.mjs              → dist/ como prévia (noindex, com a linha de prévia no rodapé)
-//      node site/montar.mjs --producao   → dist/ pra ir pro ar (indexável, sitemap, robots e 301)
+//      node site/montar.mjs --producao   → dist/ para ir para o ar (indexável, sitemap, robots e 301)
 //      node site/montar.mjs --aprovar    → também em aprovar/public/novo-ambiente/site/ (sempre prévia)
 import { cpSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -18,14 +18,14 @@ const PRODUCAO = process.argv.includes('--producao');
 
 /* ícones que só as páginas novas usam */
 const iconesSite = `<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-mais" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" d="M12 5v14M5 12h14"/></symbol>
-  <symbol id="i-pedra" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3 20.5h18M4.5 20.5l2-7 4-2.5 3.5 1.5 3 4 1.5 4"/><path d="m10.5 11-1-4.5 3.5-3 4 2.5-1 5.5-2.5 1"/></g></symbol>
-  <symbol id="i-email" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3.5 5.5h17v13h-17z"/><path d="m3.5 6 8.5 7 8.5-7"/></g></symbol>
-  <symbol id="i-insta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></g></symbol>
-  <symbol id="i-portao" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M2.5 21h19M4 21V6.5M20 21V6.5M3 6.5h3M18 6.5h3"/><path d="M6.5 9h11M6.5 18h11M8.5 9v9M11 9v9M13.5 9v9M16 9v9"/></g></symbol>
-  <symbol id="i-industria" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M2.5 21h19M3.5 21V11l5 3v-3l5 3v-3l5 3V21"/><path d="M17 12.7V3.5h2.5V14"/><path d="M6.5 17.5h2M11 17.5h2M15.5 17.5h2"/></g></symbol>
-  <symbol id="i-corda" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2.5v6"/><path d="M9.5 8.5h5l-.8 4h-3.4z"/><path d="M12 12.5c0 2-2.5 2.5-2.5 4.5s2.5 2.5 2.5 4.5"/><path d="M8 8.5a4 4 0 0 1 8 0"/></g></symbol>
-  <symbol id="i-mapa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></g></symbol>
+  <symbol id="i-mais" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="square" d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-pedra" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"><path d="M3 20.5h18M4.5 20.5l2-7 4-2.5 3.5 1.5 3 4 1.5 4"/><path d="m10.5 11-1-4.5 3.5-3 4 2.5-1 5.5-2.5 1"/></g></symbol>
+  <symbol id="i-email" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"><path d="M3.5 5.5h17v13h-17z"/><path d="m3.5 6 8.5 7 8.5-7"/></g></symbol>
+  <symbol id="i-insta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></g></symbol>
+  <symbol id="i-portao" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"><path d="M2.5 21h19M4 21V6.5M20 21V6.5M3 6.5h3M18 6.5h3"/><path d="M6.5 9h11M6.5 18h11M8.5 9v9M11 9v9M13.5 9v9M16 9v9"/></g></symbol>
+  <symbol id="i-industria" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"><path d="M2.5 21h19M3.5 21V11l5 3v-3l5 3v-3l5 3V21"/><path d="M17 12.7V3.5h2.5V14"/><path d="M6.5 17.5h2M11 17.5h2M15.5 17.5h2"/></g></symbol>
+  <symbol id="i-corda" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2.5v6"/><path d="M9.5 8.5h5l-.8 4h-3.4z"/><path d="M12 12.5c0 2-2.5 2.5-2.5 4.5s2.5 2.5 2.5 4.5"/><path d="M8 8.5a4 4 0 0 1 8 0"/></g></symbol>
+  <symbol id="i-mapa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></g></symbol>
 </svg>`;
 
 /* os endereços, relativos a quem pede (p = '' na home, '../' nas outras) */
@@ -182,7 +182,7 @@ const elogios = () => `<section class="secao sv-elogios" aria-labelledby="t-elog
 
 /* ---------------------------------------------------------------- home */
 /* 17/11: o topo passa a ser a vitrine (pedido do Lucas). A foto deles é em pé (1024x1536): no celular ela entra
-   inteira; no computador entra a mesma cena estendida pra 16:9 (Nano Banana, logo real colada depois), em tela
+   inteira; no computador entra a mesma cena estendida para 16:9 (Nano Banana, logo real colada depois), em tela
    inteira, com título e painel empilhados à esquerda e o técnico à direita, sem espelhar (tem a logo nas costas). O subtítulo é o dela (1a frase); a 2a abre a seção de vidros */
 const SUB_HOME = 'Do térreo às grandes alturas: limpeza especializada de vidros residenciais, vitrines e fachadas de vidro.';
 const INTRO_VIDROS = 'Atendemos locais de difícil acesso com técnicas de rapel e extensores, além da remoção de resíduos de obra em superfícies de vidro. Da sacada à pele de vidro de um prédio comercial, em Curitiba e na Região Metropolitana, com orçamento por foto ou visita técnica presencial.';
@@ -348,7 +348,7 @@ function servico(s) {
 ${sinais}
 <section class="secao b-quem" aria-labelledby="t-quem">
   <div class="wrap">
-    <div class="b-cabeca"><h2 id="t-quem">Pra quem <em>limpamos</em></h2></div>
+    <div class="b-cabeca"><h2 id="t-quem">Para quem <em>limpamos</em></h2></div>
     <div class="b-cartoes-3${quem.length === 4 ? ' sv-quem-4' : ''}">
       ${quem.map((q) => `<article class="b-cartao">
         <span class="b-bolinha">${ico(q.ico)}</span>
@@ -492,7 +492,7 @@ montar(dist, PRODUCAO);
 console.log('Site montado em', dist, PRODUCAO ? '(produção)' : '(prévia, noindex)');
 if (process.argv.includes('--aprovar')) {
   if (PRODUCAO) throw new Error('--aprovar é sempre prévia: rode sem --producao');
-  /* --pasta=site-v2 monta uma prévia separada pro Vinicius ver antes de trocar o link que o cliente tem */
+  /* --pasta=site-v2 monta uma prévia separada para o Vinicius ver antes de trocar o link que o cliente tem */
   const pasta = (process.argv.find((a) => a.startsWith('--pasta=')) || '--pasta=site').slice(8);
   const destino = join(raiz, '..', 'aprovar', 'public', 'novo-ambiente', pasta);
   rmSync(destino, { recursive: true, force: true });

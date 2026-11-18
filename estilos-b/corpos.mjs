@@ -2,15 +2,15 @@
 // A entrada e a cor se escolhem à parte; aqui é só o que vem depois da entrada.
 //  A · Cartões: a B como ela aprovou (cada coisa no seu quadro branco, ícone no círculo)
 //  B · Fotos: os serviços viram fotos grandes, o antes e depois se arrasta com o rodo, o fim é foto inteira.
-//     Pro Lucas: mais imagem, quem passa o olho vê tudo o que eles limpam
-//  C · Guia: tudo arrumado em abas, um serviço por vez, os oito juntos. Pra ela: "tudo organizado"
+//     Para o Lucas: mais imagem, quem passa o olho vê tudo o que eles limpam
+//  C · Guia: tudo arrumado em abas, um serviço por vez, os oito juntos. Para ela: "tudo organizado"
 import { FONE, wa, seta, ico, ext, publicos, servicos, passos, tambem, T, MSG, planos, imgServ, parFotos, fotoRodo, acoesFecho } from '../estilos/conteudo.mjs';
 
 /* ícones que só existem nesta prévia: o mesmo traço dos outros */
 export const iconesNovos = `<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-janela" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4.5 3.5h15v17h-15zM12 3.5v17M4.5 12h15"/><path d="m7 9.5 2.5-2.5M14.5 17l2.5-2.5"/></g></symbol>
-  <symbol id="i-altura" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M14 21V3h7v18M2.5 21h19M16.5 6.5h2M16.5 10h2M16.5 13.5h2"/><path d="M9 3v8.5"/><circle cx="9" cy="13.2" r="1.6"/><path d="M9 14.8v3.4l-1.8 2.3M9 16.2l2.6-1.3M9 18.2l1.6 2.3"/></g></symbol>
-  <symbol id="i-posobra" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3.5 4h11v4.5h-11zM14.5 6.2H18v5.3h-8.5V14"/><path d="M8.5 14h2v6.5h-2z"/></g></symbol>
+  <symbol id="i-janela" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"><path d="M4.5 3.5h15v17h-15zM12 3.5v17M4.5 12h15"/><path d="m7 9.5 2.5-2.5M14.5 17l2.5-2.5"/></g></symbol>
+  <symbol id="i-altura" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"><path d="M14 21V3h7v18M2.5 21h19M16.5 6.5h2M16.5 10h2M16.5 13.5h2"/><path d="M9 3v8.5"/><circle cx="9" cy="13.2" r="1.6"/><path d="M9 14.8v3.4l-1.8 2.3M9 16.2l2.6-1.3M9 18.2l1.6 2.3"/></g></symbol>
+  <symbol id="i-posobra" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"><path d="M3.5 4h11v4.5h-11zM14.5 6.2H18v5.3h-8.5V14"/><path d="M8.5 14h2v6.5h-2z"/></g></symbol>
   <symbol id="i-arrasta" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M9 7 4 12l5 5M15 7l5 5-5 5"/></symbol>
 </svg>`;
 
@@ -22,7 +22,7 @@ const fotoTambem = {
 };
 
 /* ---------------------------------------------------------------- A · Cartões */
-/* rotas (15/11): no site de verdade, "Também limpamos" leva pra página de cada serviço e a seção de vidros aponta pra dela */
+/* rotas (15/11): no site de verdade, "Também limpamos" leva para página de cada serviço e a seção de vidros aponta para dela */
 export const corpoCartoes = (p, rotas) => `<section class="secao b-quem" aria-labelledby="t-quem">
   <div class="wrap">
     <div class="b-cabeca">
@@ -144,7 +144,7 @@ const corpoFotos = (p) => {
         </a>
       </li>`).join('\n      ')}
     </ul>
-    <p class="f-arraste">${ico('i-arrasta')}Arraste pro lado pra ver os cinco</p>
+    <p class="f-arraste">${ico('i-arrasta')}Arraste para o lado para ver os cinco</p>
   </div>
 </section>
 
@@ -159,10 +159,10 @@ const corpoFotos = (p) => {
       <figure class="f-antes">${antes.img}</figure>
       <span class="f-rotulo f-rotulo-antes" aria-hidden="true">Antes</span>
       <span class="f-rotulo f-rotulo-depois" aria-hidden="true">Depois</span>
-      <input type="range" min="0" max="100" value="50" step="1" aria-label="Passe o rodo: arraste pra comparar o vidro antes e depois da limpeza">
+      <input type="range" min="0" max="100" value="50" step="1" aria-label="Passe o rodo: arraste para comparar o vidro antes e depois da limpeza">
       <span class="f-alca" aria-hidden="true"><span>${ico('i-arrasta')}</span></span>
     </div>
-    <p class="f-dica">Arraste o rodo pro lado</p>
+    <p class="f-dica">Arraste o rodo para o lado</p>
   </div>
 </section>
 
@@ -203,7 +203,7 @@ ${planos.replace('<div class="ano">', '<div class="ano" data-anima>')}
 };
 
 /* ---------------------------------------------------------------- C · Guia */
-/* os oito serviços juntos, com um nome curto pra aba */
+/* os oito serviços juntos, com um nome curto para aba */
 const guia = [
   ...servicos.map((s, i) => ({ ...s, grupo: 'Vidros', ico: ['i-altura', 'i-predio', 'i-loja', 'i-casa', 'i-posobra'][i],
     aba: ['Altura e rapel', 'Fachadas de vidro', 'Vitrines e lojas', 'Casas e sacadas', 'Pós-obra'][i] })),
@@ -288,7 +288,7 @@ ${planos.replace('<div class="ano">', '<div class="ano" data-anima>')}
     </div>
     <ul class="g-jeitos" data-esconde-barra>
       <li><a href="${wa(MSG.geral)}" ${ext}><span class="b-bolinha"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg></span><span><strong>Pedir orçamento</strong><small>Pelo WhatsApp, com uma foto do vidro</small></span>${seta}</a></li>
-      <li><a href="${wa(MSG.visita)}" ${ext}><span class="b-bolinha">${ico('i-agenda')}</span><span><strong>Agendar visita técnica</strong><small>Pra avaliar o vidro com você</small></span>${seta}</a></li>
+      <li><a href="${wa(MSG.visita)}" ${ext}><span class="b-bolinha">${ico('i-agenda')}</span><span><strong>Agendar visita técnica</strong><small>Para avaliar o vidro com você</small></span>${seta}</a></li>
       <li><a href="${wa(MSG.plano)}" ${ext}><span class="b-bolinha">${ico('i-agenda')}</span><span><strong>Montar um plano</strong><small>Limpeza recorrente, pelo WhatsApp</small></span>${seta}</a></li>
     </ul>
   </div>

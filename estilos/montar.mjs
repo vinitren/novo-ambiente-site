@@ -92,11 +92,11 @@ function rodape(letra, p, voltar) {
       <li><a href="mailto:contato@novoambienteservice.com.br">contato@novoambienteservice.com.br</a></li>
       <li><a href="https://www.instagram.com/novoambienteservice/" ${ext}>@novoambienteservice</a></li>
     </ul>
-    <p class="previa">Prévia de estilo ${letra.toUpperCase()} · ${e.nome}. <a href="${voltar}">Voltar pra escolha</a></p>
+    <p class="previa">Prévia de estilo ${letra.toUpperCase()} · ${e.nome}. <a href="${voltar}">Voltar para escolha</a></p>
   </div>
 </footer>
 
-<a class="selo-estilo" href="${voltar}"><b>${letra.toUpperCase()}</b> Estilo ${e.nome}<span>voltar pra escolha</span></a>
+<a class="selo-estilo" href="${voltar}"><b>${letra.toUpperCase()}</b> Estilo ${e.nome}<span>voltar para escolha</span></a>
 <div class="barra-wa"><a class="botao botao-azul" href="${wa(MSG.geral)}" ${ext}><svg class="wa" aria-hidden="true"><use href="#i-wa"/></svg>Pedir orçamento no WhatsApp</a></div>
 
 <script src="${p}blindagem.js" defer></script>
@@ -205,7 +205,7 @@ function corpoB(p) {
   return `
 <section class="b-quem" aria-labelledby="t-quem">
   <div class="wrap">
-    <h2 id="t-quem" class="so-leitor">Pra quem limpamos</h2>
+    <h2 id="t-quem" class="so-leitor">Para quem limpamos</h2>
     <div class="b-cartoes-3">
       ${publicos.map((q) => `<article class="b-cartao">
         <span class="b-bolinha">${ico(q.ico)}</span>

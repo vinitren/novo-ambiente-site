@@ -1,7 +1,7 @@
 // A B escolhida em 12/11/2026, com as ressalvas dos áudios dela e do Lucas:
 //  · a entrada mostra os 4 serviços num painel com foto (o Lucas: "parece que só trabalham com rapel")
 //  · barra fixa no celular, sempre visível: orçamento no WhatsApp (15/11: o Ligar saiu, "é muito raro atendermos chamadas")
-//  · a página inteira em 3 cores pra ela escolher (marinho "carregado", azul-clarinho "básico")
+//  · a página inteira em 3 cores para ela escolher (marinho "carregado", azul-clarinho "básico")
 //  · num link só: 3 entradas, 3 jeitos das seções (corpos.mjs) e 3 cores, cada um trocado no seletor
 // Uso: node estilos-b/montar.mjs            → estilos-b/index.html (abre local)
 //      node estilos-b/montar.mjs --aprovar  → também em aprovar/public/novo-ambiente/estilos-b/
@@ -85,7 +85,7 @@ const entradaVidraca = (p) => `<section class="entrada v-entrada" aria-labelledb
 `;
 
 /* Foto grande e ícones (12/11): a foto do rapel inteira, como ela gostou, e logo abaixo do título os serviços
-   em ícone (o jeito da B que ela aprovou), pro Lucas: quem olha rápido vê que não é só rapel */
+   em ícone (o jeito da B que ela aprovou), para o Lucas: quem olha rápido vê que não é só rapel */
 
 const servIcones = [
   { ico: 'i-janela', h: 'Vidros e janelas', href: '#vidros' },
@@ -212,7 +212,7 @@ ${H.map((h) => `<div class="eb-home-barra" data-home="${h.id}">${h.barra(p)}</di
 ${final ? '' : `<div class="eb-guia" role="region" aria-label="Escolher a página, um passo por vez" hidden>
   <button type="button" class="eb-guia-abrir" aria-expanded="true">Escolher <span data-guia-num>1 de 3</span></button>
   <div class="eb-guia-caixa">
-    <div class="eb-guia-topo"><span class="eb-guia-passo" data-guia-num>1 de 3</span><button type="button" class="eb-guia-esconder" aria-label="Esconder pra ver a página">Esconder</button></div>
+    <div class="eb-guia-topo"><span class="eb-guia-passo" data-guia-num>1 de 3</span><button type="button" class="eb-guia-esconder" aria-label="Esconder para ver a página">Esconder</button></div>
     <div class="eb-guia-etapa" data-passo="1">
       <p class="eb-guia-pergunta">Qual <b>entrada</b> vocês preferem?</p>
       <p class="eb-guia-dica">É o topo da página. Toque e veja cada uma.</p>
@@ -220,7 +220,7 @@ ${final ? '' : `<div class="eb-guia" role="region" aria-label="Escolher a págin
     </div>
     <div class="eb-guia-etapa" data-passo="2">
       <p class="eb-guia-pergunta">Qual <b>cor</b> vocês preferem?</p>
-      <p class="eb-guia-dica">Toque e desça a página pra ver a cor no site todo.</p>
+      <p class="eb-guia-dica">Toque e desça a página para ver a cor no site todo.</p>
       <div class="eb-guia-opcoes">${CORES.map((c) => `<button type="button" data-cor="${c.n}" aria-pressed="false">${c.nome}</button>`).join('')}</div>
     </div>
     <div class="eb-guia-etapa" data-passo="3">

@@ -11,22 +11,22 @@ export const ext = 'target="_blank" rel="noopener"';
 /* ---------------- o conteúdo (igual nos três) ---------------- */
 export const publicos = [
   { id: 'predio', ico: 'i-predio', h: 'Condomínio e prédio comercial',
-    p: 'Fachada de vidro e vidro alto que ninguém do prédio alcança, e se alguém se machucar lá em cima quem responde é o síndico.',
+    p: 'Fachada de vidro e vidro alto que ninguém do prédio alcança, e, se alguém se machucar lá em cima, quem responde é o síndico.',
     r: 'Equipe de altura, visita técnica e data marcada com a administração do prédio.',
-    l: 'Orçamento pro condomínio', m: 'Olá! Vim pelo site. Sou síndico/administradora e quero um orçamento de limpeza de vidros pro condomínio.' },
+    l: 'Orçamento para o condomínio', m: 'Olá! Vim pelo site. Sou síndico/administradora e quero um orçamento de limpeza de vidros para o condomínio.' },
   { id: 'comercio', ico: 'i-loja', h: 'Loja, clínica ou escritório',
-    p: 'Vitrine com marca de dedo toda semana, e funcionário parando o atendimento pra passar pano.',
+    p: 'Vitrine com marca de dedo toda semana, e funcionário parando o atendimento para passar pano.',
     r: 'Vidro sempre limpo, com plano recorrente e horário combinado.',
-    l: 'Orçamento pra empresa', m: 'Olá! Vim pelo site. Tenho uma empresa e quero um orçamento de limpeza de vidros.' },
+    l: 'Orçamento para empresa', m: 'Olá! Vim pelo site. Tenho uma empresa e quero um orçamento de limpeza de vidros.' },
   { id: 'casa', ico: 'i-casa', h: 'Casa',
     p: 'Janela alta, pé-direito alto e vidro de sacada que você não alcança sem se arriscar.',
-    r: 'Vidro transparente de novo, sem escada pra ninguém da família.',
-    l: 'Orçamento pra casa', m: 'Olá! Vim pelo site e quero um orçamento de limpeza de vidros pra minha casa.' },
+    r: 'Vidro transparente de novo, sem escada para ninguém da família.',
+    l: 'Orçamento para casa', m: 'Olá! Vim pelo site e quero um orçamento de limpeza de vidros para minha casa.' },
 ];
 
 export const servicos = [
   { id: 'altura', img: 'servico-altura', pos: '50% 40%', alt: 'Técnico de uniforme e capacete em rapel limpando com rodo a pele de vidro de um prédio, com a cidade ao fundo',
-    h: 'Vidros em altura e com rapel', p: 'Pra onde escada e haste não chegam: a equipe desce de rapel e limpa o vidro de cima a baixo.',
+    h: 'Vidros em altura e com rapel', p: 'Para onde escada e haste não chegam: a equipe desce de rapel e limpa o vidro de cima a baixo.',
     t: 'Vidros altos · difícil acesso · pé-direito alto e átrios · elevadores panorâmicos',
     l: 'Orçamento de vidro em altura', m: 'Olá! Vim pelo site e quero um orçamento de limpeza de vidros em altura.' },
   { id: 'fachada-de-vidro', img: 'servico-fachada', pos: '50% 70%', alt: 'Técnico de uniforme na calçada limpando com haste longa os vidros de um prédio comercial',
@@ -39,18 +39,18 @@ export const servicos = [
     l: 'Orçamento de vitrine', m: 'Olá! Vim pelo site e quero um orçamento de limpeza de vitrine e vidros comerciais.' },
   { id: 'casa-e-sacada', img: 'servico-sacada', pos: '50% 50%', alt: 'Técnico de uniforme limpando com haste o vidro alto de uma sala com pé-direito alto',
     h: 'Casas e sacadas', p: 'Vidro alto e de sacada transparente de novo, sem ninguém da família subir em escada.',
-    t: 'Vidros residenciais · janelas e esquadrias · limpeza de sacada de vidro e/ou de vidros de varanda · guarda-corpos',
-    l: 'Orçamento pra casa ou sacada', m: 'Olá! Vim pelo site e quero um orçamento de limpeza de vidros pra minha casa.' },
+    t: 'Vidros residenciais · janelas e esquadrias · limpeza de sacada de vidro e de vidros de varanda · guarda-corpos',
+    l: 'Orçamento para casa ou sacada', m: 'Olá! Vim pelo site e quero um orçamento de limpeza de vidros para minha casa.' },
   { id: 'pos-obra', img: 'servico-posobra', pos: '55% 40%', alt: 'Técnico com raspador tirando respingos de tinta do vidro de uma sala comercial recém-terminada',
-    h: 'Pós-obra de vidros', p: 'Resto de tinta, cimento e poeira de obra saem do vidro novo, com cuidado pra não riscar.',
+    h: 'Pós-obra de vidros', p: 'Resto de tinta, cimento e poeira de obra saem do vidro novo, com cuidado para não riscar.',
     t: 'Limpeza pós-obra de vidros · salas e lojas recém-entregues',
     l: 'Orçamento de pós-obra', m: 'Olá! Vim pelo site e quero um orçamento de limpeza pós-obra de vidros.' },
 ];
 
 export const passos = [
-  { ico: 'i-foto', h: 'Mande uma foto ou peça uma visita', p: 'Uma foto do vidro e o endereço pelo WhatsApp já bastam pra começar. Se preferir, fazemos uma visita técnica presencial pra avaliar o serviço.' },
-  { ico: 'i-proposta', h: 'Receba a proposta', p: 'Orçamento sem compromisso e proposta personalizada, pra uma limpeza só ou com plano recorrente.' },
-  { ico: 'i-agenda', h: 'Limpamos na data marcada', p: 'A equipe chega no dia combinado, com o acesso certo pra cada tipo de vidro.' },
+  { ico: 'i-foto', h: 'Mande uma foto ou peça uma visita', p: 'Uma foto do vidro e o endereço pelo WhatsApp já bastam para começar. Se preferir, fazemos uma visita técnica presencial para avaliar o serviço.' },
+  { ico: 'i-proposta', h: 'Receba a proposta', p: 'Orçamento sem compromisso e proposta personalizada, para uma limpeza só ou com plano recorrente.' },
+  { ico: 'i-agenda', h: 'Limpamos na data marcada', p: 'A equipe chega no dia combinado, com o acesso certo para cada tipo de vidro.' },
 ];
 
 export const tambem = [
@@ -60,7 +60,7 @@ export const tambem = [
 ];
 
 export const T = {
-  quem: 'Pra quem <em>limpamos</em>',
+  quem: 'Para quem <em>limpamos</em>',
   vidros: 'Limpeza de vidros: cada vidro pede<br> <em>um jeito de chegar<br> e um jeito de limpar</em>',
   vidrosP: 'Da sacada à pele de vidro de um prédio comercial, a Novo Ambiente limpa vidros em Curitiba e na Região Metropolitana. Orçamento por foto ou com visita técnica presencial.',
   ba: 'O mesmo vidro, <em>antes e depois</em>',
@@ -72,10 +72,10 @@ export const T = {
 };
 export const MSG = {
   geral: 'Olá! Vim pelo site e quero um orçamento de limpeza de vidros.',
-  /* menu, barra do celular e rodapé: valem pra qualquer serviço (15/11) */
+  /* menu, barra do celular e rodapé: valem para qualquer serviço (15/11) */
   topo: 'Olá! Vim pelo site da Novo Ambiente e quero um orçamento.',
   janelas: 'Olá! Vim pelo site e quero um orçamento de limpeza de vidros e janelas.',
-  foto: 'Olá! Vim pelo site. Vou mandar uma foto do vidro pra vocês me passarem o orçamento.',
+  foto: 'Olá! Vim pelo site. Vou mandar uma foto do vidro para vocês me passarem o orçamento.',
   plano: 'Olá! Vim pelo site e quero saber dos planos de limpeza recorrente.',
   visita: 'Olá! Vim pelo site e quero agendar uma visita técnica.',
 };
@@ -83,16 +83,16 @@ export const MSG = {
 export const icones = `<svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.5 0 .2 5.3.2 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.5 1.4c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.3-8.4zM12 21.7c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.4 4.7zm5.4-7.3c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/></symbol>
   <symbol id="i-seta" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" d="M6 18 18 6M8 6h10v10"/></symbol>
-  <symbol id="i-predio" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M5 21V3.5h14V21M2.5 21h19"/><path d="M8.5 7h2M13.5 7h2M8.5 10.5h2M13.5 10.5h2M8.5 14h2M13.5 14h2M10.5 21v-3.5h3V21"/></g></symbol>
-  <symbol id="i-loja" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4.5 3.5h15l1.5 5H3z"/><path d="M3 8.5a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0M5 11.5V21h14v-9.5M10 21v-5h4v5"/></g></symbol>
-  <symbol id="i-casa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3 11 12 3.5l9 7.5"/><path d="M5.5 9V21h13V9M10 21v-5.5h4V21"/></g></symbol>
-  <symbol id="i-foto" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3.5 7.5h3.5l1.8-2.5h6.4L17 7.5h3.5V19h-17z"/><circle cx="12" cy="13" r="3.4"/></g></symbol>
-  <symbol id="i-proposta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M6 3h8.5L19 7.5V21H6z"/><path d="M14 3v5h5M9 12h7M9 15.5h7M9 19h4"/></g></symbol>
-  <symbol id="i-agenda" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3.5 5.5h17V21h-17zM3.5 10h17M8 3v4.5M16 3v4.5"/><path d="m8.5 15.5 2.2 2.2 4.8-4.7"/></g></symbol>
-  <symbol id="i-fachada" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4 21V3.5h16V21M2.5 21h19M4 9.5h16M4 15.5h16M9.5 3.5v17.5M14.5 3.5v17.5"/></g></symbol>
-  <symbol id="i-solar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M5.5 6h13l2.5 11H3z"/><path d="M4.3 11.5h15.4M9.3 6l-1 11M14.7 6l1 11M12 17v3.5M8 20.5h8"/></g></symbol>
-  <symbol id="i-piso" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 4 21 9l-9 5-9-5z"/><path d="m3 13.5 9 5 9-5M7.5 6.5l9 5M16.5 6.5l-9 5"/></g></symbol>
-  <symbol id="i-fone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M8.2 3.5 5 3.6c-.9 0-1.6.8-1.5 1.7.6 8 6.9 14.4 14.9 15 .9.1 1.7-.6 1.7-1.5l.1-3.2c0-.6-.4-1.2-1-1.4l-3.2-1c-.5-.2-1.1 0-1.5.4l-1.3 1.4a12.6 12.6 0 0 1-5.4-5.4l1.4-1.3c.4-.4.6-1 .4-1.5l-1-3.2c-.2-.6-.8-1-1.4-1z"/></symbol>
+  <symbol id="i-predio" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/> <path d="M9 22v-4h6v4"/> <path d="M8 6h.01"/> <path d="M16 6h.01"/> <path d="M12 6h.01"/> <path d="M12 10h.01"/> <path d="M12 14h.01"/> <path d="M16 10h.01"/> <path d="M16 14h.01"/> <path d="M8 10h.01"/> <path d="M8 14h.01"/></g></symbol>
+  <symbol id="i-loja" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/> <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/> <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/> <path d="M2 7h20"/> <path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></g></symbol>
+  <symbol id="i-casa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/> <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></g></symbol>
+  <symbol id="i-foto" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"><path d="M3.5 7.5h3.5l1.8-2.5h6.4L17 7.5h3.5V19h-17z"/><circle cx="12" cy="13" r="3.4"/></g></symbol>
+  <symbol id="i-proposta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"><path d="M6 3h8.5L19 7.5V21H6z"/><path d="M14 3v5h5M9 12h7M9 15.5h7M9 19h4"/></g></symbol>
+  <symbol id="i-agenda" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"><path d="M3.5 5.5h17V21h-17zM3.5 10h17M8 3v4.5M16 3v4.5"/><path d="m8.5 15.5 2.2 2.2 4.8-4.7"/></g></symbol>
+  <symbol id="i-fachada" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/> <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/> <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/> <path d="M10 6h4"/> <path d="M10 10h4"/> <path d="M10 14h4"/> <path d="M10 18h4"/></g></symbol>
+  <symbol id="i-solar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2h2"/> <path d="m14.28 14-4.56 8"/> <path d="m21 22-1.558-4H4.558"/> <path d="M3 10v2"/> <path d="M6.245 15.04A2 2 0 0 1 8 14h12a1 1 0 0 1 .864 1.505l-3.11 5.457A2 2 0 0 1 16 22H4a1 1 0 0 1-.863-1.506z"/> <path d="M7 2a4 4 0 0 1-4 4"/> <path d="m8.66 7.66 1.41 1.41"/></g></symbol>
+  <symbol id="i-piso" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="m16.02 12 5.48 3.13a1 1 0 0 1 0 1.74L13 21.74a2 2 0 0 1-2 0l-8.5-4.87a1 1 0 0 1 0-1.74L7.98 12"/> <path d="M13 13.74a2 2 0 0 1-2 0L2.5 8.87a1 1 0 0 1 0-1.74L11 2.26a2 2 0 0 1 2 0l8.5 4.87a1 1 0 0 1 0 1.74Z"/></g></symbol>
+  <symbol id="i-fone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round" d="M8.2 3.5 5 3.6c-.9 0-1.6.8-1.5 1.7.6 8 6.9 14.4 14.9 15 .9.1 1.7-.6 1.7-1.5l.1-3.2c0-.6-.4-1.2-1-1.4l-3.2-1c-.5-.2-1.1 0-1.5.4l-1.3 1.4a12.6 12.6 0 0 1-5.4-5.4l1.4-1.3c.4-.4.6-1 .4-1.5l-1-3.2c-.2-.6-.8-1-1.4-1z"/></symbol>
 </svg>`;
 
 export const planos = `
