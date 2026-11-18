@@ -164,14 +164,15 @@ const elogios = () => `<section class="secao sv-elogios" aria-labelledby="t-elog
 
 /* ---------------------------------------------------------------- home */
 /* 17/11: o topo passa a ser a vitrine (pedido do Lucas). A foto deles é em pé (1024x1536): no celular ela entra
-   inteira; no computador a entrada fica como a das páginas de serviço, título e painel na estampa e a foto na
-   outra metade, sem espelhar (tem a logo nas costas). O subtítulo é o dela (1a frase); a 2a abre a seção de vidros */
+   inteira; no computador entra a mesma cena estendida pra 16:9 (Nano Banana, logo real colada depois), em tela
+   inteira, com título e painel empilhados à esquerda e o técnico à direita, sem espelhar (tem a logo nas costas). O subtítulo é o dela (1a frase); a 2a abre a seção de vidros */
 const SUB_HOME = 'Do térreo às grandes alturas: limpeza especializada de vidros residenciais, vitrines e fachadas de vidro.';
 const INTRO_VIDROS = 'Atendemos locais de difícil acesso com técnicas de rapel e extensores, além da remoção de resíduos de obra em superfícies de vidro. Da sacada à pele de vidro de um prédio comercial, em Curitiba e na Região Metropolitana, com orçamento por foto ou visita técnica presencial.';
 const ALT_VITRINE = 'Técnico da Novo Ambiente, de costas, limpando com haste e rodo a vitrine de uma loja de roupas';
 const entradaHome = (p) => `<section class="entrada" aria-labelledby="t-entrada" style="--pos: 45% 30%">
   <picture class="entrada-foto">
-    <img src="${p}img/entrada-vitrine-1080.webp" srcset="${p}img/entrada-vitrine-750.webp 750w, ${p}img/entrada-vitrine-1080.webp 1024w" sizes="(min-width: 62rem) 50vw, 100vw" width="1024" height="1536" alt="${ALT_VITRINE}" fetchpriority="high">
+    <source media="(max-width: 61.99rem)" srcset="${p}img/entrada-vitrine-750.webp 750w, ${p}img/entrada-vitrine-1080.webp 1024w" sizes="100vw" width="1024" height="1536">
+    <img src="${p}img/entrada-vitrine-larga-1600.webp" srcset="${p}img/entrada-vitrine-larga-1600.webp 1600w, ${p}img/entrada-vitrine-larga-2560.webp 2560w" sizes="100vw" width="2560" height="1429" alt="${ALT_VITRINE}" fetchpriority="high">
   </picture>
   <div class="entrada-veu"></div>
   <div class="wrap entrada-texto eb-entrada">
@@ -195,7 +196,8 @@ const entradaHome = (p) => `<section class="entrada" aria-labelledby="t-entrada"
 
 function home() {
   const p = '';
-  const preload = `<link rel="preload" as="image" imagesrcset="img/entrada-vitrine-750.webp 750w, img/entrada-vitrine-1080.webp 1024w" imagesizes="(min-width: 62rem) 50vw, 100vw" fetchpriority="high">`;
+  const preload = `<link rel="preload" as="image" imagesrcset="img/entrada-vitrine-larga-1600.webp 1600w, img/entrada-vitrine-larga-2560.webp 2560w" imagesizes="100vw" media="(min-width: 62rem)" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="img/entrada-vitrine-750.webp 750w, img/entrada-vitrine-1080.webp 1024w" imagesizes="100vw" media="(max-width: 61.99rem)" fetchpriority="high">`;
   const corpo = corpoCartoes(p, rotas(p));
   const vidrosP = /(<h2 id="t-vidros">[\s\S]*?<\/h2>\s*<p>)[\s\S]*?(<\/p>)/;
   if (!vidrosP.test(corpo) || !corpo.includes('<section class="secao b-passos"')) throw new Error('home: o corpo mudou, conferir os encaixes de 17/11');
