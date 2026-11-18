@@ -200,7 +200,6 @@ export const SERVICOS = [
       { q: 'De quanto em quanto tempo devo limpar a placa solar?', r: 'Depende do lugar: perto de estrada de terra, árvore, obra ou indústria, a placa suja mais rápido. Na visita técnica avaliamos e indicamos a frequência certa para as suas placas.' },
       { q: 'A limpeza risca a placa?', r: 'Não. A limpeza é feita com cuidado para não riscar o vidro da placa.' },
       { q: 'Por que limpar a placa solar?', r: 'Porque a sujeira em cima do vidro tira luz da placa, e placa com menos luz gera menos energia. Limpa, ela volta a receber o sol inteiro.' },
-      { q: 'A chuva não limpa a placa?', r: 'Ajuda, mas não resolve sozinha: barro e sujeira de pássaro ficam grudados no vidro, e a poeira volta a assentar depois que seca.' },
       { q: 'Vocês limpam placas em galpão e indústria?', r: 'Sim. Telhados grandes, com muitas placas, com acesso planejado e data combinada. Quando o serviço pede, fazemos a APR e a OS, com valor à parte.' },
       faqPlano('placa solar'),
       ...faqFechar, faqVisita, faqRegiao,
