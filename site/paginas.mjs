@@ -1,6 +1,6 @@
 // O conteúdo das páginas de serviço e da página de contato (15/11/2026).
-// Só entra o que é afirmável hoje (PRODUCT.md, "Evidence on Hand"): nada de NR-35, seguro, ART,
-// tempo de mercado, número de obras ou clientes. Termos proibidos (cobertura, teto e telhado de vidro,
+// Só entra o que é afirmável hoje (PRODUCT.md, "Evidence on Hand"). Desde 17/11: NR-35, IRATA (dos parceiros do rapel),
+// PGR, PCMSO, LTCAT, pagamento, nota fiscal e a nota do Google. Nunca: seguro, ART, tempo de mercado, número de obras ou clientes. Termos proibidos (cobertura, teto e telhado de vidro,
 // pergolado, toldo, claraboia) em lugar nenhum, nem no texto alternativo.
 // Os endereços são os mesmos do site antigo, pra não perder o que já está no Google.
 
@@ -10,7 +10,38 @@ const msg = (s) => `Olá! Vim pelo site da Novo Ambiente e quero um orçamento d
 const faqOrcamento = (o) => ({ q: `Como peço um orçamento de ${o}?`, r: 'Pelo WhatsApp (41) 99779-9646. Uma foto e o endereço já bastam pra começar, e o orçamento é sem compromisso. Se preferir, marcamos uma visita técnica presencial.' });
 const faqRegiao = { q: 'Vocês atendem fora de Curitiba?', r: 'Sim. Atendemos Curitiba e a Região Metropolitana. Mande o endereço pelo WhatsApp e confirmamos.' };
 const faqVisita = { q: 'Vocês fazem visita técnica?', r: 'Sim. Fazemos visita técnica presencial pra avaliar o serviço e montar uma proposta personalizada.' };
-const faqPlano = (o) => ({ q: `Vocês fazem ${o} com contrato?`, r: 'Sim. Trabalhamos com serviço pontual e com contrato periódico, e o plano é montado conforme a necessidade de cada cliente.' });
+/* 17/11, pedido dela: "Vocês fazem limpezas periódicas de ..." no lugar de "... com contrato" */
+const faqPlano = (o) => ({ q: `Vocês fazem limpezas periódicas de ${o}?`, r: 'Sim. Fazemos a limpeza pontual ou periódica: semanal, quinzenal, mensal, trimestral ou semestral, com o plano montado conforme a necessidade de cada cliente.' });
+/* 17/11: o que o cliente sempre pergunta antes de fechar (resposta dela à pergunta 1) */
+const faqFechar = [
+  { q: 'Quais são as formas de pagamento?', r: 'Pix, dinheiro, cartão de débito, cartão de crédito à vista ou parcelado e boleto (só pra empresas). O pagamento com cartão é feito por link e tem taxa; no crédito parcelado, também juros.' },
+  { q: 'Vocês atendem fora do horário comercial e no fim de semana?', r: 'Sim, com agendamento antecipado.' },
+  { q: 'Vocês emitem nota fiscal?', r: 'Sim, emitimos nota fiscal.' },
+];
+
+/* 17/11: o bloco de segurança (resposta dela à pergunta 3). O rapel é feito por parceiros: o texto não diz
+   "nossa equipe tem IRATA". Seguro e ART eles não têm, e não aparecem em lugar nenhum */
+export const SEGURANCA = {
+  h: 'Trabalho em altura <em>com segurança</em>',
+  p: 'Cada serviço em altura é planejado antes, com o acesso e o equipamento certos pro lugar.',
+  itens: [
+    { ico: 'i-altura', h: 'NR-35', p: 'Quem trabalha em altura tem o treinamento da NR-35, a norma de trabalho em altura.' },
+    { ico: 'i-corda', h: 'Rapel com IRATA', p: 'Nos serviços de rapel, os técnicos têm certificação IRATA (nível 1 ou 2) e NR-35.' },
+    { ico: 'i-proposta', h: 'Documentação', p: 'A empresa tem PGR, PCMSO e LTCAT. Quando o condomínio ou a empresa pede, preparamos a APR e a ordem de serviço da obra, com valor à parte.' },
+  ],
+};
+
+/* 17/11: os elogios (resposta dela à pergunta 2). Só os de vidro e de atendimento: os dois que falam de
+   telhado e cobertura ficam fora (termos que não entram no site). Nota e número do Google de 15/11 */
+export const ELOGIOS = {
+  h: 'O que dizem <em>os clientes</em>',
+  p: 'Nota 4,8 no Google, com 16 avaliações. Capricho, pontualidade e atenção do técnico são o que os clientes mais elogiam.',
+  itens: [
+    'Nossa, atendimento incrível! Meus vidros ficaram irreconhecíveis!',
+    'Excelente! Pontuais e eficientes.',
+    'Serviço 5 estrelas, os moços que vieram aqui são muito competentes e atenciosos.',
+  ],
+};
 
 export const SERVICOS = [
   {
@@ -37,12 +68,12 @@ export const SERVICOS = [
       { img: 'servico-fachada', pos: '60% 40%', alt: 'Técnico na calçada limpando a fachada de vidro de um prédio comercial com haste e rodo',
         h: 'Fachadas de vidro', p: 'Vidros de prédios, edifícios comerciais e condomínios, com limpeza interna e externa. Na pele de vidro, painel por painel, sem marca de rodo.',
         t: 'Pele de vidro (Structural Glazing) · cortina de vidro (Curtain Wall) · vidros prediais', l: 'Orçamento de fachada de vidro', m: msg('limpeza de fachada de vidro') },
-      { img: 'servico-vitrine', pos: '40% 50%', alt: 'Rodo limpando a vitrine de uma loja de alto padrão em Curitiba',
+      { img: 'servico-vitrine', pos: '50% 50%', alt: 'Técnico de uniforme numa escada limpando o vidro alto da fachada de uma loja',
         h: 'Vitrines, lojas, clínicas e escritórios', p: 'Vitrine sem marca de dedo e porta de vidro limpa, no dia e no horário que não atrapalham o atendimento.',
         t: 'Vidros comerciais · lojas de alto padrão · portas e painéis do chão ao teto · muros e painéis de vidro', l: 'Orçamento de vitrine', m: msg('limpeza de vitrine e vidros comerciais') },
-      { img: 'servico-sacada', pos: '50% 45%', alt: 'Rodo limpando o envidraçamento de sacada de um apartamento alto em Curitiba',
+      { img: 'servico-sacada', pos: '50% 45%', alt: 'Rodo limpando o vidro da sacada de um apartamento alto em Curitiba',
         h: 'Casas, apartamentos e sacadas', p: 'Janela alta, vidro de sacada e guarda-corpo transparentes de novo, sem ninguém da família subir em escada.',
-        t: 'Vidros residenciais · janelas e esquadrias · envidraçamento de sacada · guarda-corpos de vidro', l: 'Orçamento pra casa ou sacada', m: msg('limpeza de vidros pra minha casa') },
+        t: 'Vidros residenciais · janelas e esquadrias · limpeza de sacada de vidro · vidros de varanda · guarda-corpos de vidro', l: 'Orçamento pra casa ou sacada', m: msg('limpeza de vidros pra minha casa') },
       { img: 'servico-posobra', pos: '55% 40%', alt: 'Técnico com raspador tirando respingos de tinta do vidro de uma sala comercial recém-terminada',
         h: 'Pós-obra de vidros', p: 'Resto de tinta, cimento e poeira saem do vidro novo antes da entrega, com cuidado pra não riscar.',
         t: 'Limpeza pós-obra de vidros · salas e lojas recém-entregues', l: 'Orçamento de pós-obra', m: msg('limpeza pós-obra de vidros') },
@@ -55,26 +86,28 @@ export const SERVICOS = [
     faq: [
       faqOrcamento('limpeza de vidros'),
       { q: 'Vocês limpam vidros em altura e de difícil acesso?', r: 'Sim. Vidros altos, fachadas de vidro, átrios e vidros de pé-direito alto são limpos com rapel, onde escada e haste não chegam.' },
-      { q: 'Que tipos de vidro vocês limpam?', r: 'Pele de vidro (Structural Glazing), vitrines, portas e painéis do chão ao teto, muros e painéis de vidro, janelas e esquadrias, sacadas e envidraçamento de sacada, guarda-corpos de vidro e elevadores panorâmicos.' },
+      { q: 'Que tipos de vidro vocês limpam?', r: 'Pele de vidro (Structural Glazing), vitrines, portas e painéis do chão ao teto, muros e painéis de vidro, janelas e esquadrias, sacadas de vidro e vidros de varanda, guarda-corpos de vidro e elevadores panorâmicos.' },
       { q: 'Fazem limpeza pós-obra de vidros?', r: 'Sim. Tiramos resto de tinta, cimento e poeira de obra do vidro novo, com cuidado pra não riscar.' },
-      { q: 'Vocês têm planos de limpeza recorrente?', r: 'Sim. Trabalhamos com serviço pontual e com contrato periódico: plano semanal, quinzenal, mensal, trimestral ou semestral, conforme a necessidade de cada cliente.' },
-      faqVisita, faqRegiao,
+      faqPlano('vidros'),
+      ...faqFechar, faqVisita, faqRegiao,
     ],
+    seguranca: true,
     fecho: { h: 'Seu vidro, <em>transparente de novo</em>', p: 'Mande uma foto do vidro pelo WhatsApp ou peça uma visita técnica, e receba a proposta sem compromisso.', m: msg('limpeza de vidros') },
   },
   {
     id: 'fachada', slug: 'limpeza-de-fachada-acm', menu: 'Fachada',
     titulo: 'Limpeza de fachada em Curitiba: ACM, pastilha, textura e pedra | Novo Ambiente Service',
-    descricao: 'Limpeza de fachada de ACM, pastilha, textura e pedra em prédios, condomínios e empresas de Curitiba e Região. Orçamento por foto no WhatsApp ou com visita técnica.',
-    foto: { img: 'servico-fachada-acm', pos: '50% 40%', alt: 'Técnico de uniforme limpando a fachada de ACM de um prédio comercial' },
+    descricao: 'Limpeza de fachada de ACM, pastilha, textura e pedra, com muro, grade, portão, rufos e calhas, em casas, prédios, condomínios, empresas e indústrias de Curitiba e Região. Orçamento pelo WhatsApp.',
+    foto: { img: 'servico-fachada-acm', pos: '50% 40%', alt: 'Técnico de uniforme em rapel lavando com jato a fachada de um prédio' },
     h1: 'Limpeza de fachada <em>em Curitiba</em>',
-    sub: 'Poluição, limo e sujeira saem da fachada de ACM, pastilha, textura e pedra, em prédios, condomínios e empresas.',
+    sub: 'Poluição, limo e sujeira saem da fachada de ACM, pastilha, textura e pedra, e também do muro, da grade, do portão e das calhas.',
     pergunta: 'Qual fachada você precisa limpar?',
     linhas: [
       { ico: 'i-fachada', h: 'Fachada de ACM', p: 'Prédios comerciais, lojas e empresas', m: msg('limpeza de fachada de ACM') },
       { ico: 'i-predio', h: 'Pastilha e cerâmica', p: 'Condomínios e prédios residenciais', m: msg('limpeza de fachada de pastilha') },
       { ico: 'i-casa', h: 'Textura e pintura', p: 'Casas, muros e prédios', m: msg('limpeza de fachada de textura') },
       { ico: 'i-pedra', h: 'Pedra e granito', p: 'Fachadas e revestimentos de pedra', m: msg('limpeza de fachada de pedra') },
+      { ico: 'i-portao', h: 'Fachada completa', p: 'Muro, grade, portão, rufos e calhas', m: msg('limpeza da fachada completa, com muro, grade, portão e calhas') },
     ],
     tiposTitulo: 'Cada material <em>pede um cuidado</em>',
     tiposP: 'Fachada de vidro tem página própria, a de <a href="../limpeza-de-vidros/">limpeza de vidros</a>. Aqui ficam os outros revestimentos.',
@@ -84,10 +117,15 @@ export const SERVICOS = [
       { ico: 'i-casa', h: 'Textura e pintura', p: 'Sujeira e fuligem saem da textura de casa, muro e prédio.' },
       { ico: 'i-pedra', h: 'Pedra e granito', p: 'Revestimento de pedra de fachada e de entrada de prédio.' },
     ],
+    /* 17/11, pedido dela: a fachada inteira, não só a alvenaria */
+    completa: { img: 'servico-fachada-casa', pos: '50% 45%', alt: 'Técnico de uniforme lavando com haste e jato a fachada de uma casa, ao lado do portão da garagem',
+      h: 'A fachada inteira, não só a parede', p: 'Quando precisa, lavamos a fachada completa: além do revestimento, o muro, a grade, o portão, os rufos e as calhas. A casa ou o prédio fica limpo por inteiro, e não só a parte de alvenaria.',
+      t: 'Muro · grade · portão · rufos e calhas', l: 'Orçamento da fachada completa', m: msg('limpeza da fachada completa, com muro, grade, portão e calhas') },
     publicosEspecificos: [
       { ico: 'i-predio', h: 'Condomínio', p: 'Fachada limpa valoriza o prédio e é o que o morador e quem passa na rua veem primeiro.', l: 'Orçamento pro condomínio', m: msg('limpeza da fachada do condomínio') },
       { ico: 'i-loja', h: 'Empresa e comércio', p: 'A fachada é a primeira impressão do seu negócio, antes de o cliente entrar.', l: 'Orçamento pra empresa', m: msg('limpeza da fachada da minha empresa') },
-      { ico: 'i-casa', h: 'Casa', p: 'Muro e fachada de textura ou pedra com a cor de volta.', l: 'Orçamento pra casa', m: msg('limpeza da fachada da minha casa') },
+      { ico: 'i-industria', h: 'Indústria', p: 'Fachada de galpão, barracão e prédio industrial, com acesso planejado e data combinada.', l: 'Orçamento pra indústria', m: msg('limpeza da fachada da indústria') },
+      { ico: 'i-casa', h: 'Casa', p: 'Muro, portão e fachada de textura ou pedra com a cor de volta.', l: 'Orçamento pra casa', m: msg('limpeza da fachada da minha casa') },
     ],
     par: { a: 'fachada-acm-suja', d: 'fachada-acm-limpa', larguras: [1000, 1600], alts: ['Fachada de ACM com poluição e limo nas juntas, antes da limpeza', 'A mesma fachada de ACM depois da limpeza'],
       h: 'A mesma fachada, <em>antes e depois</em>', p: 'Poluição e limo saem das juntas e do painel, e a fachada volta a ter a cor de quando foi entregue.' },
@@ -95,16 +133,19 @@ export const SERVICOS = [
     faq: [
       faqOrcamento('limpeza de fachada'),
       { q: 'Que tipos de fachada vocês limpam?', r: 'ACM, pastilha e cerâmica, textura e pintura, pedra e granito. Fachada de vidro e pele de vidro estão na página de limpeza de vidros.' },
-      faqPlano('limpeza de fachada'),
-      faqVisita, faqRegiao,
+      { q: 'Vocês lavam muro, grade, portão e calhas?', r: 'Sim. Quando precisa, lavamos a fachada completa: muro, grade, portão, rufos e calhas, além do revestimento.' },
+      faqPlano('fachada'),
+      ...faqFechar, faqVisita, faqRegiao,
     ],
+    seguranca: true,
     fecho: { h: 'Sua fachada, <em>com a cor de volta</em>', p: 'Mande uma foto da fachada pelo WhatsApp ou peça uma visita técnica, e receba a proposta sem compromisso.', m: msg('limpeza de fachada') },
   },
   {
     id: 'placa-solar', slug: 'limpeza-de-placa-solar', menu: 'Placa solar',
     titulo: 'Limpeza de placa solar em Curitiba | Novo Ambiente Service',
     descricao: 'Limpeza de placa solar e painel solar em casas, comércios e indústrias de Curitiba e Região, sem riscar o vidro. Pontual ou com plano. Orçamento pelo WhatsApp.',
-    foto: { img: 'servico-placa-solar', pos: '50% 55%', alt: 'Técnico de uniforme limpando placas solares no telhado de uma casa' },
+    foto: { img: 'servico-placa-solar', pos: '45% 50%', alt: 'Técnico de uniforme, capacete e cinto limpando com rodo as placas solares no telhado de um galpão' },
+    iguais: true, /* 17/11, pedido dela: os dois cartões com botão e texto do mesmo tamanho */
     h1: 'Limpeza de placa solar <em>em Curitiba</em>',
     sub: 'Poeira, barro e sujeira de pássaro saem da placa de casas, comércios e indústrias, sem riscar o vidro.',
     pergunta: 'Onde ficam as suas placas?',
@@ -119,7 +160,7 @@ export const SERVICOS = [
       { img: 'solar-residencial-limpo-1000', pos: '50% 50%', alt: 'Placas solares limpas no telhado de um sobrado, com araucárias ao fundo', wide: true,
         h: 'Casas e sobrados', p: 'Placas no telhado de casa e sobrado, limpas sem riscar o vidro.',
         t: 'Placa solar residencial · painel solar em telhado', l: 'Orçamento pra casa', m: msg('limpeza de placa solar pra minha casa') },
-      { img: 'solar-industrial-limpo-1000', pos: '50% 50%', alt: 'Placas solares limpas no telhado de um galpão industrial', wide: true,
+      { img: 'solar-galpao-1000', pos: '50% 50%', alt: 'Técnico de uniforme limpando com rodo as placas solares no telhado de um galpão', wide: true,
         h: 'Comércios, condomínios e indústrias', p: 'Telhados grandes, com muitas placas, em empresas, condomínios e galpões.',
         t: 'Placa solar comercial · painel solar industrial · galpões', l: 'Orçamento pra empresa ou indústria', m: msg('limpeza de placa solar pra minha empresa') },
     ],
@@ -136,8 +177,8 @@ export const SERVICOS = [
       faqOrcamento('limpeza de placa solar'),
       { q: 'De quanto em quanto tempo devo limpar a placa solar?', r: 'Depende do lugar: perto de estrada de terra, árvore, obra ou indústria, a placa suja mais rápido. Na visita técnica avaliamos e indicamos a frequência certa pras suas placas.' },
       { q: 'A limpeza risca a placa?', r: 'Não. A limpeza é feita com cuidado pra não riscar o vidro da placa.' },
-      faqPlano('limpeza de placa solar'),
-      faqVisita, faqRegiao,
+      faqPlano('placa solar'),
+      ...faqFechar, faqVisita, faqRegiao,
     ],
     fecho: { h: 'Sua placa, <em>recebendo o sol inteiro</em>', p: 'Mande uma foto das placas pelo WhatsApp ou peça uma visita técnica, e receba a proposta sem compromisso.', m: msg('limpeza de placa solar') },
   },
@@ -145,7 +186,7 @@ export const SERVICOS = [
     id: 'piso', slug: 'limpeza-de-piso', menu: 'Piso',
     titulo: 'Limpeza de piso e pedras em Curitiba | Novo Ambiente Service',
     descricao: 'Limpeza de pisos, pedras e áreas externas de condomínios, empresas e casas em Curitiba e Região. Orçamento por foto no WhatsApp ou com visita técnica.',
-    foto: { img: 'servico-piso', pos: '50% 60%', alt: 'Técnico de uniforme lavando o piso de pedra da área externa de um condomínio' },
+    foto: { img: 'servico-piso', pos: '50% 50%', alt: 'Técnico de uniforme limpando com enceradeira o piso de pedra da área externa de um condomínio' },
     h1: 'Limpeza de piso <em>em Curitiba</em>',
     sub: 'Pisos, pedras e áreas externas de condomínios, empresas e casas, com o encardido e o limo fora.',
     pergunta: 'Que piso você precisa limpar?',
@@ -172,8 +213,8 @@ export const SERVICOS = [
     faq: [
       faqOrcamento('limpeza de piso'),
       { q: 'Que tipos de piso vocês limpam?', r: 'Pisos e pedras de áreas externas, áreas comuns de condomínio, empresas, lojas e casas. Mande uma foto que confirmamos.' },
-      faqPlano('limpeza de piso'),
-      faqVisita, faqRegiao,
+      faqPlano('piso'),
+      ...faqFechar, faqVisita, faqRegiao,
     ],
     fecho: { h: 'Seu piso, <em>limpo de novo</em>', p: 'Mande uma foto do piso pelo WhatsApp ou peça uma visita técnica, e receba a proposta sem compromisso.', m: msg('limpeza de piso') },
   },

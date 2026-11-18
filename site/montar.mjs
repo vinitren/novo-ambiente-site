@@ -7,9 +7,9 @@ import { cpSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } f
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { wa, seta, ico, ext, publicos, passos, tambem, MSG, icones, planos, fotoRodo } from '../estilos/conteudo.mjs';
-import { entradaPainel, barraFixa } from '../estilos-b/montar.mjs';
+import { painel, barraFixa } from '../estilos-b/montar.mjs';
 import { corpoCartoes, iconesNovos } from '../estilos-b/corpos.mjs';
-import { SERVICOS, CONTATO } from './paginas.mjs';
+import { SERVICOS, CONTATO, SEGURANCA, ELOGIOS } from './paginas.mjs';
 
 const aqui = dirname(fileURLToPath(import.meta.url));
 const raiz = join(aqui, '..');
@@ -22,6 +22,9 @@ const iconesSite = `<svg width="0" height="0" style="position:absolute" aria-hid
   <symbol id="i-pedra" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3 20.5h18M4.5 20.5l2-7 4-2.5 3.5 1.5 3 4 1.5 4"/><path d="m10.5 11-1-4.5 3.5-3 4 2.5-1 5.5-2.5 1"/></g></symbol>
   <symbol id="i-email" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3.5 5.5h17v13h-17z"/><path d="m3.5 6 8.5 7 8.5-7"/></g></symbol>
   <symbol id="i-insta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></g></symbol>
+  <symbol id="i-portao" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M2.5 21h19M4 21V6.5M20 21V6.5M3 6.5h3M18 6.5h3"/><path d="M6.5 9h11M6.5 18h11M8.5 9v9M11 9v9M13.5 9v9M16 9v9"/></g></symbol>
+  <symbol id="i-industria" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M2.5 21h19M3.5 21V11l5 3v-3l5 3v-3l5 3V21"/><path d="M17 12.7V3.5h2.5V14"/><path d="M6.5 17.5h2M11 17.5h2M15.5 17.5h2"/></g></symbol>
+  <symbol id="i-corda" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2.5v6"/><path d="M9.5 8.5h5l-.8 4h-3.4z"/><path d="M12 12.5c0 2-2.5 2.5-2.5 4.5s2.5 2.5 2.5 4.5"/><path d="M8 8.5a4 4 0 0 1 8 0"/></g></symbol>
   <symbol id="i-mapa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></g></symbol>
 </svg>`;
 
@@ -133,18 +136,77 @@ const linha = (p, l, i) => `<li><a class="eb-linha${i === 0 ? ' eb-linha-princip
           <span class="eb-linha-texto"><strong>${l.h}</strong><small>${l.p}</small></span>${seta}
         </a></li>`;
 
+/* ---------------------------------------------------------------- os blocos novos (17/11) */
+const seguranca = () => `<section class="secao sv-seguranca" aria-labelledby="t-seguranca">
+  <div class="wrap">
+    <div class="b-cabeca">
+      <h2 id="t-seguranca">${SEGURANCA.h}</h2>
+      <p>${SEGURANCA.p}</p>
+    </div>
+    <ul class="b-cartoes-3">
+      ${SEGURANCA.itens.map((c) => `<li class="b-cartao"><span class="b-bolinha">${ico(c.ico)}</span><h3>${c.h}</h3><p>${c.p}</p></li>`).join('\n      ')}
+    </ul>
+  </div>
+</section>
+`;
+const elogios = () => `<section class="secao sv-elogios" aria-labelledby="t-elogios">
+  <div class="wrap">
+    <div class="b-cabeca">
+      <h2 id="t-elogios">${ELOGIOS.h}</h2>
+      <p>${ELOGIOS.p}</p>
+    </div>
+    <ul class="b-cartoes-3">
+      ${ELOGIOS.itens.map((t) => `<li class="b-cartao"><figure><span class="sv-estrelas" role="img" aria-label="5 estrelas">★★★★★</span><blockquote><p>${t}</p></blockquote><figcaption>Avaliação no Google</figcaption></figure></li>`).join('\n      ')}
+    </ul>
+  </div>
+</section>
+`;
+
 /* ---------------------------------------------------------------- home */
+/* 17/11: o topo passa a ser a vitrine (pedido do Lucas). A foto deles é em pé (1024x1536): no celular ela entra
+   inteira; no computador a entrada fica como a das páginas de serviço, título e painel na estampa e a foto na
+   outra metade, sem espelhar (tem a logo nas costas). O subtítulo é o dela (1a frase); a 2a abre a seção de vidros */
+const SUB_HOME = 'Do térreo às grandes alturas: limpeza especializada de vidros residenciais, vitrines e fachadas de vidro.';
+const INTRO_VIDROS = 'Atendemos locais de difícil acesso com técnicas de rapel e extensores, além da remoção de resíduos de obra em superfícies de vidro. Da sacada à pele de vidro de um prédio comercial, em Curitiba e na Região Metropolitana, com orçamento por foto ou visita técnica presencial.';
+const ALT_VITRINE = 'Técnico da Novo Ambiente, de costas, limpando com haste e rodo a vitrine de uma loja de roupas';
+const entradaHome = (p) => `<section class="entrada" aria-labelledby="t-entrada" style="--pos: 45% 30%">
+  <picture class="entrada-foto">
+    <img src="${p}img/entrada-vitrine-1080.webp" srcset="${p}img/entrada-vitrine-750.webp 750w, ${p}img/entrada-vitrine-1080.webp 1024w" sizes="(min-width: 62rem) 50vw, 100vw" width="1024" height="1536" alt="${ALT_VITRINE}" fetchpriority="high">
+  </picture>
+  <div class="entrada-veu"></div>
+  <div class="wrap entrada-texto eb-entrada">
+    <div class="eb-titulo">
+      <h1 id="t-entrada">Limpeza de vidros <em>em Curitiba</em></h1>
+      <p>${SUB_HOME}</p>
+    </div>
+    <nav class="eb-painel" aria-labelledby="t-painel">
+      <h2 id="t-painel">O que você precisa limpar?</h2>
+      <p class="eb-painel-sub">Toque no serviço e a conversa abre no WhatsApp com a mensagem pronta.</p>
+      <ul>
+        ${painel.map((s, i) => `<li><a class="eb-linha${i === 0 ? ' eb-linha-principal' : ''}" style="--i: ${i}" href="${wa(s.m)}" data-servico="${s.id}" ${ext}>
+          <span class="eb-mini"><img src="${p}img/mini-${s.mini}-160.webp" srcset="${p}img/mini-${s.mini}-160.webp 160w, ${p}img/mini-${s.mini}-320.webp 320w" sizes="3.5rem" width="160" height="160" alt=""></span>
+          <span class="eb-linha-texto"><strong>${s.h}</strong><small>${s.p}</small></span>${seta}
+        </a></li>`).join('\n        ')}
+      </ul>
+      <p class="eb-ligar">Outro serviço? <a href="${wa(MSG.topo)}" data-servico="outro" ${ext}>Chame no WhatsApp</a></p>
+    </nav>
+  </div>
+</section>`;
+
 function home() {
   const p = '';
-  const preload = `<link rel="preload" as="image" imagesrcset="img/entrada-rapel-1600.webp 1600w, img/entrada-rapel-2560.webp 2560w" imagesizes="100vw" media="(min-width: 48rem)" fetchpriority="high">
-<link rel="preload" as="image" imagesrcset="img/entrada-rapel-cel-750.webp 750w, img/entrada-rapel-cel-1080.webp 1080w" imagesizes="100vw" media="(max-width: 47.99rem)" fetchpriority="high">`;
+  const preload = `<link rel="preload" as="image" imagesrcset="img/entrada-vitrine-750.webp 750w, img/entrada-vitrine-1080.webp 1024w" imagesizes="(min-width: 62rem) 50vw, 100vw" fetchpriority="high">`;
+  const corpo = corpoCartoes(p, rotas(p));
+  const vidrosP = /(<h2 id="t-vidros">[\s\S]*?<\/h2>\s*<p>)[\s\S]*?(<\/p>)/;
+  if (!vidrosP.test(corpo) || !corpo.includes('<section class="secao b-passos"')) throw new Error('home: o corpo mudou, conferir os encaixes de 17/11');
+  const corpoNovo = corpo.replace(vidrosP, `$1${INTRO_VIDROS}$2`).replace('<section class="secao b-passos"', `${elogios()}<section class="secao b-passos"`);
   return cabeca(p, {
     titulo: 'Limpeza de Vidros em Curitiba e Região | Novo Ambiente Service',
     descricao: 'Limpeza de vidros em Curitiba: vidros em altura com rapel, fachadas de vidro, vitrines, sacadas e pós-obra. Também fachada, placa solar e piso. Orçamento pelo WhatsApp.',
-    url: '/', classe: 'eb-painel-home', preload,
+    url: '/', classe: 'eb-painel-home sv-home', preload,
   }) + topo(p, 'inicio') + `<main id="conteudo">
-${entradaPainel(p)}
-${corpoCartoes(p, rotas(p))}
+${entradaHome(p)}
+${corpoNovo}
 </main>
 ` + rodape(p) + barraFixa() + '\n' + scripts(p);
 }
@@ -164,7 +226,7 @@ function servico(s) {
     provider: { '@id': `${DOMINIO}/#empresa` }, areaServed: EMPRESA.areaServed };
 
   const tipos = s.tipos ? `<ul class="b-servicos" data-anima>
-      ${s.tipos.map((t, i) => `<li class="b-cartao b-servico${i === 0 ? ' b-servico-grande' : ''}" style="--i: ${i}">
+      ${s.tipos.map((t, i) => { const grande = i === 0 && !s.iguais; return `<li class="b-cartao b-servico${grande ? ' b-servico-grande' : ''}" style="--i: ${i}">
         <figure>${t.wide
           ? `<img class="largo" src="${p}img/${t.img}.webp" srcset="${p}img/${t.img}.webp 1000w, ${p}img/${t.img.replace('-1000', '-1600')}.webp 1600w" sizes="(min-width: 62rem) 50vw, 100vw" alt="${t.alt}" width="1000" height="563" loading="lazy" decoding="async" style="object-position: ${t.pos}">`
           : `<img src="${p}img/${t.img}.webp" alt="${t.alt}" width="1000" height="1250" loading="lazy" decoding="async" style="object-position: ${t.pos}">`}</figure>
@@ -172,13 +234,22 @@ function servico(s) {
           <h3>${t.h}</h3>
           <p>${t.p}</p>
           <p class="termos">${t.t}</p>
-          <a class="${i === 0 ? 'botao botao-azul' : 'link-seta'}" href="${wa(t.m)}" ${ext}>${t.l}${seta}</a>
+          <a class="${grande || s.iguais ? 'botao botao-azul' : 'link-seta'}" href="${wa(t.m)}" ${ext}>${t.l}${seta}</a>
         </div>
-      </li>`).join('\n      ')}
+      </li>`; }).join('\n      ')}
     </ul>` : `<ul class="sv-cartoes-4" data-anima>
       ${s.icones.map((c, i) => `<li class="b-cartao" style="--i: ${i}"><span class="b-bolinha">${ico(c.ico)}</span><h3>${c.h}</h3><p>${c.p}</p></li>`).join('\n      ')}
-    </ul>
-    <div class="b-centro sv-cta"><a class="botao botao-azul" href="${wa(s.fecho.m)}" ${ext}>Pedir orçamento no WhatsApp${seta}</a></div>`;
+    </ul>${s.completa ? `
+    <div class="b-cartao b-servico b-servico-grande sv-completa">
+      <figure><img src="${p}img/${s.completa.img}.webp" alt="${s.completa.alt}" width="1000" height="1250" loading="lazy" decoding="async" style="object-position: ${s.completa.pos}"></figure>
+      <div class="b-servico-texto">
+        <h3>${s.completa.h}</h3>
+        <p>${s.completa.p}</p>
+        <p class="termos">${s.completa.t}</p>
+        <a class="botao botao-azul" href="${wa(s.completa.m)}" ${ext}>${s.completa.l}${seta}</a>
+      </div>
+    </div>` : `
+    <div class="b-centro sv-cta"><a class="botao botao-azul" href="${wa(s.fecho.m)}" ${ext}>Pedir orçamento no WhatsApp${seta}</a></div>`}`;
 
   const quem = s.publicos ? publicos : s.publicosEspecificos;
   const par = s.par ? `<section class="secao b-par" aria-labelledby="t-ba">
@@ -240,7 +311,7 @@ function servico(s) {
 <section class="secao b-quem" aria-labelledby="t-quem">
   <div class="wrap">
     <div class="b-cabeca"><h2 id="t-quem">Pra quem <em>limpamos</em></h2></div>
-    <div class="b-cartoes-3">
+    <div class="b-cartoes-3${quem.length === 4 ? ' sv-quem-4' : ''}">
       ${quem.map((q) => `<article class="b-cartao">
         <span class="b-bolinha">${ico(q.ico)}</span>
         <h3>${q.h}</h3>
@@ -251,7 +322,7 @@ function servico(s) {
   </div>
 </section>
 
-${par}<section class="secao b-passos" aria-labelledby="t-passos">
+${s.seguranca ? seguranca() : ''}${par}${elogios()}<section class="secao b-passos" aria-labelledby="t-passos">
   <div class="wrap">
     <div class="b-cabeca"><h2 id="t-passos">Como <em>funciona</em></h2></div>
     <ol class="b-trilha" data-anima>

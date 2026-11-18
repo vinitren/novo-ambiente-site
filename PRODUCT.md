@@ -95,8 +95,9 @@ da busca.
 - **Afirmável hoje:** visita técnica presencial pra avaliar e montar proposta personalizada; serviço pontual e contrato periódico (semanal, quinzenal, mensal, trimestral, semestral). Pedido deles em 10/11 (`trentini/clientes/Novo-Ambiente-Service/dados/retorno-previa-6-esposa-lucas-10-11.md`)
 - **Tempo de mercado: não aparece** (pedido deles, 10/11)
 - **Termos que saíram a pedido deles (10/11):** marca ou mancha de chuva, "envidraçamento de fachada" e "fachadas envidraçadas". "Cortina de vidro" aparece uma vez só. Fachada de vidro é "limpeza interna e externa"
-- **Não afirmar até chegar:** NR-35, seguro, ART, número de obras, clientes,
-  avaliações. O lugar das credenciais fica reservado
+- **Chegou em 17/11 (resposta dela, `trentini/clientes/Novo-Ambiente-Service/dados/retorno-site-esposa-lucas-17-11.md`):** o Lucas tem NR-35; o rapel é feito por **parceiros** com IRATA N1 ou N2 e NR-35 (nunca escrever "nossa equipe tem IRATA"); a empresa tem PGR, PCMSO e LTCAT; APR e OS por obra, à parte. Pagamento (Pix, dinheiro, débito, crédito à vista ou parcelado com taxa, boleto só pra empresa, cartão por link), fim de semana com agendamento, nota fiscal. Nota 4,8 com 16 avaliações no Google (15/11) e 3 elogios usados no site
+- **Nunca afirmar:** seguro, ART (não têm), número de obras, clientes
+- **"Envidraçamento de sacada" saiu (17/11, pedido dela):** lembra instalador. No lugar, "limpeza de sacada de vidro" e "vidros de varanda"
 - **Imagens:** as cenas da equipe que eles mandaram em 30/10 (001 a 008) são
   **geradas por IA**, não fotos de obra. Servem como cena, nunca como prova.
   Antes e depois de IA sem etiqueta na página (decisão do Vinicius em 07/11); a origem fica registrada no `.json` de cada imagem
