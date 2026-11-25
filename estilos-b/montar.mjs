@@ -27,7 +27,7 @@ export const painel = [
   { id: 'vidros', mini: 'vitrine', h: 'Vidros e janelas', p: 'Vitrine, janela alta, pé-direito alto, fachada de vidro', m: MSG.janelas, alt: 'Vitrine de loja sendo limpa com rodo' },
   { id: 'fachada', mini: 'fachada-acm', h: 'Fachada', p: 'ACM, pastilha, textura e pedra', m: msgDe('fachada'), alt: 'Técnico limpando fachada de ACM' },
   { id: 'placa-solar', mini: 'placa-solar', h: 'Placa solar', p: 'Casa, comércio e indústria', m: msgDe('placa-solar'), alt: 'Técnico limpando placas solares no telhado' },
-  { id: 'piso', mini: 'piso', h: 'Piso', p: 'Pisos, pedras e áreas externas', m: msgDe('piso'), alt: 'Técnico lavando piso de pedra' },
+  { id: 'piso', mini: 'piso', h: 'Piso', p: 'Pisos internos e externos e pedras', m: msgDe('piso'), alt: 'Técnico lavando piso de pedra' },
 ];
 
 /* ---------- as duas entradas ---------- */

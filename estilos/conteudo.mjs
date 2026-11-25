@@ -56,7 +56,7 @@ export const passos = [
 export const tambem = [
   { id: 'fachada', ico: 'i-fachada', h: 'Fachada', p: 'ACM, pastilha, textura e pedra em prédios e empresas.', m: 'Olá! Vim pelo site e quero um orçamento de limpeza de fachada.' },
   { id: 'placa-solar', ico: 'i-solar', h: 'Placa solar', p: 'Placas de casas, comércios e indústrias, sem riscar o vidro.', m: 'Olá! Vim pelo site e quero um orçamento de limpeza de placa solar.' },
-  { id: 'piso', ico: 'i-piso', h: 'Piso', p: 'Pisos, pedras e áreas externas de condomínios, empresas e casas.', m: 'Olá! Vim pelo site e quero um orçamento de limpeza de piso.' },
+  { id: 'piso', ico: 'i-piso', h: 'Piso', p: 'Pisos internos e externos, pedras e áreas de lazer de condomínios, empresas e casas.', m: 'Olá! Vim pelo site e quero um orçamento de limpeza de piso.' },
 ];
 
 export const T = {

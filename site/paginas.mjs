@@ -7,7 +7,8 @@
 const msg = (s) => `Olá! Vim pelo site da Novo Ambiente e quero um orçamento de ${s}.`;
 
 /* as perguntas que valem para qualquer serviço */
-const faqOrcamento = (o) => ({ q: `Como peço um orçamento de ${o}?`, r: 'Pelo WhatsApp (41) 99779-9646. Uma foto e o endereço já bastam para começar, e o orçamento é sem compromisso. Se preferir, marcamos uma visita técnica presencial.' });
+/* 25/11, pedido dela: a resposta de "Como peço um orçamento" muda por serviço (o que mandar junto com a foto) */
+const faqOrcamento = (o, pedir) => ({ q: `Como peço um orçamento de ${o}?`, r: `Entre em contato pelo WhatsApp (41) 99779-9646, ${pedir}` });
 const faqRegiao = { q: 'Vocês atendem fora de Curitiba?', r: 'Sim. Atendemos Curitiba e a Região Metropolitana. Mande o endereço pelo WhatsApp e confirmamos.' };
 const faqVisita = { q: 'Vocês fazem visita técnica?', r: 'Sim. Fazemos visita técnica presencial para avaliar o serviço e montar uma proposta personalizada.' };
 /* 17/11, pedido dela: "Vocês fazem limpezas periódicas de ..." no lugar de "... com contrato" */
@@ -25,9 +26,10 @@ export const SEGURANCA = {
   h: 'Trabalho em altura <em>com segurança</em>',
   p: 'Treinamento, certificação e documentação de quem trabalha em altura.',
   itens: [
-    { ico: 'i-altura', h: 'NR-35', p: 'O Lucas tem o treinamento da NR-35, a norma de trabalho em altura, e os parceiros que fazem o rapel também.' },
-    { ico: 'i-corda', h: 'Rapel com IRATA', p: 'Nos serviços de rapel, os técnicos têm certificação IRATA (nível 1 ou 2) e NR-35.' },
-    { ico: 'i-proposta', h: 'Documentação', p: 'A empresa tem PGR, PCMSO e LTCAT. Quando o serviço pede, fazemos a APR (análise preliminar de risco) e a OS (ordem de serviço) do cliente, com valor à parte.' },
+    /* 25/11: os três textos como ela mandou */
+    { ico: 'i-altura', h: 'NR-35', p: 'Profissionais capacitados conforme a NR-35 para execução segura de serviços em altura.' },
+    { ico: 'i-corda', h: 'Rapel com IRATA', p: 'Profissionais certificados IRATA nível 1 ou 2 para serviços de acesso por cordas.' },
+    { ico: 'i-proposta', h: 'Documentação', p: 'Possuímos PGR, PCMSO e LTCAT. APR e OS podem ser elaboradas mediante solicitação e custo adicional.' },
   ],
 };
 
@@ -92,7 +94,7 @@ export const SERVICOS = [
     planos: { m: 'Olá! Vim pelo site da Novo Ambiente e quero saber dos planos de limpeza de vidros.' },
     botaoFoto: 'Mandar foto do vidro', mFoto: 'Olá! Vim pelo site da Novo Ambiente. Vou mandar uma foto do vidro para vocês me passarem o orçamento.',
     faq: [
-      faqOrcamento('limpeza de vidros'),
+      faqOrcamento('limpeza de vidros', 'envie imagens dos vidros, informe o bairro e uma breve descrição do serviço.'),
       { q: 'Vocês limpam vidros em altura e de difícil acesso?', r: 'Sim. Vidros altos, fachadas de vidro, átrios e vidros de pé-direito alto são limpos com rapel, onde escada e haste não chegam.' },
       { q: 'Que tipos de vidro vocês limpam?', r: 'Pele de vidro (Structural Glazing), vitrines, portas e painéis do chão ao teto, muros e painéis de vidro, janelas e esquadrias, sacadas de vidro e vidros de varanda, guarda-corpos de vidro e elevadores panorâmicos.' },
       { q: 'Fazem limpeza pós-obra de vidros?', r: 'Sim. Tiramos resto de tinta, cimento e poeira de obra do vidro novo, com cuidado para não riscar.' },
@@ -105,30 +107,31 @@ export const SERVICOS = [
   {
     id: 'fachada', slug: 'limpeza-de-fachada-acm', menu: 'Fachada',
     titulo: 'Limpeza de fachada em Curitiba: ACM, pastilha, textura e pedra | Novo Ambiente Service',
-    descricao: 'Limpeza de fachada de ACM, pastilha, textura e pedra, com muro, grade, portão, rufos e calhas, em casas, prédios, condomínios, empresas e indústrias de Curitiba e Região. Orçamento pelo WhatsApp.',
+    descricao: 'Limpeza de fachada de ACM, pastilha, textura e pedra, com muro, grade, portão, rufos, calhas e telhado, em casas, prédios, condomínios, empresas e indústrias de Curitiba e Região. Orçamento pelo WhatsApp.',
     foto: { img: 'servico-fachada-acm', pos: '50% 40%', alt: 'Técnico de uniforme em rapel lavando com jato a fachada de um prédio' },
     h1: 'Limpeza de fachada <em>em Curitiba</em>',
-    sub: 'Poluição, limo e sujeira saem da fachada de ACM, pastilha, textura e pedra, e também do muro, da grade, do portão e das calhas.',
+    /* 25/11, pedido dela: telhado junto com muro, grade, portão, rufos e calhas, em todo lugar que cita a fachada completa */
+    sub: 'Poluição, limo e sujeira saem da fachada de ACM, pastilha, textura e pedra, e também do muro, da grade, do portão, das calhas e do telhado.',
     pergunta: 'Qual fachada você precisa limpar?',
     linhas: [
       { mini: 'f-acm', h: 'Fachada de ACM', p: 'Prédios comerciais, lojas e empresas', m: msg('limpeza de fachada de ACM') },
       { mini: 'f-pastilha', h: 'Pastilha e cerâmica', p: 'Condomínios e prédios residenciais', m: msg('limpeza de fachada de pastilha') },
       { mini: 'f-textura', h: 'Textura e pintura', p: 'Casas, muros e prédios', m: msg('limpeza de fachada de textura') },
       { mini: 'f-pedra', h: 'Pedra e granito', p: 'Fachadas e revestimentos de pedra', m: msg('limpeza de fachada de pedra') },
-      { mini: 'f-completa', h: 'Fachada completa', p: 'Muro, grade, portão, rufos e calhas', m: msg('limpeza da fachada completa, com muro, grade, portão e calhas') },
+      { mini: 'f-completa', h: 'Fachada completa', p: 'Muro, grade, portão, calhas e telhado', m: msg('limpeza da fachada completa, com muro, grade, portão, calhas e telhado') },
     ],
     tiposTitulo: 'Cada material <em>pede um cuidado</em>',
     tiposP: 'Fachada de vidro tem página própria, a de <a href="../limpeza-de-vidros/">limpeza de vidros</a>. Aqui ficam os outros revestimentos.',
     icones: [
       { ico: 'i-fachada', h: 'ACM', p: 'Painel de alumínio composto de prédio comercial e loja, sem riscar a pintura do painel.' },
-      { ico: 'i-predio', h: 'Pastilha e cerâmica', p: 'Rejunte escuro e limo saem da pastilha de condomínio e prédio residencial.' },
+      { ico: 'i-predio', h: 'Pastilha e cerâmica', p: 'Musgo e limo saem da pastilha de condomínio e prédio residencial.' },
       { ico: 'i-casa', h: 'Textura e pintura', p: 'Sujeira e fuligem saem da textura de casa, muro e prédio.' },
       { ico: 'i-pedra', h: 'Pedra e granito', p: 'Revestimento de pedra de fachada e de entrada de prédio.' },
     ],
     /* 17/11, pedido dela: a fachada inteira, não só a alvenaria */
     completa: { img: 'servico-fachada-casa', pos: '50% 45%', alt: 'Técnico de uniforme lavando com haste e jato a fachada de uma casa, ao lado do portão da garagem',
-      h: 'A fachada inteira, não só a parede', p: 'Quando é preciso, lavamos a fachada completa: além do revestimento, o muro, a grade, o portão, os rufos e as calhas. A casa ou o prédio fica limpo por inteiro, e não só a parte de alvenaria.',
-      t: 'Muro · grade · portão · rufos e calhas', l: 'Orçamento da fachada completa', m: msg('limpeza da fachada completa, com muro, grade, portão e calhas') },
+      h: 'A fachada inteira, não só a parede', p: 'Quando é preciso, lavamos a fachada completa: além do revestimento, o muro, a grade, o portão, os rufos, as calhas e o telhado. A casa ou o prédio fica limpo por inteiro, e não só a parte de alvenaria.',
+      t: 'Muro · grade · portão · rufos e calhas · telhado', l: 'Orçamento da fachada completa', m: msg('limpeza da fachada completa, com muro, grade, portão, calhas e telhado') },
     publicosEspecificos: [
       { ico: 'i-predio', h: 'Condomínio', p: 'Fachada limpa valoriza o prédio e é o que o morador e quem passa na rua veem primeiro.', l: 'Orçamento para o condomínio', m: msg('limpeza da fachada do condomínio') },
       { ico: 'i-loja', h: 'Empresa e comércio', p: 'A fachada é a primeira impressão do seu negócio, antes de o cliente entrar.', l: 'Orçamento para empresa', m: msg('limpeza da fachada da minha empresa') },
@@ -139,9 +142,9 @@ export const SERVICOS = [
       h: 'A mesma fachada, <em>antes e depois</em>', p: 'Poluição e limo saem das juntas e do painel, e a fachada volta a ter a cor de quando foi entregue.' },
     botaoFoto: 'Mandar foto da fachada', mFoto: 'Olá! Vim pelo site da Novo Ambiente. Vou mandar uma foto da fachada para vocês me passarem o orçamento.',
     faq: [
-      faqOrcamento('limpeza de fachada'),
+      faqOrcamento('limpeza de fachada', 'envie imagens da fachada, informe o bairro e uma breve descrição do serviço.'),
       { q: 'Que tipos de fachada vocês limpam?', r: 'ACM, pastilha e cerâmica, textura e pintura, pedra e granito. Fachada de vidro e pele de vidro estão na página de limpeza de vidros.' },
-      { q: 'Vocês lavam muro, grade, portão e calhas?', r: 'Sim. Quando é preciso, lavamos a fachada completa: muro, grade, portão, rufos e calhas, além do revestimento.' },
+      { q: 'Vocês lavam muro, grade, portão, calhas e telhado?', r: 'Sim. Quando é preciso, lavamos a fachada completa: muro, grade, portão, rufos, calhas e telhado, além do revestimento.' },
       faqPlano('fachada'),
       ...faqFechar, faqVisita, faqRegiao,
     ],
@@ -155,7 +158,7 @@ export const SERVICOS = [
     foto: { img: 'servico-placa-solar', pos: '45% 50%', alt: 'Técnico de uniforme, capacete e cinto limpando com rodo as placas solares no telhado de um galpão' },
     iguais: true, /* 17/11, pedido dela: os dois cartões com botão e texto do mesmo tamanho */
     h1: 'Limpeza de placa solar <em>em Curitiba</em>',
-    sub: 'Poeira, barro e sujeira de pássaro saem da placa de casas, comércios e indústrias, sem riscar o vidro.',
+    sub: 'Poluição e dejetos de pássaros saem da placa de casas, comércios e indústrias, sem riscar o vidro.',
     pergunta: 'Onde ficam as suas placas?',
     linhas: [
       { mini: 'solar-casa', h: 'Casa', p: 'Placas no telhado de casa e sobrado', m: msg('limpeza de placa solar para minha casa') },
@@ -163,12 +166,12 @@ export const SERVICOS = [
       { mini: 'solar-industria', h: 'Indústria e galpão', p: 'Telhados grandes e muitas placas', m: msg('limpeza de placa solar em indústria ou galpão') },
     ],
     tiposTitulo: 'Placa suja <em>gera menos</em>',
-    tiposP: 'A sujeira em cima do vidro tira luz da placa. Limpa, ela volta a receber o sol inteiro.',
+    tiposP: 'Painéis fotovoltaicos limpos geram mais energia. O acúmulo de sujeira reduz a eficiência da geração solar.', /* 25/11, texto dela */
     tipos: [
       { img: 'solar-residencial-limpo-1000', pos: '50% 50%', alt: 'Placas solares limpas no telhado de um sobrado, com araucárias ao fundo', wide: true,
         h: 'Casas e sobrados', p: 'Placas no telhado de casa e sobrado, limpas sem riscar o vidro. Você não precisa subir no telhado: mande uma foto das placas e combinamos o dia.',
         t: 'Placa solar residencial · painel solar em telhado', l: 'Orçamento para casa', m: msg('limpeza de placa solar para minha casa') },
-      { img: 'solar-galpao-1000', pos: '50% 50%', alt: 'Técnico de uniforme limpando com rodo as placas solares no telhado de um galpão', wide: true,
+      { img: 'solar-galpao-1000', pos: '50% 50%', alt: 'Técnico de uniforme limpando com uma escova dupla as placas solares no telhado de um galpão', wide: true,
         h: 'Comércios, condomínios e indústrias', p: 'Telhados grandes, com muitas placas, em empresas, condomínios e galpões. Quanto mais placas, mais energia a sujeira tira todo mês. Dia e acesso são combinados com a administração.',
         t: 'Placa solar comercial · painel solar industrial · galpões', l: 'Orçamento para empresa ou indústria', m: msg('limpeza de placa solar para minha empresa') },
     ],
@@ -186,7 +189,7 @@ export const SERVICOS = [
       sozinho: { h: 'Por que não limpar sozinho', p: 'Subir no telhado sem equipamento é arriscado, e escova ou produto errado pode riscar o vidro da placa. Nós subimos com equipamento de segurança e limpamos com cuidado para não riscar.' },
     },
     par: { a: 'solar-residencial-sujo', d: 'solar-residencial-limpo', larguras: [1000, 1600], alts: ['Placas solares de uma casa com poeira, barro e sujeira de pássaro, antes da limpeza', 'As mesmas placas solares depois da limpeza'],
-      h: 'A mesma placa, <em>antes e depois</em>', p: 'Poeira, barro e sujeira de pássaro saem, e o vidro da placa volta a receber o sol inteiro.' },
+      h: 'A mesma placa, <em>antes e depois</em>', p: 'Poluição e dejetos de pássaros saem, e o vidro da placa volta a receber o sol inteiro.' }, /* 25/11: ela escreveu "destritos"; dejetos é o sentido */
     publicosEspecificos: [
       { ico: 'i-casa', h: 'Casa', p: 'Quem investiu na placa quer que ela gere o que prometeu na conta de luz.', r: 'Placa limpa sem ninguém da família subir no telhado.', l: 'Orçamento para casa', m: msg('limpeza de placa solar para minha casa') },
       { ico: 'i-loja', h: 'Comércio e condomínio', p: 'Placas em loja, escritório e prédio, limpas no dia combinado.', r: 'Limpeza pontual ou com plano, no dia e no horário que não atrapalham.', l: 'Orçamento para empresa', m: msg('limpeza de placa solar para minha empresa') },
@@ -196,7 +199,7 @@ export const SERVICOS = [
     planos: { m: 'Olá! Vim pelo site da Novo Ambiente e quero saber dos planos de limpeza de placa solar.' },
     botaoFoto: 'Mandar foto das placas', mFoto: 'Olá! Vim pelo site da Novo Ambiente. Vou mandar uma foto das placas solares para vocês me passarem o orçamento.',
     faq: [
-      faqOrcamento('limpeza de placa solar'),
+      faqOrcamento('limpeza de placa solar', 'envie imagens do local e informe a quantidade de placas, o tipo de acesso e o bairro.'),
       { q: 'De quanto em quanto tempo devo limpar a placa solar?', r: 'Depende do lugar: perto de estrada de terra, árvore, obra ou indústria, a placa suja mais rápido. Na visita técnica avaliamos e indicamos a frequência certa para as suas placas.' },
       { q: 'A limpeza risca a placa?', r: 'Não. A limpeza é feita com cuidado para não riscar o vidro da placa.' },
       { q: 'Por que limpar a placa solar?', r: 'Porque a sujeira em cima do vidro tira luz da placa, e placa com menos luz gera menos energia. Limpa, ela volta a receber o sol inteiro.' },
@@ -209,13 +212,14 @@ export const SERVICOS = [
   {
     id: 'piso', slug: 'limpeza-de-piso', menu: 'Piso',
     titulo: 'Limpeza de piso e pedras em Curitiba | Novo Ambiente Service',
-    descricao: 'Limpeza de pisos, pedras e áreas externas de condomínios, empresas e casas em Curitiba e Região. Orçamento por foto no WhatsApp ou com visita técnica.',
+    /* 25/11, pedido dela: área interna também (porcelanato, cerâmica, mármore, granito), em toda a página */
+    descricao: 'Limpeza de pisos internos e externos, porcelanato, cerâmica, mármore, granito, pedras, calçadas e pátios de condomínios, empresas e casas em Curitiba e Região. Orçamento por foto no WhatsApp ou com visita técnica.',
     foto: { img: 'servico-piso', pos: '50% 50%', alt: 'Técnico de uniforme limpando com enceradeira o piso de pedra da área externa de um condomínio' },
     h1: 'Limpeza de piso <em>em Curitiba</em>',
-    sub: 'Pisos, pedras e áreas externas de condomínios, empresas e casas, com o encardido e o limo fora.',
+    sub: 'Pisos internos e externos, pedras e áreas de lazer de condomínios, empresas e casas, com o encardido e o limo fora.',
     pergunta: 'Que piso você precisa limpar?',
     linhas: [
-      { mini: 'p-externa', h: 'Áreas externas', p: 'Calçadas, pátios e entradas', m: msg('limpeza de piso de área externa') },
+      { mini: 'p-externa', h: 'Áreas internas e externas', p: 'Porcelanato, cerâmica, calçadas e pátios', m: msg('limpeza de piso') },
       { mini: 'p-pedra', h: 'Pedras', p: 'Pisos e revestimentos de pedra', m: msg('limpeza de piso de pedra') },
       { mini: 'p-condominio', h: 'Condomínio', p: 'Áreas comuns, garagem e entrada', m: msg('limpeza de piso para o condomínio') },
       { mini: 'p-loja', h: 'Empresa e loja', p: 'Pisos de comércio e escritório', m: msg('limpeza de piso para minha empresa') },
@@ -223,7 +227,7 @@ export const SERVICOS = [
     tiposTitulo: 'Onde o piso <em>mais encarde</em>',
     tiposP: 'Pedra e área externa pegam limo, barro e mancha. Avaliamos o piso antes de escolher como limpar.',
     icones: [
-      { ico: 'i-piso', h: 'Áreas externas', p: 'Calçada, pátio, entrada e área de lazer, com o limo e o encardido fora.' },
+      { ico: 'i-piso', h: 'Áreas internas e externas', p: 'Limpeza de pisos internos e externos, incluindo porcelanato, cerâmica, mármore, granitos, calçadas, pátios, áreas de lazer e demais superfícies.' },
       { ico: 'i-pedra', h: 'Pedras', p: 'Pisos e revestimentos de pedra, com o cuidado que cada pedra pede.' },
       { ico: 'i-predio', h: 'Áreas comuns de condomínio', p: 'Entrada, garagem, salão e área de lazer do prédio.' },
       { ico: 'i-loja', h: 'Empresas e lojas', p: 'Piso de comércio e escritório, no horário que não atrapalha o atendimento.' },
@@ -246,8 +250,8 @@ export const SERVICOS = [
     ],
     botaoFoto: 'Mandar foto do piso', mFoto: 'Olá! Vim pelo site da Novo Ambiente. Vou mandar uma foto do piso para vocês me passarem o orçamento.',
     faq: [
-      faqOrcamento('limpeza de piso'),
-      { q: 'Que tipos de piso vocês limpam?', r: 'Pisos e pedras de áreas externas, áreas comuns de condomínio, empresas, lojas e casas. Mande uma foto e confirmamos.' },
+      faqOrcamento('limpeza de piso', 'envie imagens do local e informe a metragem do piso, o bairro e uma breve descrição do serviço.'),
+      { q: 'Que tipos de piso vocês limpam?', r: 'Pisos internos e externos: porcelanato, cerâmica, mármore, granito, pedras, calçadas, pátios e áreas de lazer, em condomínios, empresas, lojas e casas. Mande uma foto e confirmamos.' },
       { q: 'Vocês limpam piso de pedra?', r: 'Sim. Pisos e revestimentos de pedra, com o cuidado que cada pedra pede. Avaliamos o piso antes de escolher como limpar.' },
       { q: 'Dá para limpar fora do horário de funcionamento?', r: 'Sim. Com agendamento antecipado, atendemos fora do horário comercial e no fim de semana, para não atrapalhar o movimento.' },
       faqPlano('piso'),
@@ -268,7 +272,7 @@ export const CONTATO = {
     { mini: 'vitrine', h: 'Vidros e janelas', p: 'Altura, fachada de vidro, vitrine, casa e pós-obra', m: msg('limpeza de vidros') },
     { mini: 'fachada-acm', h: 'Fachada', p: 'ACM, pastilha, textura e pedra', m: msg('limpeza de fachada') },
     { mini: 'placa-solar', h: 'Placa solar', p: 'Casa, comércio e indústria', m: msg('limpeza de placa solar') },
-    { mini: 'piso', h: 'Piso', p: 'Pisos, pedras e áreas externas', m: msg('limpeza de piso') },
+    { mini: 'piso', h: 'Piso', p: 'Pisos internos e externos e pedras', m: msg('limpeza de piso') },
   ],
   extras: [
     { ico: 'i-agenda', h: 'Agendar visita técnica', p: 'Para avaliar o serviço com você', m: 'Olá! Vim pelo site da Novo Ambiente e quero agendar uma visita técnica.' },
