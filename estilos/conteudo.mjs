@@ -48,7 +48,7 @@ export const servicos = [
 ];
 
 export const passos = [
-  { ico: 'i-foto', h: 'Mande uma foto ou peça uma visita', p: 'Uma foto do vidro e o endereço pelo WhatsApp já bastam para começar. Se preferir, fazemos uma visita técnica presencial para avaliar o serviço.' },
+  { ico: 'i-foto', h: 'Mande uma foto ou peça uma visita', p: 'Fotos do vidro e o bairro pelo WhatsApp já bastam para começar. Se preferir, fazemos uma visita técnica presencial para avaliar o serviço.' },
   { ico: 'i-proposta', h: 'Receba a proposta', p: 'Orçamento sem compromisso e proposta personalizada, para uma limpeza só ou com plano recorrente.' },
   { ico: 'i-agenda', h: 'Limpamos na data marcada', p: 'A equipe chega no dia combinado, com o acesso certo para cada tipo de vidro.' },
 ];

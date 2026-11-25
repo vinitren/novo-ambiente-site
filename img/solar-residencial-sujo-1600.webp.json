@@ -1,4 +1,5 @@
 {
- "origem": "Gerada por IA em 19/09/2026 (fotos/mestres/solar-residencial-sujo.png no trentini). Cena ilustrativa, não é foto de obra.",
- "descricao": "Placas solares de uma casa com poeira, barro e sujeira de pássaro, antes da limpeza"
+  "prompt": "Recriado a partir do depois (fotos/mestres/solar-residencial-limpo.png), nano 4:3 2K: mais de um ano sem limpeza, poeira e poluição cinza-amarronzada, dejetos de pássaros, sem mofo nem placa preta. Alinhado ao recorte do depois por homografia.",
+  "origem": "Gerada por IA em 25/11/2026 (solar-antes-v2-1.jpg, a mais leve; a v2-2 ficou tão suja quanto a antiga) no lugar do antes de 19/09, que estava exagerado e fora do enquadramento do depois. Cena ilustrativa, não é foto de obra.",
+  "createdAt": "2026-11-25T23:38:52.743537+00:00"
 }

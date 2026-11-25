@@ -9,7 +9,7 @@ const msg = (s) => `Olá! Vim pelo site da Novo Ambiente e quero um orçamento d
 /* as perguntas que valem para qualquer serviço */
 /* 25/11, pedido dela: a resposta de "Como peço um orçamento" muda por serviço (o que mandar junto com a foto) */
 const faqOrcamento = (o, pedir) => ({ q: `Como peço um orçamento de ${o}?`, r: `Entre em contato pelo WhatsApp (41) 99779-9646, ${pedir}` });
-const faqRegiao = { q: 'Vocês atendem fora de Curitiba?', r: 'Sim. Atendemos Curitiba e a Região Metropolitana. Mande o endereço pelo WhatsApp e confirmamos.' };
+const faqRegiao = { q: 'Vocês atendem fora de Curitiba?', r: 'Sim. Atendemos Curitiba e a Região Metropolitana. Mande o bairro pelo WhatsApp e confirmamos.' };
 const faqVisita = { q: 'Vocês fazem visita técnica?', r: 'Sim. Fazemos visita técnica presencial para avaliar o serviço e montar uma proposta personalizada.' };
 /* 17/11, pedido dela: "Vocês fazem limpezas periódicas de ..." no lugar de "... com contrato" */
 const faqPlano = (o) => ({ q: `Vocês fazem limpezas periódicas de ${o}?`, r: 'Sim. Fazemos a limpeza pontual ou periódica: semanal, quinzenal, mensal, trimestral ou semestral, com o plano montado conforme a necessidade de cada cliente.' });
@@ -155,7 +155,7 @@ export const SERVICOS = [
     id: 'placa-solar', slug: 'limpeza-de-placa-solar', menu: 'Placa solar',
     titulo: 'Limpeza de placa solar em Curitiba | Novo Ambiente Service',
     descricao: 'Limpeza de placa solar e painel solar em casas, comércios e indústrias de Curitiba e Região, sem riscar o vidro. Pontual ou com plano. Orçamento pelo WhatsApp.',
-    foto: { img: 'servico-placa-solar', pos: '45% 50%', alt: 'Técnico de uniforme, capacete e cinto limpando com rodo as placas solares no telhado de um galpão' },
+    foto: { img: 'servico-placa-solar', pos: '12% 50%', alt: 'Técnico de uniforme, capacete e cinto limpando com rodo as placas solares no telhado de um galpão' },
     iguais: true, /* 17/11, pedido dela: os dois cartões com botão e texto do mesmo tamanho */
     h1: 'Limpeza de placa solar <em>em Curitiba</em>',
     sub: 'Poluição e dejetos de pássaros saem da placa de casas, comércios e indústrias, sem riscar o vidro.',
@@ -188,7 +188,7 @@ export const SERVICOS = [
       ],
       sozinho: { h: 'Por que não limpar sozinho', p: 'Subir no telhado sem equipamento é arriscado, e escova ou produto errado pode riscar o vidro da placa. Nós subimos com equipamento de segurança e limpamos com cuidado para não riscar.' },
     },
-    par: { a: 'solar-residencial-sujo', d: 'solar-residencial-limpo', larguras: [1000, 1600], alts: ['Placas solares de uma casa com poeira, barro e sujeira de pássaro, antes da limpeza', 'As mesmas placas solares depois da limpeza'],
+    par: { a: 'solar-residencial-sujo', d: 'solar-residencial-limpo', larguras: [1000, 1600], alts: ['Placas solares de uma casa foscas de poeira e poluição, com dejetos de pássaros, antes da limpeza', 'As mesmas placas solares depois da limpeza'],
       h: 'A mesma placa, <em>antes e depois</em>', p: 'Poluição e dejetos de pássaros saem, e o vidro da placa volta a receber o sol inteiro.' }, /* 25/11: ela escreveu "destritos"; dejetos é o sentido */
     publicosEspecificos: [
       { ico: 'i-casa', h: 'Casa', p: 'Quem investiu na placa quer que ela gere o que prometeu na conta de luz.', r: 'Placa limpa sem ninguém da família subir no telhado.', l: 'Orçamento para casa', m: msg('limpeza de placa solar para minha casa') },

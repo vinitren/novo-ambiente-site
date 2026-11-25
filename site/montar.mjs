@@ -3,7 +3,7 @@
 // Uso: node site/montar.mjs              → dist/ como prévia (noindex, com a linha de prévia no rodapé)
 //      node site/montar.mjs --producao   → dist/ para ir para o ar (indexável, sitemap, robots e 301)
 //      node site/montar.mjs --aprovar    → também em aprovar/public/novo-ambiente/site/ (sempre prévia)
-import { cpSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { wa, seta, ico, ext, publicos, passos, tambem, MSG, icones, planos, fotoRodo } from '../estilos/conteudo.mjs';
@@ -188,7 +188,7 @@ const INTRO_VIDROS = 'Atendemos locais de difícil acesso com técnicas de rapel
 const ALT_VITRINE = 'Técnico da Novo Ambiente, de costas, limpando com haste e rodo a vitrine de uma loja de roupas';
 const entradaHome = (p) => `<section class="entrada" aria-labelledby="t-entrada" style="--pos: 45% 30%">
   <picture class="entrada-foto">
-    <source media="(max-width: 61.99rem)" srcset="${p}img/entrada-vitrine-750.webp 750w, ${p}img/entrada-vitrine-1080.webp 1024w" sizes="100vw" width="1024" height="1536">
+    <source media="(max-width: 61.99rem)" srcset="${p}img/entrada-vitrine-750.webp 750w, ${p}img/entrada-vitrine-1080.webp 1024w, ${p}img/entrada-vitrine-1440.webp 1440w" sizes="100vw" width="1024" height="1536">
     <img src="${p}img/entrada-vitrine-larga-1600.webp" srcset="${p}img/entrada-vitrine-larga-1600.webp 1600w, ${p}img/entrada-vitrine-larga-2560.webp 2560w" sizes="100vw" width="2560" height="1429" alt="${ALT_VITRINE}" fetchpriority="high">
   </picture>
   <div class="entrada-veu"></div>
@@ -214,7 +214,7 @@ const entradaHome = (p) => `<section class="entrada" aria-labelledby="t-entrada"
 function home() {
   const p = '';
   const preload = `<link rel="preload" as="image" imagesrcset="img/entrada-vitrine-larga-1600.webp 1600w, img/entrada-vitrine-larga-2560.webp 2560w" imagesizes="100vw" media="(min-width: 62rem)" fetchpriority="high">
-<link rel="preload" as="image" imagesrcset="img/entrada-vitrine-750.webp 750w, img/entrada-vitrine-1080.webp 1024w" imagesizes="100vw" media="(max-width: 61.99rem)" fetchpriority="high">`;
+<link rel="preload" as="image" imagesrcset="img/entrada-vitrine-750.webp 750w, img/entrada-vitrine-1080.webp 1024w, img/entrada-vitrine-1440.webp 1440w" imagesizes="100vw" media="(max-width: 61.99rem)" fetchpriority="high">`;
   const corpo = corpoCartoes(p, rotas(p));
   const vidrosP = /(<h2 id="t-vidros">[\s\S]*?<\/h2>\s*<p>)[\s\S]*?(<\/p>)/;
   if (!vidrosP.test(corpo) || !corpo.includes('<section class="secao b-passos"')) throw new Error('home: o corpo mudou, conferir os encaixes de 17/11');
@@ -235,8 +235,13 @@ function servico(s) {
   const p = '../';
   const outros = tambem.filter((t) => t.id !== s.id);
   const vidro = s.id === 'vidros';
-  const meusPassos = passos.map((x) => ({ ...x, p: vidro ? x.p : x.p.replace('Uma foto do vidro', 'Uma foto').replace('cada tipo de vidro', 'cada serviço') }));
-  const preload = `<link rel="preload" as="image" href="${p}img/${s.foto.img}.webp" fetchpriority="high">`;
+  const meusPassos = passos.map((x) => ({ ...x, p: vidro ? x.p : x.p.replace('Fotos do vidro', 'Fotos do local').replace('cada tipo de vidro', 'cada serviço') }));
+  /* 25/11: topo com 1250 e 1500 px quando existem, para não esticar no celular */
+  const grandes = existsSync(join(raiz, 'img', `${s.foto.img}-1500.webp`));
+  const fotoSet = grandes ? `${p}img/${s.foto.img}.webp 1000w, ${p}img/${s.foto.img}-1250.webp 1250w, ${p}img/${s.foto.img}-1500.webp 1500w` : '';
+  const preload = grandes
+    ? `<link rel="preload" as="image" imagesrcset="${fotoSet}" imagesizes="(min-width: 62rem) 50vw, 100vw" fetchpriority="high">`
+    : `<link rel="preload" as="image" href="${p}img/${s.foto.img}.webp" fetchpriority="high">`;
   const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: s.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.r } })) };
   const trilhaLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Início', item: `${DOMINIO}/` },
@@ -309,13 +314,13 @@ function servico(s) {
     .replace('o vidro <em>sempre em dia</em>', vidro ? 'o vidro <em>sempre em dia</em>' : 'a placa <em>sempre em dia</em>')
     .replace('avaliamos o vidro com você', vidro ? 'avaliamos o vidro com você' : 'avaliamos as placas com você') : '';
   const fotoFecho = vidro ? fotoRodo(p, '(min-width: 62rem) 45vw, 100vw')
-    : `<img src="${p}img/${s.foto.img}.webp" width="1000" height="1250" alt="${s.foto.alt}" loading="lazy" decoding="async" style="object-position: ${s.foto.pos}">`;
+    : `<img src="${p}img/${s.foto.img}.webp"${grandes ? ` srcset="${fotoSet}" sizes="(min-width: 62rem) 45vw, 100vw"` : ''} width="1000" height="1250" alt="${s.foto.alt}" loading="lazy" decoding="async" style="object-position: ${s.foto.pos}">`;
 
   return cabeca(p, { titulo: s.titulo, descricao: s.descricao, url: `/${s.slug}/`, classe: 'sv', preload, schemas: [servicoLd, trilhaLd, faqLd] })
     + topo(p, s.id) + `<main id="conteudo">
 <section class="entrada" aria-labelledby="t-entrada" style="--pos: ${s.foto.pos}">
   <picture class="entrada-foto">
-    <img src="${p}img/${s.foto.img}.webp" width="1000" height="1250" alt="${s.foto.alt}" fetchpriority="high">
+    <img src="${p}img/${s.foto.img}.webp"${grandes ? ` srcset="${fotoSet}" sizes="(min-width: 62rem) 50vw, 100vw"` : ''} width="1000" height="1250" alt="${s.foto.alt}" fetchpriority="high">
   </picture>
   <div class="entrada-veu"></div>
   <div class="wrap entrada-texto eb-entrada">
