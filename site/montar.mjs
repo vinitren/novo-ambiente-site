@@ -78,6 +78,8 @@ ${iconesSite}
 `;
 }
 
+/* 27/11, pedido dela: no celular não havia como ir para as outras páginas sem descer até o rodapé. Abaixo de 62rem
+   o menu vira o botão "Menu", que abre a lista das páginas (script.js) */
 const topo = (p, atual) => `<header class="topo">
   <div class="wrap">
     <a class="marca" href="${rota(p, 'inicio')}" aria-label="Novo Ambiente Service, início">
@@ -90,7 +92,13 @@ const topo = (p, atual) => `<header class="topo">
       ${[...SERVICOS.map((s) => [s.id, s.menu]), ['contato', 'Contato']].map(([id, nome]) => `<a href="${rota(p, id)}"${id === atual ? ' aria-current="page"' : ''}>${nome}</a>`).join('')}
     </nav>
     <a class="botao botao-topo" href="${wa(MSG.topo)}" ${ext}>Orçamento${seta}</a>
+    <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu-celular"><svg aria-hidden="true" viewBox="0 0 24 24"><path class="mb-1" d="M4 7h16"/><path class="mb-2" d="M4 12h16"/><path class="mb-3" d="M4 17h16"/></svg><span>Menu</span></button>
   </div>
+  <nav class="menu-celular" id="menu-celular" aria-label="Páginas do site" hidden>
+    <ul>
+      ${[['inicio', 'Início'], ...SERVICOS.map((s) => [s.id, `Limpeza de ${s.menu.toLowerCase()}`]), ['contato', 'Contato']].map(([id, nome]) => `<li><a href="${rota(p, id)}"${id === atual ? ' aria-current="page"' : ''}>${nome}${seta}</a></li>`).join('\n      ')}
+    </ul>
+  </nav>
 </header>
 `;
 
