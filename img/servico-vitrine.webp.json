@@ -1,5 +1,5 @@
 {
   "prompt": "",
-  "origem": "Imagem feita pela Novo Ambiente com IA e aprovada por eles em 17/11/2026 (v4-escada-vidro-de-loja.jpg); logo das costas trocada pela vetorial real em 17/11. Resolução ampliada com Real-ESRGAN em 18/11, sem mudar a imagem. Cena ilustrativa, não é foto de obra. Recorte fechado no técnico em 27/11 (x 250-950, y 0-875 da versão de 18/11), pedido do Lucas: a ferramenta não aparecia no cartão.",
+  "origem": "Imagem feita pela Novo Ambiente com IA e aprovada por eles em 17/11/2026 (v4-escada-vidro-de-loja.jpg); logo das costas trocada pela vetorial real em 17/11. Resolução ampliada com Real-ESRGAN em 18/11, sem mudar a imagem. Cena ilustrativa, não é foto de obra. Em 27/11 (pedido do Lucas, o rodo aparecer inteiro): a imagem original de 18/11 foi expandida para cima no Gemini e a original colada por cima pixel a pixel; da nova só ficou a faixa de cima (rodo, teto e janela). Recorte x 231-931, y 60-935 da montagem.",
   "createdAt": "2026-11-18T01:47:33.074475+00:00"
 }
