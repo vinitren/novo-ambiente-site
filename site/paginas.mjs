@@ -155,7 +155,7 @@ export const SERVICOS = [
     id: 'placa-solar', slug: 'limpeza-de-placa-solar', menu: 'Placa solar',
     titulo: 'Limpeza de placa solar em Curitiba | Novo Ambiente Service',
     descricao: 'Limpeza de placa solar e painel solar em casas, comércios e indústrias de Curitiba e Região, sem riscar o vidro. Pontual ou com plano. Orçamento pelo WhatsApp.',
-    foto: { img: 'servico-placa-solar', pos: '12% 50%', alt: 'Técnico de uniforme, capacete e cinto limpando com rodo as placas solares no telhado de um galpão' },
+    foto: { img: 'servico-placa-solar', pos: '50% 80%', alt: 'Técnico de uniforme, capacete e cinto limpando com haste e escova as placas solares no telhado de um galpão' },
     iguais: true, /* 17/11, pedido dela: os dois cartões com botão e texto do mesmo tamanho */
     h1: 'Limpeza de placa solar <em>em Curitiba</em>',
     sub: 'Poluição e dejetos de pássaros saem da placa de casas, comércios e indústrias, sem riscar o vidro.',
